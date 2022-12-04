@@ -28,20 +28,28 @@ struct EmojiPicker: View {
     
     var body: some View {
         NavigationStack {
-            ScrollView {
-                LazyVGrid(columns: vGridLayout, content: {
-                    ForEach(allowableEmoji, id: \.self) { emoji in
-                        Text(String(emoji))
-                            .background(RoundedRectangle(cornerRadius: 4).foregroundColor(backgroundColor(for: emoji)))
-                            .onTapGesture(count: 2) { self.chooseAndDismiss(emoji)
-                            }
-                            .onTapGesture { userTapped(emoji) }
-                    }
-                })
-                .font(.largeTitle)
+            VStack {
+                ScrollView {
+                    LazyVGrid(columns: vGridLayout, content: {
+                        ForEach(allowableEmoji, id: \.self) { emoji in
+                            Text(String(emoji))
+                                .background(RoundedRectangle(cornerRadius: 4).foregroundColor(backgroundColor(for: emoji)))
+                                .onTapGesture(count: 2) { self.chooseAndDismiss(emoji)
+                                }
+                                .onTapGesture { userTapped(emoji) }
+                        }
+                    })
+                    .font(.largeTitle)
+                }
+                HStack {
+                    clearButton
+                    Spacer()
+                    chooseButton
+                }
+                .padding()
             }
             .navigationTitle(prompt)
-            .navigationBarItems(leading: cancelButton, trailing: chooseButton)
+            .navigationBarItems(leading: cancelButton)
         }
     }
     
@@ -59,6 +67,13 @@ struct EmojiPicker: View {
         }
     }
     
+    private var clearButton: some View {
+        Button("Clear") {
+            emojiWasSelected("")
+            dismiss()
+        }
+    }
+
     private var chooseButton: some View {
         Button("Choose") {
             chooseAndDismiss(selectedEmoji!)
