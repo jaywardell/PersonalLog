@@ -25,6 +25,8 @@ struct JournalEntryView: View {
         // empty for new entries
         @Published var text = ""
         
+        @Published var tags = [String]()
+        
         let cancel: ()->()
         let save: ()->()
         
@@ -32,12 +34,14 @@ struct JournalEntryView: View {
              title: String,
              prompt: String,
              text: String,
+             tags: [String],
             cancel: @escaping ()->(),
             save: @escaping ()->()) {
             self.mood = mood
             self.title = title
             self.prompt = prompt
             self.text = text
+            self.tags = tags
             self.cancel = cancel
             self.save = save
         }
@@ -113,11 +117,11 @@ extension JournalEntryView {
 // MARK: - JournalEntryView.ViewModel: Convenience Initializers
 fileprivate extension JournalEntryView.ViewModel {
     static var empty: Self {
-        .init(mood: "", title: "", prompt: "", text: "", cancel: {}, save: {})
+        .init(mood: "", title: "", prompt: "", text: "", tags: [], cancel: {}, save: {})
     }
     
     static var thorough: Self {
-        .init(mood: "😆", title: "A Fun Day", prompt: "What was today like?", text: "It was awesome! We swam and fished and danced and played and talked and talked and talked and talked and talked", cancel: {}, save: {})
+        .init(mood: "😆", title: "A Fun Day", prompt: "What was today like?", text: "It was awesome! We swam and fished and danced and played and talked and talked and talked and talked and talked", tags: ["fun", "delightful", "great weather"], cancel: {}, save: {})
     }
 
 }
