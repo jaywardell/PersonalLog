@@ -14,7 +14,8 @@ struct PhrasesPicker: View {
     let phrases: [String]
     
     let doneButtonTitle: String
-    
+    let clearButtonTitle: String
+
     let showCancelButton: Bool
 
     let phraseWasChanged: (String)->()
@@ -22,13 +23,21 @@ struct PhrasesPicker: View {
     @State private var selectedPhrase: String
     @Environment(\.dismiss) var dismiss
 
-    init(prompt: String, phrases: [String], initialPhrase: String, doneButtonTitle: String = "Done", showCancelButton: Bool = true,  phraseWasChanged: @escaping (String)->()) {
+    init(prompt: String,
+         phrases: [String],
+         initialPhrase: String,
+         doneButtonTitle: String = "Done",
+         clearButtonTitle: String,
+         showCancelButton: Bool = true,
+         phraseWasChanged: @escaping (String)->()) {
         self.prompt = prompt
         self.phrases = phrases
         self.initialPhrase = initialPhrase
         self.showCancelButton = showCancelButton
-        self.phraseWasChanged = phraseWasChanged
         self.doneButtonTitle = doneButtonTitle
+        self.clearButtonTitle = clearButtonTitle
+        self.phraseWasChanged = phraseWasChanged
+
         _selectedPhrase = .init(initialValue: initialPhrase)
     }
 
@@ -78,12 +87,17 @@ struct PhrasesPicker: View {
         }
     }
     
-    private var clearButton: some View {
-        Button("Clear") {
-            phraseWasChanged("")
-            dismiss()
+    @ViewBuilder private var clearButton: some View {
+        if !clearButtonTitle.isEmpty {
+            Button(clearButtonTitle) {
+                phraseWasChanged("")
+                dismiss()
+            }
+            .disabled(selectedPhrase == "")
         }
-        .disabled(selectedPhrase == "")
+        else {
+            EmptyView()
+        }
     }
 
 
@@ -109,6 +123,6 @@ struct PhrasesPicker: View {
 
 struct PhrasesPicker_Previews: PreviewProvider {
     static var previews: some View {
-        PhrasesPicker(prompt: "Some Phrases", phrases: ["How's the weather?", "What time is it?", "Where am I going?"], initialPhrase: "What time is it?", doneButtonTitle: "Choose Me", showCancelButton: true) {_ in }
+        PhrasesPicker(prompt: "Some Phrases", phrases: ["How's the weather?", "What time is it?", "Where am I going?"], initialPhrase: "What time is it?", doneButtonTitle: "Choose Me", clearButtonTitle: "Clear", showCancelButton: true) {_ in }
     }
 }
