@@ -12,7 +12,7 @@ class TopViewController: UITabBarController {
 
     private let journalVC = JournalViewController(style: .grouped)
     private lazy var historyVC = UINavigationController(rootViewController: journalVC)
-    private lazy var journalEntryVC = UIHostingController(rootView: JournalEntryView(viewModel: .init(mood: "😀", title: "", prompt: "How was the weather today?", text: "sunny", tags: ["happy", "weather"], cancel: {}, save: {})))
+    private lazy var journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: .init(mood: "😀", title: "", prompt: "How was the weather today?", text: "sunny", tags: ["happy", "weather"], cancel: {}, save: {})))
     
     override func viewDidLoad() {
         super.viewDidLoad()

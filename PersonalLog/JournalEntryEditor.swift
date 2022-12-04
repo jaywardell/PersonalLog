@@ -1,5 +1,5 @@
 //
-//  JournalEntryView.swift
+//  JournalEntryEditor.swift
 //  PersonalLog
 //
 //  Created by Joseph Wardell on 12/4/22.
@@ -9,7 +9,7 @@ import SwiftUI
 
 
 
-struct JournalEntryView: View {
+struct JournalEntryEditor: View {
     
     final class ViewModel: ObservableObject {
         
@@ -179,7 +179,7 @@ struct JournalEntryView: View {
 
 // MARK: - JournalEntryView: Component Views
 
-extension JournalEntryView {
+extension JournalEntryEditor {
     
     private var cancelButton: some View {
         Button(action: viewModel.cancel) {
@@ -196,7 +196,7 @@ extension JournalEntryView {
 }
 
 // MARK: - JournalEntryView.ViewModel: Convenience Initializers
-fileprivate extension JournalEntryView.ViewModel {
+fileprivate extension JournalEntryEditor.ViewModel {
     static var empty: Self {
         .init(mood: "", title: "", prompt: "", text: "", tags: [], cancel: {}, save: {})
     }
@@ -211,11 +211,11 @@ fileprivate extension JournalEntryView.ViewModel {
 
 struct JournalEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        JournalEntryView(viewModel: .empty)
+        JournalEntryEditor(viewModel: .empty)
             .previewLayout(.sizeThatFits)
             .previewDisplayName("Empty")
 
-        JournalEntryView(viewModel: .thorough)
+        JournalEntryEditor(viewModel: .thorough)
             .previewLayout(.sizeThatFits)
             .previewDisplayName("Everything Filled Out")
     }
