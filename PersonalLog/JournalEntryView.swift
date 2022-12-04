@@ -55,7 +55,7 @@ struct JournalEntryView: View {
                 TextField("What should I write about?", text: $viewModel.prompt)
                     .font(.subheadline)
                 TextEditor(text: $viewModel.text)
-                    .background(Color.red)
+                    .font(.system(.body, design: .serif))
             }
             .padding()
             .navigationTitle("")
