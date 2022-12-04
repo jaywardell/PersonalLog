@@ -49,13 +49,21 @@ struct JournalEntryView: View {
 
     @FocusState private var focusedField: FocusField?
 
+    @State private var showEmojiPicker = false
+
     
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-                    TextField("🫥", text: $viewModel.mood)
-                        .font(.largeTitle)
+//                    TextField("🫥", text: $viewModel.mood)
+//                        .font(.largeTitle)
+
+                    Button("🫥" /*viewModel.mood*/) {
+                        showEmojiPicker = true
+                    }
+                    .font(.largeTitle)
+                    
                     TextField("Title (optional)", text: $viewModel.title)
                         .font(.headline)
                         .focused($focusedField, equals: .title)
@@ -77,6 +85,9 @@ struct JournalEntryView: View {
             .navigationTitle("")
             .navigationBarItems(leading: cancelButton, trailing: saveButton)
             .onAppear { self.focusedField = .text }
+            .sheet(isPresented: $showEmojiPicker) {
+                EmojiSelectionView()
+            }
         }
     }
 }
