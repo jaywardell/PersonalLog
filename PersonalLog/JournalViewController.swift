@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 class JournalViewController: UITableViewController {
 
@@ -41,12 +42,15 @@ class JournalViewController: UITableViewController {
         return 3
     }
 
+    let dummyInfo = JournalEntryCell.ViewModel(date: Date(), mood: "😂", title: "", text: "This is pretty damn cool", tags: ["cool", "beans"])
+    
     private let cellReuseIdentifier = "JournalViewControllerCell"
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style:.subtitle, reuseIdentifier:cellReuseIdentifier)
-
-        // Configure the cell...
-        cell.textLabel?.text = "hello"
+        
+        cell.contentConfiguration = UIHostingConfiguration() {
+            JournalEntryCell(viewModel: dummyInfo)
+        }
 
         return cell
     }
