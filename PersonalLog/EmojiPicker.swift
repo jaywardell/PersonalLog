@@ -13,15 +13,25 @@ struct EmojiPicker: View {
     let allowableEmoji: [String.Element]
     let emojiWasSelected: (String) -> ()
     
+    let showClearButton: Bool
+    let showCancelButton: Bool
+
     var vGridLayout = [ GridItem(.adaptive(minimum: 50)) ]
 
     @State private var selectedEmoji: String.Element?
     @Environment(\.dismiss) var dismiss
 
-    init(prompt: String = "", allowed: String = Self.faces, selected: String, emojiWasSelected: @escaping (String) -> ()) {
+    init(prompt: String = "",
+         allowed: String = Self.faces,
+         selected: String,
+         showClearButton: Bool,
+         showCancelButton: Bool,
+         emojiWasSelected: @escaping (String) -> ()) {
         self.prompt = prompt
         self.allowableEmoji = Array(allowed)
         self.emojiWasSelected = emojiWasSelected
+        self.showClearButton = showClearButton
+        self.showCancelButton = showCancelButton
         
         _selectedEmoji = .init(initialValue: selected.first)
     }
@@ -42,7 +52,9 @@ struct EmojiPicker: View {
                     .font(.largeTitle)
                 }
                 HStack {
-                    clearButton
+                    if showClearButton {
+                        clearButton
+                    }
                     Spacer()
                     chooseButton
                 }
@@ -61,9 +73,14 @@ struct EmojiPicker: View {
         self.selectedEmoji = emoji == self.selectedEmoji ? nil : emoji
     }
     
-    private var cancelButton: some View {
-        Button("Cancel") {
-            dismiss()
+    @ViewBuilder private var cancelButton: some View {
+        if showCancelButton {
+            Button("Cancel") {
+                dismiss()
+            }
+        }
+        else {
+            EmptyView()
         }
     }
     
@@ -94,6 +111,6 @@ extension EmojiPicker {
 
 struct EmojiSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiPicker(selected: "") { _ in }
+        EmojiPicker(selected: "", showClearButton: true, showCancelButton: true) { _ in }
     }
 }
