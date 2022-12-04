@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct EmojiSelectionView: View {
-        
+    
+    let prompt: String
     let allowableEmoji: [String.Element]
     let emojiWasSelected: (String) -> ()
     
@@ -17,7 +18,8 @@ struct EmojiSelectionView: View {
     @State private var selectedEmoji: String.Element?
     @Environment(\.dismiss) var dismiss
 
-    init(allowed: String = Self.faces, selected: String, emojiWasSelected: @escaping (String) -> ()) {
+    init(prompt: String = "", allowed: String = Self.faces, selected: String, emojiWasSelected: @escaping (String) -> ()) {
+        self.prompt = prompt
         self.allowableEmoji = Array(allowed)
         self.emojiWasSelected = emojiWasSelected
         
@@ -38,7 +40,7 @@ struct EmojiSelectionView: View {
                 })
                 .font(.largeTitle)
             }
-            .navigationTitle("How do you feel?")
+            .navigationTitle(prompt)
             .navigationBarItems(leading: cancelButton, trailing: chooseButton)
         }
     }
