@@ -43,9 +43,19 @@ struct JournalEntryView: View {
     
     var body: some View {
         NavigationView {
-            Text("Hello World")
-                .navigationTitle("")
-                .navigationBarItems(leading: cancelButton, trailing: saveButton)
+            VStack {
+                TextField("🫥", text: $viewModel.mood)
+                    .font(.largeTitle)
+                TextField("Title (optional)", text: $viewModel.title)
+                    .font(.headline)
+                TextField("What should I write about?", text: $viewModel.title)
+                    .font(.subheadline)
+                TextEditor(text: $viewModel.text)
+                    .background(Color.red)
+            }
+            .padding()
+            .navigationTitle("")
+            .navigationBarItems(leading: cancelButton, trailing: saveButton)
         }
     }
 }
@@ -72,6 +82,11 @@ fileprivate extension JournalEntryView.ViewModel {
     static var empty: Self {
         .init(mood: "", title: "", prompt: "", text: "", cancel: {}, save: {})
     }
+    
+    static var thorough: Self {
+        .init(mood: "😆", title: "A Fun Day", prompt: "What was today like?", text: "It was awesome! We swam and fished and danced and played and talked and talked and talked and talked and talked", cancel: {}, save: {})
+    }
+
 }
 
 // MARK: - Preview
@@ -80,5 +95,10 @@ struct JournalEntryView_Previews: PreviewProvider {
     static var previews: some View {
         JournalEntryView(viewModel: .empty)
             .previewLayout(.sizeThatFits)
+            .previewDisplayName("Empty")
+
+        JournalEntryView(viewModel: .thorough)
+            .previewLayout(.sizeThatFits)
+            .previewDisplayName("Everything Filled Out")
     }
 }
