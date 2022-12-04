@@ -99,7 +99,8 @@ struct JournalEntryView: View {
                 }
                 .padding(.horizontal)
                 .padding(.horizontal)
-  
+
+                // only make the prompts picker available if the suer hasn't already started to write OR if she's chosen a prompt already
                 if !viewModel.prompt.isEmpty || viewModel.text.isEmpty {
                     
                     HStack {
