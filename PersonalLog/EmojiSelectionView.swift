@@ -8,9 +8,8 @@
 import SwiftUI
 
 struct EmojiSelectionView: View {
-    
-    let allowableEmoji = Array("😀😃😄😁😆🥹😅😂🤣🥲☺️😊😇🙂🙃😉😌😍🥰😘😗😙😚😋😛😝😜🤪🤨🧐🤓😎🥸🤩🥳😏😒😞😔😟😕🙁☹️😣😖😫😩🥺😢😭😤😠😡🤬🤯😳🥵🥶😶‍🌫️😱")
-    
+        
+    let allowableEmoji: [String.Element]
     let emojiWasSelected: (String) -> ()
     
     var vGridLayout = [ GridItem(.adaptive(minimum: 50)) ]
@@ -18,10 +17,11 @@ struct EmojiSelectionView: View {
     @State private var selectedEmoji: String.Element?
     @Environment(\.dismiss) var dismiss
 
-    init(initialEmoji: String, emojiWasSelected: @escaping (String) -> ()) {
+    init(allowed: String = Self.faces, selected: String, emojiWasSelected: @escaping (String) -> ()) {
+        self.allowableEmoji = Array(allowed)
         self.emojiWasSelected = emojiWasSelected
         
-        _selectedEmoji = .init(initialValue: initialEmoji.first)
+        _selectedEmoji = .init(initialValue: selected.first)
     }
     
     var body: some View {
@@ -71,8 +71,12 @@ struct EmojiSelectionView: View {
     }
 }
 
+extension EmojiSelectionView {
+    static let faces = "😀😃😄😁😆🥹😅😂🤣🥲☺️😊😇🙂🙃😉😌😍🥰😘😗😙😚😋😛😝😜🤪🤨🧐🤓😎🥸🤩🥳😏😒😞😔😟😕🙁☹️😣😖😫😩🥺😢😭😤😠😡🤬🤯😳🥵🥶😶‍🌫️😱😨😰😥😓🤗🤔🫣🤭🫢🫡🤫🫠🤥😶😐🫤😑😬🙄😯😦😧😮😲🥱😴🤤😪😮‍💨😵😵‍💫🤐🥴🤢🤮🤧😷🤒🤕🤑🤠😈👿👹👺🤡💩👻💀☠️👽👾🤖🎃😺😸😹😻😼😽🙀😿😾"
+}
+
 struct EmojiSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiSelectionView(initialEmoji: "") { _ in }
+        EmojiSelectionView(selected: "") { _ in }
     }
 }
