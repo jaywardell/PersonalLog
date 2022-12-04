@@ -24,8 +24,8 @@ struct EmojiPicker: View {
     init(prompt: String = "",
          allowed: String = Self.faces,
          selected: String,
-         showClearButton: Bool,
-         showCancelButton: Bool,
+         showClearButton: Bool = true,
+         showCancelButton: Bool = true,
          emojiWasSelected: @escaping (String) -> ()) {
         self.prompt = prompt
         self.allowableEmoji = Array(allowed)
