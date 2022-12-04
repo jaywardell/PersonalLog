@@ -20,5 +20,18 @@ class TopViewController: UITabBarController {
         tabBar.isHidden = true
         
         self.viewControllers = [journalEntryVC, historyVC]
+        
+        showJournalEntry()
+    }
+    
+    private let journalEntryIndex = 1
+    private let journalIndex = 2
+    
+    public func showJournal() {
+        self.selectedIndex = journalIndex
+    }
+    
+    public func showJournalEntry() {
+        self.selectedIndex = journalEntryIndex
     }
 }
