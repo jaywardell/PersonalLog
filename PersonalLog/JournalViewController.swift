@@ -47,7 +47,7 @@ class JournalViewController: UITableViewController {
     
     private let cellReuseIdentifier = "JournalViewControllerCell"
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style:.subtitle, reuseIdentifier:cellReuseIdentifier)
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style:.default, reuseIdentifier:cellReuseIdentifier)
         
         cell.contentConfiguration = UIHostingConfiguration() {
             JournalEntryCell(viewModel: dummyInfo)
