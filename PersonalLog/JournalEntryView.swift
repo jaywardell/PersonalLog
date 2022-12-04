@@ -13,7 +13,7 @@ struct JournalEntryView: View {
     
     final class ViewModel: ObservableObject {
         
-        // tends to be an emoji, cannot be more than 3 characters long
+        // tends to be an emoji, only 1 character long
         @Published var mood = ""
         
         // empty by default
@@ -45,21 +45,38 @@ struct JournalEntryView: View {
     
     @ObservedObject var viewModel: ViewModel
     
+    enum FocusField: Hashable { case title, text }
+
+    @FocusState private var focusedField: FocusField?
+
+    
     var body: some View {
         NavigationView {
             VStack {
-                TextField("🫥", text: $viewModel.mood)
-                    .font(.largeTitle)
-                TextField("Title (optional)", text: $viewModel.title)
-                    .font(.headline)
-                TextField("What should I write about?", text: $viewModel.prompt)
+                HStack {
+                    TextField("🫥", text: $viewModel.mood)
+                        .font(.largeTitle)
+                    TextField("Title (optional)", text: $viewModel.title)
+                        .font(.headline)
+                        .focused($focusedField, equals: .title)
+                    Spacer()
+                }
+
+                TextField("what should I write about?", text: $viewModel.prompt)
                     .font(.subheadline)
+                    .foregroundColor(.gray)
+                    .padding(.horizontal)
+
+
                 TextEditor(text: $viewModel.text)
                     .font(.system(.body, design: .serif))
+                    .padding(.horizontal)
+                    .focused($focusedField, equals: .text)
             }
             .padding()
             .navigationTitle("")
             .navigationBarItems(leading: cancelButton, trailing: saveButton)
+            .onAppear { self.focusedField = .text }
         }
     }
 }
