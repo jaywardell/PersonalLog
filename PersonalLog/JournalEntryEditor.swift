@@ -29,7 +29,6 @@ struct JournalEntryEditor: View {
         
         @Published var tags = [String]()
         
-//        let cancel: ()->()
         let save: (ViewModel)->()
         
         init(date: Date? = nil,
