@@ -47,6 +47,10 @@ struct JournalEntryEditor: View {
             self.save = save
         }
         
+        convenience init(_ save: @escaping (ViewModel)->()) {
+            self.init(mood: "", title: "", prompt: "", text: "", tags: [], save: save)
+        }
+        
         // there's no point in saving a journal entry if it doesn't either record a mood or have text
         var hasGoodData: Bool {
             !mood.isEmpty || !text.isEmpty

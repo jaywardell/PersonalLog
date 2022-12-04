@@ -60,8 +60,12 @@ class JournalViewController: UITableViewController {
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewEntry))
+        navigationItem.leftBarButtonItem = addButton
     }
 
+    
     // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -93,8 +97,8 @@ class JournalViewController: UITableViewController {
         
         let viewModel = routes.entryViewModelForEditing(id: routes.entryIDs[indexPath.row])
         let vm = entryViewModelForEditing(viewModel)
-        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: vm))
 
+        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: vm))
         present(journalEntryVC, animated: true)
                                                  
         tableView.deselectRow(at: indexPath, animated: true)
@@ -102,6 +106,17 @@ class JournalViewController: UITableViewController {
     
     func entryViewModelForEditing(_ viewModel: JournalViewController.ViewModel) -> JournalEntryEditor.ViewModel {
         JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags, save: { print($0) })
+    }
+
+    @objc
+    private func createNewEntry() {
+        
+        let viewModel = JournalEntryEditor.ViewModel() {
+            print($0)
+        }
+        
+        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: viewModel))
+        present(journalEntryVC, animated: true)
     }
 
     /*
