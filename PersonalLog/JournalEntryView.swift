@@ -62,6 +62,7 @@ struct JournalEntryView: View {
                     Button(moodButtonTitle) {
                         showEmojiPicker = true
                     }
+                    .opacity(viewModel.mood.isEmpty ? 0.25 : 1)
                     .font(.largeTitle)
                     
                     TextField("Title (optional)", text: $viewModel.title)
