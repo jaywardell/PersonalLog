@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct EmojiSelectionView: View {
+struct EmojiPicker: View {
     
     let prompt: String
     let allowableEmoji: [String.Element]
@@ -73,12 +73,12 @@ struct EmojiSelectionView: View {
     }
 }
 
-extension EmojiSelectionView {
+extension EmojiPicker {
     static let faces = "😀😃😄😁😆🥹😅😂🤣🥲☺️😊😇🙂🙃😉😌😍🥰😘😗😙😚😋😛😝😜🤪🤨🧐🤓😎🥸🤩🥳😏😒😞😔😟😕🙁☹️😣😖😫😩🥺😢😭😤😠😡🤬🤯😳🥵🥶😶‍🌫️😱😨😰😥😓🤗🤔🫣🤭🫢🫡🤫🫠🤥😶😐🫤😑😬🙄😯😦😧😮😲🥱😴🤤😪😮‍💨😵😵‍💫🤐🥴🤢🤮🤧😷🤒🤕🤑🤠😈👿👹👺🤡💩👻💀☠️👽👾🤖🎃😺😸😹😻😼😽🙀😿😾"
 }
 
 struct EmojiSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiSelectionView(selected: "") { _ in }
+        EmojiPicker(selected: "") { _ in }
     }
 }
