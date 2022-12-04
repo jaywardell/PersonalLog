@@ -9,9 +9,14 @@ import UIKit
 
 class TopViewController: UITabBarController {
 
+    private let journalVC = JournalViewController(style: .grouped)
+    private lazy var historyVC = UINavigationController(rootViewController: journalVC)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tabBar.isHidden = true
+        
+        self.viewControllers = [historyVC]
     }
 }
