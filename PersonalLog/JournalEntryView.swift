@@ -34,6 +34,10 @@ struct JournalEntryView: View {
              text: String,
             cancel: @escaping ()->(),
             save: @escaping ()->()) {
+            self.mood = mood
+            self.title = title
+            self.prompt = prompt
+            self.text = text
             self.cancel = cancel
             self.save = save
         }
@@ -48,7 +52,7 @@ struct JournalEntryView: View {
                     .font(.largeTitle)
                 TextField("Title (optional)", text: $viewModel.title)
                     .font(.headline)
-                TextField("What should I write about?", text: $viewModel.title)
+                TextField("What should I write about?", text: $viewModel.prompt)
                     .font(.subheadline)
                 TextEditor(text: $viewModel.text)
                     .background(Color.red)
