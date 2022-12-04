@@ -73,6 +73,6 @@ struct EmojiSelectionView: View {
 
 struct EmojiSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiSelectionView(initialEmoji: "🥹") { _ in }
+        EmojiSelectionView(initialEmoji: "") { _ in }
     }
 }
