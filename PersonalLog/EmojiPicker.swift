@@ -89,6 +89,7 @@ struct EmojiPicker: View {
             emojiWasSelected("")
             dismiss()
         }
+        .disabled(selectedEmoji == nil)
     }
 
     private var chooseButton: some View {
