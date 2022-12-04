@@ -99,16 +99,24 @@ struct JournalEntryView: View {
                 }
                 .padding(.horizontal)
                 .padding(.horizontal)
-
-//                TextField("what should I write about?", text: $viewModel.prompt)
-//                    .font(.subheadline)
-//                    .foregroundColor(.gray)
-//                    .padding(.horizontal)
   
                 if !viewModel.prompt.isEmpty || viewModel.text.isEmpty {
-                    Button(promptsButtonTitle) {
-                        showPromptsList = true
+                    
+                    HStack {
+                        Button(action : {
+                            showPromptsList = true
+                        }) {
+                            Text(promptsButtonTitle)
+                                .font(.subheadline)
+                                .foregroundColor(viewModel.prompt.isEmpty ? Color(uiColor: .placeholderText) : Color(uiColor: .secondaryLabel))
+                                .multilineTextAlignment(.leading)
+                        }
+                        .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .label))
+                        Spacer()
                     }
+                    .padding(.horizontal)
+                    .padding(.horizontal)
+                    .padding(.top)
                 }
                 
                                 
