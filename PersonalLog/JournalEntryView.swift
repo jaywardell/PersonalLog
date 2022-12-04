@@ -54,11 +54,16 @@ struct JournalEntryView: View {
     @FocusState private var focusedField: FocusField?
 
     @State private var showEmojiPicker = false
+    @State private var showTagsList = false
 
     private var moodButtonTitle: String {
         viewModel.mood.isEmpty ? "🫥" : viewModel.mood
     }
-    
+
+    private var tagsButtonTitle: String {
+        "tags: " + viewModel.tags.joined(separator: ", ")
+    }
+
     var body: some View {
         NavigationView {
             VStack {
@@ -77,10 +82,17 @@ struct JournalEntryView: View {
                 .padding(.horizontal)
 
                 HStack {
-                    Text("tags: " + viewModel.tags.joined(separator: ", "))
-                        .font(.caption)
+                    Button(action : {
+                        showTagsList = true
+                    }) {
+                        Text(tagsButtonTitle)
+                            .font(.caption)
+                            .multilineTextAlignment(.leading)
+                    }
+                    .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .darkText))
                     Spacer()
                 }
+                .padding(.horizontal)
                 .padding(.horizontal)
 
                 TextField("what should I write about?", text: $viewModel.prompt)
@@ -100,6 +112,9 @@ struct JournalEntryView: View {
             .onAppear { self.focusedField = .text }
             .sheet(isPresented: $showEmojiPicker) {
                 EmojiPicker(prompt: "How do you feel?", selected: viewModel.mood) { viewModel.mood = $0 }
+            }
+            .sheet(isPresented: $showTagsList) {
+                Image(systemName: "x.circle")
             }
         }
     }
