@@ -13,7 +13,7 @@ struct JournalEntryEditor: View {
     
     final class ViewModel: ObservableObject {
         
-        @Published var date: Date?
+        @Published var date: Date
         
         // tends to be an emoji, only 1 character long
         @Published var mood = ""
@@ -31,7 +31,7 @@ struct JournalEntryEditor: View {
         
         let save: (ViewModel)->()
         
-        init(date: Date? = nil,
+        init(date: Date,
             mood: String,
              title: String,
              prompt: String,
@@ -48,7 +48,7 @@ struct JournalEntryEditor: View {
         }
         
         convenience init(_ save: @escaping (ViewModel)->()) {
-            self.init(mood: "", title: "", prompt: "", text: "", tags: [], save: save)
+            self.init(date: Date(), mood: "", title: "", prompt: "", text: "", tags: [], save: save)
         }
         
         // there's no point in saving a journal entry if it doesn't either record a mood or have text
@@ -201,7 +201,7 @@ extension JournalEntryEditor {
 // MARK: - JournalEntryView.ViewModel: Convenience Initializers
 fileprivate extension JournalEntryEditor.ViewModel {
     static var empty: Self {
-        .init(mood: "", title: "", prompt: "", text: "", tags: [], save: { _ in })
+        .init(date: Date(), mood: "", title: "", prompt: "", text: "", tags: [], save: { _ in })
     }
     
     static var thorough: Self {

@@ -23,7 +23,7 @@ class JournalViewController: UITableViewController {
     
     struct ViewModel {
         
-        let date: Date?
+        let date: Date
         
         // tends to be an emoji, only 1 character long
         let mood: String
