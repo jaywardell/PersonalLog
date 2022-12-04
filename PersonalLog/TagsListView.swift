@@ -35,6 +35,9 @@ struct TagsListView: View {
                     Text(tag)
                         .font(.body)
                 }
+                .onDelete { indexSet in
+                    self.tags.remove(atOffsets: indexSet)
+                }
                 
                 Button(action: userTappedAddButton) {
                     Image(systemName: "plus")
