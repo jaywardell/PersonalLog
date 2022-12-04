@@ -32,27 +32,36 @@ struct PhrasesPicker: View {
 
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(phrases, id: \.self) { phrase in
-                    HStack {
-                        Text(phrase)
-                            .font(.body)
-                        Spacer()
-                        if phrase == selectedPhrase {
-                            Image(systemName: "checkmark")
-                                .foregroundColor(.accentColor)
+            VStack {
+                List {
+                    ForEach(phrases, id: \.self) { phrase in
+                        HStack {
+                            Text(phrase)
+                                .font(.body)
+                            Spacer()
+                            if phrase == selectedPhrase {
+                                Image(systemName: "checkmark")
+                                    .foregroundColor(.accentColor)
+                            }
                         }
+                        .frame(maxWidth: .infinity)
+                        .background(Color(uiColor: .systemBackground))
+                            .onTapGesture(count: 2) { self.chooseAndDismiss(phrase)
+                            }
+                            .onTapGesture { userTapped(phrase) }
                     }
-                    .frame(maxWidth: .infinity)
-                    .background(Color(uiColor: .systemBackground))
-                        .onTapGesture(count: 2) { self.chooseAndDismiss(phrase)
-                        }
-                        .onTapGesture { userTapped(phrase) }
                 }
+                .listStyle(.plain)
+                
+                HStack {
+                    clearButton
+                    Spacer()
+                    doneButton
+                }
+                .padding()
             }
-            .listStyle(.plain)
             .navigationTitle(prompt)
-            .navigationBarItems(leading: cancelButton, trailing: doneButton)
+            .navigationBarItems(leading: cancelButton)
         }
     }
     
@@ -67,9 +76,17 @@ struct PhrasesPicker: View {
         }
     }
     
+    private var clearButton: some View {
+        Button("Clear") {
+            phraseWasChanged("")
+            dismiss()
+        }
+        .disabled(selectedPhrase == "")
+    }
+
 
     private var doneButton: some View {
-        Button("Done") {
+        Button("Write About This") {
             phraseWasChanged(selectedPhrase)
             dismiss()
         }
