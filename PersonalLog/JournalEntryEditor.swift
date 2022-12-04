@@ -29,8 +29,8 @@ struct JournalEntryEditor: View {
         
         @Published var tags = [String]()
         
-        let cancel: ()->()
-        let save: ()->()
+//        let cancel: ()->()
+        let save: (ViewModel)->()
         
         init(date: Date? = nil,
             mood: String,
@@ -38,15 +38,13 @@ struct JournalEntryEditor: View {
              prompt: String,
              text: String,
              tags: [String],
-            cancel: @escaping ()->(),
-            save: @escaping ()->()) {
+            save: @escaping (ViewModel)->()) {
             self.date = date
             self.mood = mood
             self.title = title
             self.prompt = prompt
             self.text = text
             self.tags = tags
-            self.cancel = cancel
             self.save = save
         }
         
@@ -65,6 +63,8 @@ struct JournalEntryEditor: View {
     @State private var showEmojiPicker = false
     @State private var showTagsList = false
     @State private var showPromptsList = false
+
+    @Environment(\.dismiss) var dismiss
 
     private var moodButtonTitle: String {
         viewModel.mood.isEmpty ? "🫥" : viewModel.mood
@@ -182,13 +182,13 @@ struct JournalEntryEditor: View {
 extension JournalEntryEditor {
     
     private var cancelButton: some View {
-        Button(action: viewModel.cancel) {
+        Button(action: { dismiss() }) {
             Text("Cancel")
         }
     }
 
     private var saveButton: some View {
-        Button(action: viewModel.save) {
+        Button(action: { viewModel.save(viewModel); dismiss() }) {
             Text("Save")
         }
         .disabled(!viewModel.hasGoodData)
@@ -198,11 +198,11 @@ extension JournalEntryEditor {
 // MARK: - JournalEntryView.ViewModel: Convenience Initializers
 fileprivate extension JournalEntryEditor.ViewModel {
     static var empty: Self {
-        .init(mood: "", title: "", prompt: "", text: "", tags: [], cancel: {}, save: {})
+        .init(mood: "", title: "", prompt: "", text: "", tags: [], save: { _ in })
     }
     
     static var thorough: Self {
-        .init(date: Date(), mood: "😆", title: "A Fun Day", prompt: "What was today like?", text: "It was awesome! We swam and fished and danced and played and talked and talked and talked and talked and talked", tags: ["fun", "delightful", "great weather", "awesome", "wonderful", "terrific"], cancel: {}, save: {})
+        .init(date: Date(), mood: "😆", title: "A Fun Day", prompt: "What was today like?", text: "It was awesome! We swam and fished and danced and played and talked and talked and talked and talked and talked", tags: ["fun", "delightful", "great weather", "awesome", "wonderful", "terrific"], save: { _ in })
     }
 
 }

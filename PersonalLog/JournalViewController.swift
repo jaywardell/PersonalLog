@@ -8,13 +8,44 @@
 import UIKit
 import SwiftUI
 
-class JournalViewController: UITableViewController {
-
-    let userSelectedEntry: (UUID)->()
+protocol JournalRoutes: ObservableObject {
     
-    init(userSelectedEntry: @escaping (UUID)->()) {
-        self.userSelectedEntry = userSelectedEntry
+    var entryIDs: [UUID] { get }
+    
+    func entryViewModelForCell(id: UUID) -> JournalEntryCell.ViewModel
+    
+    func entryViewModelForEditing(id: UUID) -> JournalViewController.ViewModel
+}
 
+
+
+class JournalViewController: UITableViewController {
+    
+    struct ViewModel {
+        
+        let date: Date?
+        
+        // tends to be an emoji, only 1 character long
+        let mood: String
+        
+        // empty by default
+        let title: String
+        
+        // empty by default
+        let prompt: String
+        
+        // empty for new entries
+        let text: String
+        
+        let tags: [String]
+    }
+
+    let routes: any JournalRoutes
+    
+    init(routes: any JournalRoutes) {
+
+        self.routes = routes
+        
         super.init(style: .plain)
     }
     
@@ -40,17 +71,17 @@ class JournalViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 3
+        return routes.entryIDs.count
     }
-
-    let dummyInfo = JournalEntryCell.ViewModel(date: Date(), mood: "😂", title: "", text: "This is pretty damn cool", tags: ["cool", "beans"])
     
     private let cellReuseIdentifier = "JournalViewControllerCell"
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style:.default, reuseIdentifier:cellReuseIdentifier)
         
+        let viewModel = routes.entryViewModelForCell(id: routes.entryIDs[indexPath.row])
+        
         cell.contentConfiguration = UIHostingConfiguration() {
-            JournalEntryCell(viewModel: dummyInfo)
+            JournalEntryCell(viewModel: viewModel)
         }
 
         return cell
@@ -60,11 +91,19 @@ class JournalViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        userSelectedEntry(UUID())
-        
+        let viewModel = routes.entryViewModelForEditing(id: routes.entryIDs[indexPath.row])
+        let vm = entryViewModelForEditing(viewModel)
+        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: vm))
+
+        present(journalEntryVC, animated: true)
+                                                 
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
+    func entryViewModelForEditing(_ viewModel: JournalViewController.ViewModel) -> JournalEntryEditor.ViewModel {
+        JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags, save: { print($0) })
+    }
+
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

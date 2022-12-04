@@ -10,9 +10,9 @@ import SwiftUI
 
 class TopViewController: UITabBarController {
 
-    private let journalVC = JournalViewController() { print($0) }
+    private let journalVC = JournalViewController(routes: Routes())
     private lazy var historyVC = UINavigationController(rootViewController: journalVC)
-    private lazy var journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: .init(mood: "😀", title: "", prompt: "How was the weather today?", text: "sunny", tags: ["happy", "weather"], cancel: {}, save: {})))
+    private lazy var journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: .init(mood: "😀", title: "", prompt: "How was the weather today?", text: "sunny", tags: ["happy", "weather"], save: { _ in })))
     
     override func viewDidLoad() {
         super.viewDidLoad()

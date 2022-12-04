@@ -22,6 +22,7 @@
 		7C4AC689293CFACB00E8EDFE /* TagsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC688293CFACB00E8EDFE /* TagsListView.swift */; };
 		7C4AC68B293D04CF00E8EDFE /* PhrasesPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */; };
 		7C4AC68D293D213B00E8EDFE /* JournalEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68C293D213B00E8EDFE /* JournalEntryCell.swift */; };
+		7C4AC68F293D4A5A00E8EDFE /* Routes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68E293D4A5A00E8EDFE /* Routes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,7 @@
 		7C4AC688293CFACB00E8EDFE /* TagsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsListView.swift; sourceTree = "<group>"; };
 		7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasesPicker.swift; sourceTree = "<group>"; };
 		7C4AC68C293D213B00E8EDFE /* JournalEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryCell.swift; sourceTree = "<group>"; };
+		7C4AC68E293D4A5A00E8EDFE /* Routes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Routes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				7C1B542B293CB30D004B5EF0 /* AppDelegate.swift */,
 				7C1B542D293CB30D004B5EF0 /* SceneDelegate.swift */,
 				7C1B5431293CB30D004B5EF0 /* Main.storyboard */,
+				7C4AC68E293D4A5A00E8EDFE /* Routes.swift */,
 				7C1B545B293CB4A4004B5EF0 /* TopViewController.swift */,
 				7C1B545F293CB9B4004B5EF0 /* JournalEntryEditor.swift */,
 				7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */,
@@ -283,6 +286,7 @@
 				7C1B545C293CB4A4004B5EF0 /* TopViewController.swift in Sources */,
 				7C1B542C293CB30D004B5EF0 /* AppDelegate.swift in Sources */,
 				7C4AC68D293D213B00E8EDFE /* JournalEntryCell.swift in Sources */,
+				7C4AC68F293D4A5A00E8EDFE /* Routes.swift in Sources */,
 				7C4AC689293CFACB00E8EDFE /* TagsListView.swift in Sources */,
 				7C1B542E293CB30D004B5EF0 /* SceneDelegate.swift in Sources */,
 			);
