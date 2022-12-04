@@ -40,10 +40,10 @@
             </objects>
             <point key="canvasLocation" x="-855" y="-727"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Top View Controller-->
         <scene sceneID="DC3-kz-6RR">
             <objects>
-                <tabBarController id="HmR-bt-5d9" sceneMemberID="viewController">
+                <tabBarController id="HmR-bt-5d9" customClass="TopViewController" customModule="PersonalLog" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="qHB-nB-Lfo">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
