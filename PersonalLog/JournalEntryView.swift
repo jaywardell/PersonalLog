@@ -51,15 +51,15 @@ struct JournalEntryView: View {
 
     @State private var showEmojiPicker = false
 
+    private var moodButtonTitle: String {
+        viewModel.mood.isEmpty ? "🫥" : viewModel.mood
+    }
     
     var body: some View {
         NavigationView {
             VStack {
                 HStack {
-//                    TextField("🫥", text: $viewModel.mood)
-//                        .font(.largeTitle)
-
-                    Button("🫥" /*viewModel.mood*/) {
+                    Button(moodButtonTitle) {
                         showEmojiPicker = true
                     }
                     .font(.largeTitle)
@@ -86,7 +86,7 @@ struct JournalEntryView: View {
             .navigationBarItems(leading: cancelButton, trailing: saveButton)
             .onAppear { self.focusedField = .text }
             .sheet(isPresented: $showEmojiPicker) {
-                EmojiSelectionView()
+                EmojiSelectionView() { viewModel.mood = $0 }
             }
         }
     }
