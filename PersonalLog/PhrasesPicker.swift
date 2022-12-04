@@ -10,6 +10,7 @@ import SwiftUI
 struct PhrasesPicker: View {
     
     let prompt: String
+    let message: String
     let initialPhrase: String
     let phrases: [String]
     
@@ -24,6 +25,7 @@ struct PhrasesPicker: View {
     @Environment(\.dismiss) var dismiss
 
     init(prompt: String,
+         message: String = "",
          phrases: [String],
          initialPhrase: String,
          doneButtonTitle: String = "Done",
@@ -31,6 +33,7 @@ struct PhrasesPicker: View {
          showCancelButton: Bool = true,
          phraseWasChanged: @escaping (String)->()) {
         self.prompt = prompt
+        self.message = message
         self.phrases = phrases
         self.initialPhrase = initialPhrase
         self.showCancelButton = showCancelButton
@@ -44,6 +47,16 @@ struct PhrasesPicker: View {
     var body: some View {
         NavigationStack {
             VStack {
+                if !message.isEmpty {
+                    HStack {
+                        Text(message)
+                            .font(.subheadline)
+                            .foregroundColor(Color(uiColor: .secondaryLabel))
+                            .padding()
+                        Spacer()
+                    }
+                }
+                
                 List {
                     ForEach(phrases, id: \.self) { phrase in
                         HStack {
@@ -123,6 +136,6 @@ struct PhrasesPicker: View {
 
 struct PhrasesPicker_Previews: PreviewProvider {
     static var previews: some View {
-        PhrasesPicker(prompt: "Some Phrases", phrases: ["How's the weather?", "What time is it?", "Where am I going?"], initialPhrase: "What time is it?", doneButtonTitle: "Choose Me", clearButtonTitle: "Clear", showCancelButton: true) {_ in }
+        PhrasesPicker(prompt: "Some Phrases", message: "some wordy stuff", phrases: ["How's the weather?", "What time is it?", "Where am I going?"], initialPhrase: "What time is it?", doneButtonTitle: "Choose Me", clearButtonTitle: "Clear", showCancelButton: true) {_ in }
     }
 }
