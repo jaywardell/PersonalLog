@@ -86,7 +86,7 @@ struct JournalEntryView: View {
             .navigationBarItems(leading: cancelButton, trailing: saveButton)
             .onAppear { self.focusedField = .text }
             .sheet(isPresented: $showEmojiPicker) {
-                EmojiSelectionView() { viewModel.mood = $0 }
+                EmojiSelectionView(initialEmoji: viewModel.mood) { viewModel.mood = $0 }
             }
         }
     }

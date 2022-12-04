@@ -18,6 +18,12 @@ struct EmojiSelectionView: View {
     @State private var selectedEmoji: String.Element?
     @Environment(\.dismiss) var dismiss
 
+    init(initialEmoji: String, emojiWasSelected: @escaping (String) -> ()) {
+        self.emojiWasSelected = emojiWasSelected
+        
+        _selectedEmoji = .init(initialValue: initialEmoji.first)
+    }
+    
     var body: some View {
         NavigationStack {
             ScrollView {
@@ -61,6 +67,6 @@ struct EmojiSelectionView: View {
 
 struct EmojiSelectionView_Previews: PreviewProvider {
     static var previews: some View {
-        EmojiSelectionView() { _ in }
+        EmojiSelectionView(initialEmoji: "🥹") { _ in }
     }
 }
