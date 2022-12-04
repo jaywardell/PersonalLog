@@ -10,7 +10,11 @@ import SwiftUI
 
 class JournalViewController: UITableViewController {
 
-    init() {
+    let userSelectedEntry: (UUID)->()
+    
+    init(userSelectedEntry: @escaping (UUID)->()) {
+        self.userSelectedEntry = userSelectedEntry
+
         super.init(style: .plain)
     }
     
@@ -55,7 +59,13 @@ class JournalViewController: UITableViewController {
         return cell
     }
     
-
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        userSelectedEntry(UUID())
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

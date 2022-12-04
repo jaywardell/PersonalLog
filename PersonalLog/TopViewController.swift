@@ -10,7 +10,7 @@ import SwiftUI
 
 class TopViewController: UITabBarController {
 
-    private let journalVC = JournalViewController()
+    private let journalVC = JournalViewController() { print($0) }
     private lazy var historyVC = UINavigationController(rootViewController: journalVC)
     private lazy var journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: .init(mood: "😀", title: "", prompt: "How was the weather today?", text: "sunny", tags: ["happy", "weather"], cancel: {}, save: {})))
     
