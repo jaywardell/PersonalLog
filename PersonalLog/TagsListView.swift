@@ -32,24 +32,32 @@ struct TagsListView: View {
     
     var body: some View {
         NavigationStack {
-            List {
-                ForEach(tags, id: \.self) { tag in
-                    Text(tag)
-                        .font(.body)
+            VStack {
+                List {
+                    ForEach(tags, id: \.self) { tag in
+                        Text(tag)
+                            .font(.body)
+                    }
+                    .onDelete { indexSet in
+                        self.tags.remove(atOffsets: indexSet)
+                    }
+                    
+                    Button(action: userTappedAddButton) {
+                        Image(systemName: "plus")
+                            .font(.body)
+                            .bold()
+                    }
                 }
-                .onDelete { indexSet in
-                    self.tags.remove(atOffsets: indexSet)
-                }
+                .listStyle(.plain)
                 
-                Button(action: userTappedAddButton) {
-                    Image(systemName: "plus")
-                        .font(.body)
-                        .bold()
+                HStack {
+                    Spacer()
+                    doneButton
                 }
+                .padding()
             }
-            .listStyle(.plain)
             .navigationTitle(prompt)
-            .navigationBarItems(leading: cancelButton, trailing: doneButton)
+            .navigationBarItems(leading: cancelButton)
             .alert("New Tag", isPresented: $presentNewTagPrompt, actions: {
                 // Any view other than Button would be ignored
                 TextField("new tag", text: $newTag)
