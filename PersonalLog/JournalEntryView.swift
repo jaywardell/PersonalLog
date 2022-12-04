@@ -49,6 +49,11 @@ struct JournalEntryView: View {
             self.cancel = cancel
             self.save = save
         }
+        
+        // there's no point in saving a journal entry if it doesn't either record a mood or have text
+        var hasGoodData: Bool {
+            !mood.isEmpty || !text.isEmpty
+        }
     }
     
     @ObservedObject var viewModel: ViewModel
@@ -186,6 +191,7 @@ extension JournalEntryView {
         Button(action: viewModel.save) {
             Text("Save")
         }
+        .disabled(!viewModel.hasGoodData)
     }
 }
 
