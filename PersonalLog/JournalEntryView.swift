@@ -76,9 +76,12 @@ struct JournalEntryView: View {
                 }
                 .padding(.horizontal)
 
-                Text(viewModel.tags.joined(separator: ", "))
-                    .font(.caption)
-                    .padding(.horizontal)
+                HStack {
+                    Text("tags: " + viewModel.tags.joined(separator: ", "))
+                        .font(.caption)
+                    Spacer()
+                }
+                .padding(.horizontal)
 
                 TextField("what should I write about?", text: $viewModel.prompt)
                     .font(.subheadline)
