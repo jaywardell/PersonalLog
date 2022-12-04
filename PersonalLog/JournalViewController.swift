@@ -62,7 +62,14 @@ class JournalViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewEntry))
-        navigationItem.leftBarButtonItem = addButton
+        
+        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonPressed))
+        let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonPressed))
+
+        navigationItem.rightBarButtonItem = addButton
+        navigationItem.leftBarButtonItems = [searchButton, calendarButton]
+        
+        tableView.separatorStyle = .none
     }
 
     
@@ -117,6 +124,16 @@ class JournalViewController: UITableViewController {
         
         let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: viewModel))
         present(journalEntryVC, animated: true)
+    }
+
+    @objc
+    private func searchButtonPressed() {
+        print(#function)
+    }
+
+    @objc
+    private func calendarButtonPressed() {
+        print(#function)
     }
 
     /*
