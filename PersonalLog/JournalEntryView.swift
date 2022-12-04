@@ -89,7 +89,7 @@ struct JournalEntryView: View {
                             .font(.caption)
                             .multilineTextAlignment(.leading)
                     }
-                    .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .darkText))
+                    .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .label))
                     Spacer()
                 }
                 .padding(.horizontal)
