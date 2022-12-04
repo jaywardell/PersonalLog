@@ -31,6 +31,8 @@ struct EmojiSelectionView: View {
                     ForEach(allowableEmoji, id: \.self) { emoji in
                         Text(String(emoji))
                             .background(RoundedRectangle(cornerRadius: 4).foregroundColor(backgroundColor(for: emoji)))
+                            .onTapGesture(count: 2) { self.chooseAndDismiss(emoji)
+                            }
                             .onTapGesture { userTapped(emoji) }
                     }
                 })
@@ -57,11 +59,15 @@ struct EmojiSelectionView: View {
     
     private var chooseButton: some View {
         Button("Choose") {
-            emojiWasSelected(String(selectedEmoji!))
-            dismiss()
+            chooseAndDismiss(selectedEmoji!)
         }
         .disabled(selectedEmoji == nil)
         .buttonStyle(.borderedProminent)
+    }
+    
+    private func chooseAndDismiss(_ emoji: String.Element) {
+        emojiWasSelected(String(emoji))
+        dismiss()
     }
 }
 
