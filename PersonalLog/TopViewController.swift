@@ -24,8 +24,8 @@ class TopViewController: UITabBarController {
         showJournalEntry()
     }
     
-    private let journalEntryIndex = 1
-    private let journalIndex = 2
+    private let journalEntryIndex = 0
+    private let journalIndex = 1
     
     public func showJournal() {
         self.selectedIndex = journalIndex
