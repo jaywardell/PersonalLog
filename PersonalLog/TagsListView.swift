@@ -10,6 +10,7 @@ import SwiftUI
 struct TagsListView: View {
     
     let prompt: String
+    let startingTags: [String]
     @State private var tags: [String]
     
     let showCancelButton: Bool
@@ -22,6 +23,7 @@ struct TagsListView: View {
 
     init(prompt: String, tags: [String], showCancelButton: Bool,  tagsWereChanged: @escaping ([String])->()) {
         self.prompt = prompt
+        self.startingTags = tags
         self.showCancelButton = showCancelButton
         self.tagsWereChanged = tagsWereChanged
 
@@ -73,11 +75,12 @@ struct TagsListView: View {
     
 
     private var doneButton: some View {
-        Button("Choose") {
+        Button("Done") {
             tagsWereChanged(tags)
             dismiss()
         }
         .buttonStyle(.borderedProminent)
+        .disabled(startingTags == tags)
     }
 
     private func userTappedAddButton() {
