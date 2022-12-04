@@ -20,7 +20,7 @@ struct PhrasesPicker: View {
     @State private var selectedPhrase: String
     @Environment(\.dismiss) var dismiss
 
-    init(prompt: String, phrases: [String], initialPhrase: String, showCancelButton: Bool,  phraseWasChanged: @escaping (String)->()) {
+    init(prompt: String, phrases: [String], initialPhrase: String, showCancelButton: Bool = true,  phraseWasChanged: @escaping (String)->()) {
         self.prompt = prompt
         self.phrases = phrases
         self.initialPhrase = initialPhrase
