@@ -21,6 +21,7 @@
 		7C1B5462293CCB92004B5EF0 /* EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B5461293CCB92004B5EF0 /* EmojiPicker.swift */; };
 		7C4AC689293CFACB00E8EDFE /* TagsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC688293CFACB00E8EDFE /* TagsListView.swift */; };
 		7C4AC68B293D04CF00E8EDFE /* PhrasesPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */; };
+		7C4AC68D293D213B00E8EDFE /* JournalEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68C293D213B00E8EDFE /* JournalEntryCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +60,7 @@
 		7C1B5461293CCB92004B5EF0 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
 		7C4AC688293CFACB00E8EDFE /* TagsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsListView.swift; sourceTree = "<group>"; };
 		7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasesPicker.swift; sourceTree = "<group>"; };
+		7C4AC68C293D213B00E8EDFE /* JournalEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				7C4AC688293CFACB00E8EDFE /* TagsListView.swift */,
 				7C1B5461293CCB92004B5EF0 /* EmojiPicker.swift */,
 				7C1B545D293CB6F8004B5EF0 /* JournalViewController.swift */,
+				7C4AC68C293D213B00E8EDFE /* JournalEntryCell.swift */,
 				7C1B5434293CB30E004B5EF0 /* Assets.xcassets */,
 				7C1B5436293CB30E004B5EF0 /* LaunchScreen.storyboard */,
 				7C1B5439293CB30E004B5EF0 /* Info.plist */,
@@ -279,6 +282,7 @@
 				7C1B5462293CCB92004B5EF0 /* EmojiPicker.swift in Sources */,
 				7C1B545C293CB4A4004B5EF0 /* TopViewController.swift in Sources */,
 				7C1B542C293CB30D004B5EF0 /* AppDelegate.swift in Sources */,
+				7C4AC68D293D213B00E8EDFE /* JournalEntryCell.swift in Sources */,
 				7C4AC689293CFACB00E8EDFE /* TagsListView.swift in Sources */,
 				7C1B542E293CB30D004B5EF0 /* SceneDelegate.swift in Sources */,
 			);
