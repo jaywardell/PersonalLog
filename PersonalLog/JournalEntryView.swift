@@ -13,6 +13,8 @@ struct JournalEntryView: View {
     
     final class ViewModel: ObservableObject {
         
+        @Published var date: Date?
+        
         // tends to be an emoji, only 1 character long
         @Published var mood = ""
         
@@ -30,13 +32,15 @@ struct JournalEntryView: View {
         let cancel: ()->()
         let save: ()->()
         
-        init(mood: String,
+        init(date: Date? = nil,
+            mood: String,
              title: String,
              prompt: String,
              text: String,
              tags: [String],
             cancel: @escaping ()->(),
             save: @escaping ()->()) {
+            self.date = date
             self.mood = mood
             self.title = title
             self.prompt = prompt
@@ -72,6 +76,17 @@ struct JournalEntryView: View {
     var body: some View {
         NavigationView {
             VStack {
+                if let date = viewModel.date {
+                    HStack {
+                        Spacer()
+                        Text(date, style: .date)
+                        Text(date, style: .time)
+                    }
+                    .font(.caption)
+                    .foregroundColor(Color(uiColor: .secondaryLabel))
+                    .padding(.horizontal)
+                }
+                
                 HStack {
                     Button(moodButtonTitle) {
                         showEmojiPicker = true
@@ -181,7 +196,7 @@ fileprivate extension JournalEntryView.ViewModel {
     }
     
     static var thorough: Self {
-        .init(mood: "😆", title: "A Fun Day", prompt: "What was today like?", text: "It was awesome! We swam and fished and danced and played and talked and talked and talked and talked and talked", tags: ["fun", "delightful", "great weather", "awesome", "wonderful", "terrific"], cancel: {}, save: {})
+        .init(date: Date(), mood: "😆", title: "A Fun Day", prompt: "What was today like?", text: "It was awesome! We swam and fished and danced and played and talked and talked and talked and talked and talked", tags: ["fun", "delightful", "great weather", "awesome", "wonderful", "terrific"], cancel: {}, save: {})
     }
 
 }
