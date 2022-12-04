@@ -32,20 +32,24 @@ struct JournalEntryView: View {
     
     @ObservedObject var viewModel: ViewModel
     
-    var body: some View {
-        VStack {
-            HStack {
-                Button(action: viewModel.cancel) {
-                    Text("Cancel")
-                }
-                Spacer()
-                Button(action: viewModel.save) {
-                    Text("Save")
-                }
-            }
-            Spacer()
+    private var cancelButton: some View {
+        Button(action: viewModel.cancel) {
+            Text("Cancel")
         }
-        .padding()
+    }
+
+    private var saveButton: some View {
+        Button(action: viewModel.save) {
+            Text("Save")
+        }
+    }
+
+    var body: some View {
+        NavigationView {
+            Text("Hello World")
+                .navigationTitle("")
+                .navigationBarItems(leading: cancelButton, trailing: saveButton)
+        }
     }
 }
 
