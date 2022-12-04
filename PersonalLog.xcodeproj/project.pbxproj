@@ -20,6 +20,7 @@
 		7C1B5460293CB9B4004B5EF0 /* JournalEntryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B545F293CB9B4004B5EF0 /* JournalEntryView.swift */; };
 		7C1B5462293CCB92004B5EF0 /* EmojiPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B5461293CCB92004B5EF0 /* EmojiPicker.swift */; };
 		7C4AC689293CFACB00E8EDFE /* TagsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC688293CFACB00E8EDFE /* TagsListView.swift */; };
+		7C4AC68B293D04CF00E8EDFE /* PhrasesPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -57,6 +58,7 @@
 		7C1B545F293CB9B4004B5EF0 /* JournalEntryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryView.swift; sourceTree = "<group>"; };
 		7C1B5461293CCB92004B5EF0 /* EmojiPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPicker.swift; sourceTree = "<group>"; };
 		7C4AC688293CFACB00E8EDFE /* TagsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagsListView.swift; sourceTree = "<group>"; };
+		7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasesPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +114,7 @@
 				7C1B5431293CB30D004B5EF0 /* Main.storyboard */,
 				7C1B545B293CB4A4004B5EF0 /* TopViewController.swift */,
 				7C1B545F293CB9B4004B5EF0 /* JournalEntryView.swift */,
+				7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */,
 				7C4AC688293CFACB00E8EDFE /* TagsListView.swift */,
 				7C1B5461293CCB92004B5EF0 /* EmojiPicker.swift */,
 				7C1B545D293CB6F8004B5EF0 /* JournalViewController.swift */,
@@ -272,6 +275,7 @@
 			files = (
 				7C1B545E293CB6F8004B5EF0 /* JournalViewController.swift in Sources */,
 				7C1B5460293CB9B4004B5EF0 /* JournalEntryView.swift in Sources */,
+				7C4AC68B293D04CF00E8EDFE /* PhrasesPicker.swift in Sources */,
 				7C1B5462293CCB92004B5EF0 /* EmojiPicker.swift in Sources */,
 				7C1B545C293CB4A4004B5EF0 /* TopViewController.swift in Sources */,
 				7C1B542C293CB30D004B5EF0 /* AppDelegate.swift in Sources */,
