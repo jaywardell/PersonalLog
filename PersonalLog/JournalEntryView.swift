@@ -20,13 +20,14 @@ struct JournalEntryView: View {
         let cancel: ()->()
         let save: ()->()
         
-        init(cancel: @escaping ()->(), save: @escaping ()->()) {
+        init(mood: String,
+             title: String,
+             prompt: String,
+             text: String,
+            cancel: @escaping ()->(),
+            save: @escaping ()->()) {
             self.cancel = cancel
             self.save = save
-        }
-        
-        fileprivate convenience init() {
-            self.init(cancel: {}, save: {})
         }
     }
     
@@ -53,9 +54,18 @@ struct JournalEntryView: View {
     }
 }
 
+// MARK: - JournalEntryView.ViewModel: Convenience Initializers
+fileprivate extension JournalEntryView.ViewModel {
+    static var empty: Self {
+        .init(mood: "", title: "", prompt: "", text: "", cancel: {}, save: {})
+    }
+}
+
+// MARK: - Preview
+
 struct JournalEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        JournalEntryView(viewModel: .init())
+        JournalEntryView(viewModel: .empty)
             .previewLayout(.sizeThatFits)
     }
 }
