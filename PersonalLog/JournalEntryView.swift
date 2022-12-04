@@ -74,13 +74,18 @@ struct JournalEntryView: View {
                         .focused($focusedField, equals: .title)
                     Spacer()
                 }
+                .padding(.horizontal)
+
+                Text(viewModel.tags.joined(separator: ", "))
+                    .font(.caption)
+                    .padding(.horizontal)
 
                 TextField("what should I write about?", text: $viewModel.prompt)
                     .font(.subheadline)
                     .foregroundColor(.gray)
                     .padding(.horizontal)
-
-
+  
+                                
                 TextEditor(text: $viewModel.text)
                     .font(.system(.body, design: .serif))
                     .padding(.horizontal)
@@ -121,7 +126,7 @@ fileprivate extension JournalEntryView.ViewModel {
     }
     
     static var thorough: Self {
-        .init(mood: "😆", title: "A Fun Day", prompt: "What was today like?", text: "It was awesome! We swam and fished and danced and played and talked and talked and talked and talked and talked", tags: ["fun", "delightful", "great weather"], cancel: {}, save: {})
+        .init(mood: "😆", title: "A Fun Day", prompt: "What was today like?", text: "It was awesome! We swam and fished and danced and played and talked and talked and talked and talked and talked", tags: ["fun", "delightful", "great weather", "awesome", "wonderful", "terrific"], cancel: {}, save: {})
     }
 
 }
