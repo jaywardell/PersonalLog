@@ -55,6 +55,7 @@ struct JournalEntryView: View {
 
     @State private var showEmojiPicker = false
     @State private var showTagsList = false
+    @State private var showPromptsList = false
 
     private var moodButtonTitle: String {
         viewModel.mood.isEmpty ? "🫥" : viewModel.mood
@@ -64,6 +65,10 @@ struct JournalEntryView: View {
         "tags: " + viewModel.tags.joined(separator: ", ")
     }
 
+    private var promptsButtonTitle: String {
+        viewModel.prompt.isEmpty ? "what can I write about?" : viewModel.prompt
+    }
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -95,11 +100,17 @@ struct JournalEntryView: View {
                 .padding(.horizontal)
                 .padding(.horizontal)
 
-                TextField("what should I write about?", text: $viewModel.prompt)
-                    .font(.subheadline)
-                    .foregroundColor(.gray)
-                    .padding(.horizontal)
+//                TextField("what should I write about?", text: $viewModel.prompt)
+//                    .font(.subheadline)
+//                    .foregroundColor(.gray)
+//                    .padding(.horizontal)
   
+                if !viewModel.prompt.isEmpty || viewModel.text.isEmpty {
+                    Button(promptsButtonTitle) {
+                        showPromptsList = true
+                    }
+                }
+                
                                 
                 TextEditor(text: $viewModel.text)
                     .font(.system(.body, design: .serif))
@@ -116,8 +127,19 @@ struct JournalEntryView: View {
             .sheet(isPresented: $showTagsList) {
                 TagsListView(prompt: "Tags", tags: viewModel.tags, showCancelButton: true) { viewModel.tags = $0 }
             }
+            .sheet(isPresented: $showPromptsList) {
+                PhrasesPicker(prompt: "You can write about any of these topics", phrases: Self.Prompts, initialPhrase: viewModel.prompt) { prompt in
+                    viewModel.prompt = prompt
+                }
+            }
         }
     }
+    
+    static let Prompts = [
+    "How has the day gone so far?",
+    "What do you plan to do with your day?",
+    "What are you grateful for today?"
+    ]
 }
 
 // MARK: - JournalEntryView: Component Views
