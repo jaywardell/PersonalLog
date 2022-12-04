@@ -35,6 +35,8 @@ struct JournalEntryCell: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
+                moodEmoji
+                    .opacity(viewModel.title.isEmpty && viewModel.text.isEmpty && !viewModel.mood.isEmpty ? 1 : 0)
                 Spacer()
                 Text(viewModel.date, style: .date)
                 Text(viewModel.date, style: .time)
@@ -51,10 +53,12 @@ struct JournalEntryCell: View {
                 }
             }
             
-            HStack(alignment: .top) {
-                moodEmoji
-                    .opacity((viewModel.title.isEmpty && !viewModel.mood.isEmpty) ? 1 : 0)
-                Text(viewModel.text)
+            if !viewModel.text.isEmpty {
+                HStack(alignment: .top) {
+                    moodEmoji
+                        .opacity((viewModel.title.isEmpty && !viewModel.mood.isEmpty) ? 1 : 0)
+                    Text(viewModel.text)
+                }
             }
 
             HStack {
@@ -76,13 +80,20 @@ extension JournalEntryCell.ViewModel {
     static let exampleThree = JournalEntryCell.ViewModel(date: Date(), mood: "", title: "", text: "I think that I just saw a giraffe swimming through the living room. I think that I just saw a giraffe swimming through the living room. I think that I just saw a giraffe swimming through the living room", tags: ["giraffes", "Africa", "wildlife"])
     
     static let exampleFour = JournalEntryCell.ViewModel(date: Date(), mood: "", title: "Wassup?!?!?!?", text: "I think that I just saw a giraffe swimming through the living room. I think that I just saw a giraffe swimming through the living room. I think that I just saw a giraffe swimming through the living room", tags: ["giraffes", "Africa", "wildlife"])
+    
+    static let exampleFive = JournalEntryCell.ViewModel(date: Date(), mood: "🥹", title: "", text: "", tags: [])
 }
 
 struct JournalEntryCell_Previews: PreviewProvider {
     static var previews: some View {
-        JournalEntryCell(viewModel: .exampleOne)
-        JournalEntryCell(viewModel: .exampleTwo)
-        JournalEntryCell(viewModel: .exampleThree)
-        JournalEntryCell(viewModel: .exampleFour)
+        ScrollView {
+            VStack {
+                JournalEntryCell(viewModel: .exampleOne)
+                JournalEntryCell(viewModel: .exampleTwo)
+                JournalEntryCell(viewModel: .exampleFive)
+                JournalEntryCell(viewModel: .exampleThree)
+                JournalEntryCell(viewModel: .exampleFour)
+            }
+        }
     }
 }
