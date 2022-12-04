@@ -12,9 +12,17 @@ import SwiftUI
 struct JournalEntryView: View {
     
     final class ViewModel: ObservableObject {
-        @Published var mood = "" // tends to be an emoji, cannot be more than 3 characters long
+        
+        // tends to be an emoji, cannot be more than 3 characters long
+        @Published var mood = ""
+        
+        // empty by default
         @Published var title = ""
+        
+        // empty by default
         @Published var prompt = ""
+        
+        // empty for new entries
         @Published var text = ""
         
         let cancel: ()->()
@@ -33,6 +41,19 @@ struct JournalEntryView: View {
     
     @ObservedObject var viewModel: ViewModel
     
+    var body: some View {
+        NavigationView {
+            Text("Hello World")
+                .navigationTitle("")
+                .navigationBarItems(leading: cancelButton, trailing: saveButton)
+        }
+    }
+}
+
+// MARK: - JournalEntryView: Component Views
+
+extension JournalEntryView {
+    
     private var cancelButton: some View {
         Button(action: viewModel.cancel) {
             Text("Cancel")
@@ -42,14 +63,6 @@ struct JournalEntryView: View {
     private var saveButton: some View {
         Button(action: viewModel.save) {
             Text("Save")
-        }
-    }
-
-    var body: some View {
-        NavigationView {
-            Text("Hello World")
-                .navigationTitle("")
-                .navigationBarItems(leading: cancelButton, trailing: saveButton)
         }
     }
 }
