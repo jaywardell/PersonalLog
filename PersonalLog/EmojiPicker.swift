@@ -1,5 +1,5 @@
 //
-//  EmojiSelectionView.swift
+//  EmojiPicker.swift
 //  PersonalLog
 //
 //  Created by Joseph Wardell on 12/4/22.
