@@ -21,7 +21,7 @@ struct TagsListView: View {
     @State private var newTag = ""
     @Environment(\.dismiss) var dismiss
 
-    init(prompt: String, tags: [String], showCancelButton: Bool,  tagsWereChanged: @escaping ([String])->()) {
+    init(prompt: String, tags: [String], showCancelButton: Bool = true,  tagsWereChanged: @escaping ([String])->()) {
         self.prompt = prompt
         self.startingTags = tags
         self.showCancelButton = showCancelButton

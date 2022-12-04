@@ -134,7 +134,7 @@ struct JournalEntryView: View {
                 EmojiPicker(prompt: "How do you feel?", selected: viewModel.mood) { viewModel.mood = $0 }
             }
             .sheet(isPresented: $showTagsList) {
-                TagsListView(prompt: "Tags", tags: viewModel.tags, showCancelButton: true) { viewModel.tags = $0 }
+                TagsListView(prompt: "Tags", tags: viewModel.tags) { viewModel.tags = $0 }
             }
             .sheet(isPresented: $showPromptsList) {
                 PhrasesPicker(prompt: "You can write about any of these topics", phrases: Self.Prompts, initialPhrase: viewModel.prompt) { prompt in
