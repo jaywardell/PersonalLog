@@ -114,7 +114,7 @@ struct JournalEntryView: View {
                 EmojiPicker(prompt: "How do you feel?", selected: viewModel.mood) { viewModel.mood = $0 }
             }
             .sheet(isPresented: $showTagsList) {
-                Image(systemName: "x.circle")
+                TagsListView(prompt: "Tags", tags: viewModel.tags, showCancelButton: true) { viewModel.tags = $0 }
             }
         }
     }
