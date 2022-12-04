@@ -137,7 +137,7 @@ struct JournalEntryView: View {
                 TagsListView(prompt: "Tags", tags: viewModel.tags) { viewModel.tags = $0 }
             }
             .sheet(isPresented: $showPromptsList) {
-                PhrasesPicker(prompt: "You can write about any of these topics", phrases: Self.Prompts, initialPhrase: viewModel.prompt) { prompt in
+                PhrasesPicker(prompt: "You can write about any of these topics", phrases: Self.Prompts, initialPhrase: viewModel.prompt, doneButtonTitle: "Write about This") { prompt in
                     viewModel.prompt = prompt
                 }
             }
