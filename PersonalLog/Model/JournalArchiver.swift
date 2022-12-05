@@ -25,7 +25,7 @@ final class JournalArchiver {
         
     private var days: [Date]!
     private var entriesAtDates: [Date:[Date]]!
-    private var entries: [Date]!
+    private var allEntries: Set<Date>!
     
     func allDays() -> [Date] {
         if let days = self.days { return days }
@@ -38,22 +38,24 @@ final class JournalArchiver {
     private func buildEntries() {
         let fm = FileManager()
         guard let contents = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else {
-            self.entries = []
+            self.allEntries = []
             self.entriesAtDates = [:]
             self.days = []
             return
         }
         
-        self.entries = contents
+        let foundEntries = contents
             .map(\.lastPathComponent)
             .compactMap(Double.init)
             .map(Date.init(timeIntervalSinceReferenceDate:))
             .sorted()
+        
+        self.allEntries = Set(foundEntries)
 
-        self.days = Set(entries.map { Calendar.current.startOfDay(for: $0) }).sorted()
+        self.days = Set(foundEntries.map { Calendar.current.startOfDay(for: $0) }).sorted()
         
         var sortedDates = [Date:[Date]]()
-        for date in self.entries {
+        for date in foundEntries {
             let day = Calendar.current.startOfDay(for: date)
             var list = sortedDates[day, default: []]
             list.append(date)
@@ -86,9 +88,8 @@ final class JournalArchiver {
             try data.write(to: path)
 
             let day = Calendar.current.startOfDay(for: entry.date)
-            if !entries.contains(entry.date) {
-                entries.append(entry.date)
-                entries.sort()
+            if !allEntries.contains(entry.date) {
+                allEntries.insert(entry.date)
                 
                 var entriesForDay = entriesAtDates[day]
                 entriesForDay?.append(entry.date)
@@ -112,7 +113,6 @@ final class JournalArchiver {
         let startOfDay = Calendar.current.startOfDay(for: date)
 
         guard let path = path(for: date),
-              let index = entries.firstIndex(of: date),
               let dayIndex = days.firstIndex(of: startOfDay),
               let innerIndex = entriesAtDates[startOfDay]?.firstIndex(of: date),
               var entriesForDay = entriesAtDates[startOfDay]
@@ -120,7 +120,7 @@ final class JournalArchiver {
         
         do {
             // remove from entries first, so user will see the entry disappear
-            entries.remove(at: index)
+            allEntries.remove(date)
             
             entriesForDay.remove(at: innerIndex)
             entriesAtDates[startOfDay] = entriesForDay
