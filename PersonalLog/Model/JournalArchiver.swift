@@ -71,15 +71,17 @@ final class JournalArchiver {
 
     func deleteEntry(for id: any Equatable) {
         guard let date = id as? Date,
-              let path = path(for: date) else { return }
+              let path = path(for: date),
+              let index = entries.firstIndex(of: date)
+        else { return }
         
         do {
+            // remove from entries first, so user will see the entry disappear
+            entries.remove(at: index)
+
+            // now ensure that it's removed from disk
             let fm = FileManager()
             try fm.removeItem(at: path)
-
-            if let index = entries.firstIndex(of: date) {
-                entries.remove(at: index)
-            }
         }
         catch {
             print("error deleting entry with id \(date) at \(path): \(error)")
