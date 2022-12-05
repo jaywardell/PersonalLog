@@ -115,16 +115,21 @@ final class JournalArchiver {
 
         guard let path = path(for: date),
               let index = entries.firstIndex(of: date),
-              let innerIndex = entriesAtDates[startOfDay]?.firstIndex(of: date)
+              let dayIndex = days.firstIndex(of: startOfDay),
+              let innerIndex = entriesAtDates[startOfDay]?.firstIndex(of: date),
+              var entriesForDay = entriesAtDates[startOfDay]
         else { return }
         
         do {
             // remove from entries first, so user will see the entry disappear
             entries.remove(at: index)
             
-            var entriesForDay = entriesAtDates[startOfDay]
-            entriesForDay?.remove(at: innerIndex)
+            entriesForDay.remove(at: innerIndex)
             entriesAtDates[startOfDay] = entriesForDay
+            if entriesForDay.isEmpty {
+                entriesAtDates.removeValue(forKey: startOfDay)
+                days.remove(at: dayIndex)
+            }
             
             // now ensure that it's removed from disk
             let fm = FileManager()

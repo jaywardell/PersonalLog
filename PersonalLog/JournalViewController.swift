@@ -164,11 +164,17 @@ class JournalViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
+            let day = routes.days[indexPath.section]
             let id = id(for: indexPath)
 
             routes.deleteEntry(id: id)
             
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            if routes.entryIDs(for: day).isEmpty {
+                tableView.deleteSections([indexPath.section], with: .fade)
+            }
+            else {
+                tableView.deleteRows(at: [indexPath], with: .fade)
+            }
         }
     }
     
