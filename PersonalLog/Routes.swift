@@ -22,6 +22,13 @@ final class Routes: ObservableObject {
         JournalViewController.ViewModel(date: Date(), mood: "😚", title: "Something", prompt: "", text: "Something else", tags: ["hello"])
     }
 
+    func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
+        print(viewModel.text)
+    }
+    
+    func updateEntry(id: UUID, from viewModel: JournalEntryEditor.ViewModel) {
+        print(id, viewModel.text)
+    }
 
 }
 

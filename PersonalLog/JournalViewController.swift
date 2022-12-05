@@ -15,6 +15,9 @@ protocol JournalRoutes: ObservableObject {
     func entryViewModelForCell(id: UUID) -> JournalEntryCell.ViewModel
     
     func entryViewModelForEditing(id: UUID) -> JournalViewController.ViewModel
+    
+    func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel)
+    func updateEntry(id: UUID, from viewModel: JournalEntryEditor.ViewModel)
 }
 
 
@@ -102,8 +105,12 @@ class JournalViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let viewModel = routes.entryViewModelForEditing(id: routes.entryIDs[indexPath.row])
-        let vm = entryViewModelForEditing(viewModel)
+        let id = routes.entryIDs[indexPath.row]
+        let viewModel = routes.entryViewModelForEditing(id: id)
+        let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
+            self?.routes.updateEntry(id: id, from: $0)
+        }
+
 
         let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: vm))
         present(journalEntryVC, animated: true)
@@ -111,15 +118,11 @@ class JournalViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    func entryViewModelForEditing(_ viewModel: JournalViewController.ViewModel) -> JournalEntryEditor.ViewModel {
-        JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags, save: { print($0) })
-    }
-
     @objc
     private func createNewEntry() {
         
-        let viewModel = JournalEntryEditor.ViewModel() {
-            print($0)
+        let viewModel = JournalEntryEditor.ViewModel() { [weak self] in
+            self?.routes.creatNewEntry(from: $0)
         }
         
         let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: viewModel))
