@@ -10,7 +10,10 @@ import SwiftUI
 
 protocol JournalRoutes: ObservableObject {
     
-    var entryIDs: [any Equatable] { get }
+//    var entryIDs: [any Equatable] { get }
+    
+    var days: [Date] { get }
+    func entries(for date: Date) -> [any Equatable]
     
     func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel
     
@@ -81,18 +84,23 @@ class JournalViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 1
+        return routes.days.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        routes.entryIDs.count
+//        routes.entryIDs.count
+        let day = routes.days[section]
+        return routes.entries(for: day).count
     }
     
     private let cellReuseIdentifier = "JournalViewControllerCell"
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style:.default, reuseIdentifier:cellReuseIdentifier)
         
-        let viewModel = routes.entryViewModelForCell(id: routes.entryIDs[indexPath.row])
+//        let entry = routes.entryIDs[indexPath.row]
+        let day = routes.days[indexPath.section]
+        let id = routes.entries(for: day)[indexPath.row]
+        let viewModel = routes.entryViewModelForCell(id: id)
         
         cell.contentConfiguration = UIHostingConfiguration() {
             JournalEntryCell(viewModel: viewModel)
@@ -100,12 +108,15 @@ class JournalViewController: UITableViewController {
 
         return cell
     }
-    
+        
     // MARK: - Table view delegate
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let id = routes.entryIDs[indexPath.row]
+//        let id = routes.entryIDs[indexPath.row]
+        let day = routes.days[indexPath.section]
+        let id = routes.entries(for: day)[indexPath.row]
+
         let viewModel = routes.entryViewModelForEditing(id: id)
         let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
             self?.routes.updateEntry(id: id, from: $0)
@@ -154,11 +165,18 @@ class JournalViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
-            let id = routes.entryIDs[indexPath.row]
+//            let id = routes.entryIDs[indexPath.row]
+            let day = routes.days[indexPath.section]
+            let id = routes.entries(for: day)[indexPath.row]
+
             routes.deleteEntry(id: id)
             
             tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let t = routes.days[section]
+        return "\(t)"
+    }
 }

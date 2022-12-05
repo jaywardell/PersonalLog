@@ -24,6 +24,12 @@ final class Routes: ObservableObject {
 
 extension Routes: JournalRoutes {
 
+    var days: [Date] { archiver.allDays() }
+    
+    func entries(for date: Date) -> [any Equatable] {
+        archiver.journalEntries(on: date)
+    }
+
     func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel {
         let entry = archiver.journalEntry(for: id)!
         return JournalEntryCell.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, text: entry.text, tags: entry.tags)
