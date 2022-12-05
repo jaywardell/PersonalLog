@@ -179,7 +179,7 @@ class JournalViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let t = routes.days[section]
-        return "\(t)"
+        let day = routes.days[section]
+        return DateFormatter.localizedString(from: day, dateStyle: .full, timeStyle: .none)
     }
 }
