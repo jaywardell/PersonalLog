@@ -26,7 +26,7 @@ extension Routes: JournalRoutes {
 
     var days: [Date] { archiver.allDays() }
     
-    func entries(for date: Date) -> [any Equatable] {
+    func entryIDs(for date: Date) -> [any Equatable] {
         archiver.journalEntries(on: date)
     }
 
@@ -34,7 +34,6 @@ extension Routes: JournalRoutes {
         let entry = archiver.journalEntry(for: id)!
         return JournalEntryCell.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, text: entry.text, tags: entry.tags)
     }
-    
     
     func entryViewModelForEditing(id: any Equatable) -> JournalViewController.ViewModel {
         let entry = archiver.journalEntry(for: id)!

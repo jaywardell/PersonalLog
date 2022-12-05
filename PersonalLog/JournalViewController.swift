@@ -9,11 +9,9 @@ import UIKit
 import SwiftUI
 
 protocol JournalRoutes: ObservableObject {
-    
-//    var entryIDs: [any Equatable] { get }
-    
+        
     var days: [Date] { get }
-    func entries(for date: Date) -> [any Equatable]
+    func entryIDs(for date: Date) -> [any Equatable]
     
     func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel
     
@@ -88,18 +86,17 @@ class JournalViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        routes.entryIDs.count
+
         let day = routes.days[section]
-        return routes.entries(for: day).count
+        return routes.entryIDs(for: day).count
     }
     
     private let cellReuseIdentifier = "JournalViewControllerCell"
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style:.default, reuseIdentifier:cellReuseIdentifier)
         
-//        let entry = routes.entryIDs[indexPath.row]
         let day = routes.days[indexPath.section]
-        let id = routes.entries(for: day)[indexPath.row]
+        let id = routes.entryIDs(for: day)[indexPath.row]
         let viewModel = routes.entryViewModelForCell(id: id)
         
         cell.contentConfiguration = UIHostingConfiguration() {
@@ -113,9 +110,8 @@ class JournalViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-//        let id = routes.entryIDs[indexPath.row]
         let day = routes.days[indexPath.section]
-        let id = routes.entries(for: day)[indexPath.row]
+        let id = routes.entryIDs(for: day)[indexPath.row]
 
         let viewModel = routes.entryViewModelForEditing(id: id)
         let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
@@ -165,9 +161,8 @@ class JournalViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
-//            let id = routes.entryIDs[indexPath.row]
             let day = routes.days[indexPath.section]
-            let id = routes.entries(for: day)[indexPath.row]
+            let id = routes.entryIDs(for: day)[indexPath.row]
 
             routes.deleteEntry(id: id)
             
