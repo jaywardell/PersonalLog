@@ -52,9 +52,8 @@ final class JournalArchiver {
     func save(entry: JournalEntry) {
         guard let path = path(for: entry) else { return }
         
-        let encoder = JSONEncoder()
-        
         do {
+            let encoder = JSONEncoder()
             let data = try encoder.encode(entry)
             
             try data.write(to: path)
