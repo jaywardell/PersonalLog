@@ -25,13 +25,13 @@ final class Routes: ObservableObject {
 extension Routes: JournalRoutes {
 
     func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel {
-        let entry = archiver.journalEntry(for: id as! Date)!
+        let entry = archiver.journalEntry(for: id)!
         return JournalEntryCell.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, text: entry.text, tags: entry.tags)
     }
     
     
     func entryViewModelForEditing(id: any Equatable) -> JournalViewController.ViewModel {
-        let entry = archiver.journalEntry(for: id as! Date)!
+        let entry = archiver.journalEntry(for: id)!
         return JournalViewController.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, prompt: entry.prompt, text: entry.text, tags: entry.tags)
     }
 
@@ -53,7 +53,7 @@ extension Routes: JournalRoutes {
 
     func deleteEntry(id: any Equatable) {
         
-        archiver.deleteEntry(for: id as! Date)
+        archiver.deleteEntry(for: id)
         updateEntries()
     }
     

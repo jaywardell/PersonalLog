@@ -25,11 +25,11 @@ final class JournalArchiver {
         
     private var entries: [Date]!
     
-    func allEntries() -> [Date] {
+    func allEntries() -> [some Equatable] {
         if let entryNames = entries { return entryNames }
         
         let fm = FileManager()
-        guard let contents = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else { return [] }
+        guard let contents = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else { return [Date]() }
         
         self.entries = contents
             .map(\.lastPathComponent)
@@ -40,8 +40,9 @@ final class JournalArchiver {
         return self.entries
     }
     
-    func journalEntry(for date: Date) -> JournalEntry? {
-        guard let path = path(for: date) else { return nil }
+    func journalEntry(for id: some Equatable) -> JournalEntry? {
+        guard let date = id as? Date,
+              let path = path(for: date) else { return nil }
         
         let decoder = JSONDecoder()
         guard let data = try? Data(contentsOf: path) else { return nil }
@@ -68,8 +69,9 @@ final class JournalArchiver {
         }
     }
 
-    func deleteEntry(for date: Date) {
-        guard let path = path(for: date) else { return }
+    func deleteEntry(for id: any Equatable) {
+        guard let date = id as? Date,
+              let path = path(for: date) else { return }
         
         do {
             let fm = FileManager()
