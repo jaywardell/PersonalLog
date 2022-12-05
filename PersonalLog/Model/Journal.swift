@@ -11,7 +11,7 @@ final class Journal: ObservableObject {
     
     @Published var days: [Date] = []
 
-    let archiver = JournalArchiver()
+    let archiver = JournalArchive()
     
     init() {
         updateEntries()

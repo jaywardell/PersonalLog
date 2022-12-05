@@ -1,5 +1,5 @@
 //
-//  JournalArchiver.swift
+//  JournalArchive.swift
 //  PersonalLog
 //
 //  Created by Joseph Wardell on 12/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class JournalArchiver {
+final class JournalArchive {
     
     let directory: URL
     

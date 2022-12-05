@@ -23,7 +23,7 @@
 		7C4AC68B293D04CF00E8EDFE /* PhrasesPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */; };
 		7C4AC68D293D213B00E8EDFE /* JournalEntryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68C293D213B00E8EDFE /* JournalEntryCell.swift */; };
 		7C4AC68F293D4A5A00E8EDFE /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68E293D4A5A00E8EDFE /* Journal.swift */; };
-		7C4AC691293D705700E8EDFE /* JournalArchiver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC690293D705700E8EDFE /* JournalArchiver.swift */; };
+		7C4AC691293D705700E8EDFE /* JournalArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC690293D705700E8EDFE /* JournalArchive.swift */; };
 		7C4AC693293D706100E8EDFE /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC692293D706100E8EDFE /* JournalEntry.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,7 +65,7 @@
 		7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhrasesPicker.swift; sourceTree = "<group>"; };
 		7C4AC68C293D213B00E8EDFE /* JournalEntryCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryCell.swift; sourceTree = "<group>"; };
 		7C4AC68E293D4A5A00E8EDFE /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
-		7C4AC690293D705700E8EDFE /* JournalArchiver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalArchiver.swift; sourceTree = "<group>"; };
+		7C4AC690293D705700E8EDFE /* JournalArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalArchive.swift; sourceTree = "<group>"; };
 		7C4AC692293D706100E8EDFE /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -153,7 +153,7 @@
 			children = (
 				7C4AC68E293D4A5A00E8EDFE /* Journal.swift */,
 				7C4AC692293D706100E8EDFE /* JournalEntry.swift */,
-				7C4AC690293D705700E8EDFE /* JournalArchiver.swift */,
+				7C4AC690293D705700E8EDFE /* JournalArchive.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -314,7 +314,7 @@
 				7C4AC68B293D04CF00E8EDFE /* PhrasesPicker.swift in Sources */,
 				7C1B5462293CCB92004B5EF0 /* EmojiPicker.swift in Sources */,
 				7C1B545C293CB4A4004B5EF0 /* TopViewController.swift in Sources */,
-				7C4AC691293D705700E8EDFE /* JournalArchiver.swift in Sources */,
+				7C4AC691293D705700E8EDFE /* JournalArchive.swift in Sources */,
 				7C4AC693293D706100E8EDFE /* JournalEntry.swift in Sources */,
 				7C1B542C293CB30D004B5EF0 /* AppDelegate.swift in Sources */,
 				7C4AC68D293D213B00E8EDFE /* JournalEntryCell.swift in Sources */,
