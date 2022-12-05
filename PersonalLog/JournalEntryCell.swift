@@ -61,11 +61,13 @@ struct JournalEntryCell: View {
                 }
             }
 
-            HStack {
-                moodEmoji
-                    .opacity(0)
-                Text(viewModel.tags.joined(separator: ", "))
-                    .font(.caption2)
+            if !viewModel.tags.isEmpty {
+                HStack {
+                    moodEmoji
+                        .opacity(0)
+                    Text(viewModel.tags.joined(separator: ", "))
+                        .font(.caption2)
+                }
             }
         }
         .padding()
