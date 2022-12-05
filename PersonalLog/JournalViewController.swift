@@ -8,15 +8,17 @@
 import UIKit
 import SwiftUI
 
-protocol JournalRoutes: ObservableObject {
-        
+protocol JournalData: ObservableObject {
+    
     var days: [Date] { get }
     func entryIDs(for date: Date) -> [any Equatable]
     
     func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel
     
     func entryViewModelForEditing(id: any Equatable) -> JournalViewController.ViewModel
-    
+}
+
+protocol JournalRoutes {
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel)
     func updateEntry(id: any Equatable, from viewModel: JournalEntryEditor.ViewModel)
     func deleteEntry(id: any Equatable)
@@ -46,10 +48,12 @@ class JournalViewController: UITableViewController {
     }
 
     let routes: any JournalRoutes
+    let data: any JournalData
     
-    init(routes: any JournalRoutes) {
+    init(data: any JournalData, routes: any JournalRoutes) {
 
         self.routes = routes
+        self.data = data
         
         super.init(style: .plain)
     }
@@ -82,18 +86,18 @@ class JournalViewController: UITableViewController {
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return routes.days.count
+        return data.days.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        let day = routes.days[section]
-        return routes.entryIDs(for: day).count
+        let day = data.days[section]
+        return data.entryIDs(for: day).count
     }
     
     private func id(for indexPath: IndexPath) -> any Equatable {
-        let day = routes.days[indexPath.section]
-        let ids = routes.entryIDs(for: day)
+        let day = data.days[indexPath.section]
+        let ids = data.entryIDs(for: day)
         return ids[indexPath.row]
     }
     
@@ -102,7 +106,7 @@ class JournalViewController: UITableViewController {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style:.default, reuseIdentifier:cellReuseIdentifier)
         
         let id = id(for: indexPath)
-        let viewModel = routes.entryViewModelForCell(id: id)
+        let viewModel = data.entryViewModelForCell(id: id)
         
         cell.contentConfiguration = UIHostingConfiguration() {
             JournalEntryCell(viewModel: viewModel)
@@ -116,7 +120,7 @@ class JournalViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let id = id(for: indexPath)
-        let viewModel = routes.entryViewModelForEditing(id: id)
+        let viewModel = data.entryViewModelForEditing(id: id)
         let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
             self?.routes.updateEntry(id: id, from: $0)
             self?.tableView.reloadData()
@@ -164,12 +168,12 @@ class JournalViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
-            let day = routes.days[indexPath.section]
+            let day = data.days[indexPath.section]
             let id = id(for: indexPath)
 
             routes.deleteEntry(id: id)
             
-            if routes.entryIDs(for: day).isEmpty {
+            if data.entryIDs(for: day).isEmpty {
                 tableView.deleteSections([indexPath.section], with: .fade)
             }
             else {
@@ -179,7 +183,7 @@ class JournalViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let day = routes.days[section]
+        let day = data.days[section]
         return DateFormatter.localizedString(from: day, dateStyle: .full, timeStyle: .none)
     }
 }

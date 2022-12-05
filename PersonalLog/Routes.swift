@@ -22,12 +22,12 @@ final class Routes: ObservableObject {
     }
 }
 
-extension Routes: JournalRoutes {
+extension Routes: JournalData {
     
     func entryIDs(for date: Date) -> [any Equatable] {
         archiver.journalEntries(on: date)
     }
-
+    
     func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel {
         let entry = archiver.journalEntry(for: id)!
         return JournalEntryCell.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, text: entry.text, tags: entry.tags)
@@ -37,6 +37,9 @@ extension Routes: JournalRoutes {
         let entry = archiver.journalEntry(for: id)!
         return JournalViewController.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, prompt: entry.prompt, text: entry.text, tags: entry.tags)
     }
+}
+ 
+extension Routes: JournalRoutes {
 
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
         
