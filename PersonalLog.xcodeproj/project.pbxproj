@@ -120,14 +120,10 @@
 				7C1B542B293CB30D004B5EF0 /* AppDelegate.swift */,
 				7C1B542D293CB30D004B5EF0 /* SceneDelegate.swift */,
 				7C1B5431293CB30D004B5EF0 /* Main.storyboard */,
-				7C4AC694293D707600E8EDFE /* Model */,
 				7C1B545B293CB4A4004B5EF0 /* TopViewController.swift */,
-				7C1B545F293CB9B4004B5EF0 /* JournalEntryEditor.swift */,
-				7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */,
-				7C4AC688293CFACB00E8EDFE /* TagsListView.swift */,
-				7C1B5461293CCB92004B5EF0 /* EmojiPicker.swift */,
-				7C1B545D293CB6F8004B5EF0 /* JournalViewController.swift */,
-				7C4AC68C293D213B00E8EDFE /* JournalEntryCell.swift */,
+				7C4AC694293D707600E8EDFE /* Model */,
+				7C4AC696293E4FF500E8EDFE /* Listing Entries */,
+				7C4AC695293E4FDF00E8EDFE /* Editing Entries */,
 				7C1B5434293CB30E004B5EF0 /* Assets.xcassets */,
 				7C1B5436293CB30E004B5EF0 /* LaunchScreen.storyboard */,
 				7C1B5439293CB30E004B5EF0 /* Info.plist */,
@@ -160,6 +156,26 @@
 				7C4AC690293D705700E8EDFE /* JournalArchiver.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		7C4AC695293E4FDF00E8EDFE /* Editing Entries */ = {
+			isa = PBXGroup;
+			children = (
+				7C1B545F293CB9B4004B5EF0 /* JournalEntryEditor.swift */,
+				7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */,
+				7C4AC688293CFACB00E8EDFE /* TagsListView.swift */,
+				7C1B5461293CCB92004B5EF0 /* EmojiPicker.swift */,
+			);
+			path = "Editing Entries";
+			sourceTree = "<group>";
+		};
+		7C4AC696293E4FF500E8EDFE /* Listing Entries */ = {
+			isa = PBXGroup;
+			children = (
+				7C1B545D293CB6F8004B5EF0 /* JournalViewController.swift */,
+				7C4AC68C293D213B00E8EDFE /* JournalEntryCell.swift */,
+			);
+			path = "Listing Entries";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
