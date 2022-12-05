@@ -110,7 +110,8 @@ class JournalViewController: UITableViewController {
         let viewModel = routes.entryViewModelForEditing(id: id)
         let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
             self?.routes.updateEntry(id: id, from: $0)
-        }
+            self?.tableView.reloadData()
+       }
 
 
         let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: vm))
@@ -124,7 +125,8 @@ class JournalViewController: UITableViewController {
         
         let viewModel = JournalEntryEditor.ViewModel() { [weak self] in
             self?.routes.creatNewEntry(from: $0)
-        }
+            self?.tableView.reloadData()
+      }
         
         let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: viewModel))
         present(journalEntryVC, animated: true)

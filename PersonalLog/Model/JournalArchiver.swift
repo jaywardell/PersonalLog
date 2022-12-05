@@ -11,7 +11,7 @@ final class JournalArchiver {
     
     let directory: URL
     
-    private static var defaultDirectory: URL! {
+    static var defaultDirectory: URL! {
         
         try! FileManager.default.url(for: .documentDirectory,
                                     in: .userDomainMask,
@@ -71,9 +71,9 @@ final class JournalArchiver {
             print("error saving \(entry) to \(path): \(error)")
         }
     }
-    
-    func delete(entry: JournalEntry) {
-        let name = String(entry.date.timeIntervalSinceReferenceDate)
+
+    func deleteEntry(for id: UUID) {
+        guard let name = idToDate[id] else { return }
         let path = directory.appending(component: name)
 
         let fm = FileManager()
@@ -82,8 +82,7 @@ final class JournalArchiver {
             try fm.removeItem(at: path)
         }
         catch {
-            print("error deleting \(entry) at \(path)")
+            print("error deleting entry with id \(id) at \(path)")
         }
     }
-
 }
