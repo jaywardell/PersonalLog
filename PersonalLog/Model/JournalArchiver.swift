@@ -81,7 +81,7 @@ final class JournalArchiver {
             }
         }
         catch {
-            print("error deleting entry with id \(date) at \(path)")
+            print("error deleting entry with id \(date) at \(path): \(error)")
         }
     }
     
