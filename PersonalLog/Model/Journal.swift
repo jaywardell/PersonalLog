@@ -1,5 +1,5 @@
 //
-//  Routes.swift
+//  Journal.swift
 //  PersonalLog
 //
 //  Created by Joseph Wardell on 12/4/22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-final class Routes: ObservableObject {
+final class Journal: ObservableObject {
     
     @Published var days: [Date] = []
 
@@ -22,7 +22,7 @@ final class Routes: ObservableObject {
     }
 }
 
-extension Routes: JournalData {
+extension Journal: JournalData {
     
     func entryIDs(for date: Date) -> [any Equatable] {
         archiver.journalEntries(on: date)
@@ -39,7 +39,7 @@ extension Routes: JournalData {
     }
 }
  
-extension Routes: JournalRoutes {
+extension Journal: JournalRoutes {
 
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
         
