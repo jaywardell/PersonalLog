@@ -47,7 +47,7 @@ final class JournalArchiver {
     func journalEntry(for id: UUID) -> JournalEntry? {
         guard let name = idToDate[id] else { return nil }
         
-        let path = directory.appending(component: name)
+        let path = path(for: name)
         
         let decoder = JSONDecoder()
         guard let data = try? Data(contentsOf: path) else { return nil }
@@ -58,7 +58,7 @@ final class JournalArchiver {
     func save(entry: JournalEntry) {
         
         let name = String(entry.date.timeIntervalSinceReferenceDate)
-        let path = directory.appending(component: name)
+        let path = path(for: name)
         
         let encoder = JSONEncoder()
         
@@ -74,7 +74,7 @@ final class JournalArchiver {
 
     func deleteEntry(for id: UUID) {
         guard let name = idToDate[id] else { return }
-        let path = directory.appending(component: name)
+        let path = path(for: name)
 
         let fm = FileManager()
         
@@ -84,5 +84,9 @@ final class JournalArchiver {
         catch {
             print("error deleting entry with id \(id) at \(path)")
         }
+    }
+    
+    private func path(for name: String) -> URL {
+        directory.appending(component: name)
     }
 }
