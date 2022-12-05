@@ -70,7 +70,6 @@ struct JournalEntryCell: View {
                 }
             }
         }
-        .padding()
     }
 }
 
