@@ -9,7 +9,7 @@ import Foundation
 
 final class Routes: ObservableObject {
     
-    @Published var entryIDs: [any Equatable] = []
+    @Published var days: [Date] = []
 
     let archiver = JournalArchiver()
     
@@ -18,13 +18,11 @@ final class Routes: ObservableObject {
     }
     
     private func updateEntries() {
-        entryIDs = archiver.allEntries()
+        days = archiver.allDays()
     }
 }
 
 extension Routes: JournalRoutes {
-
-    var days: [Date] { archiver.allDays() }
     
     func entryIDs(for date: Date) -> [any Equatable] {
         archiver.journalEntries(on: date)
