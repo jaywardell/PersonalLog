@@ -38,7 +38,6 @@ struct JournalEntryCell: View {
                 moodEmoji
                     .opacity(viewModel.title.isEmpty && viewModel.text.isEmpty && !viewModel.mood.isEmpty ? 1 : 0)
                 Spacer()
-                Text(viewModel.date, style: .date)
                 Text(viewModel.date, style: .time)
             }
             .font(.caption)
