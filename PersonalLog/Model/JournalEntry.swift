@@ -8,9 +8,7 @@
 import Foundation
 
 struct JournalEntry {
-    
-    let id: UUID
-    
+        
     let date: Date
     let mood: String
     let title: String
