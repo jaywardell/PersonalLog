@@ -23,21 +23,21 @@ final class JournalArchiver {
         self.directory = directory ?? Self.defaultDirectory
     }
         
-    private var entryNames: [Date]!
+    private var entries: [Date]!
     
     func allEntries() -> [Date] {
-        if let entryNames = entryNames { return entryNames }
+        if let entryNames = entries { return entryNames }
         
         let fm = FileManager()
         guard let contents = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else { return [] }
         
-        self.entryNames = contents
+        self.entries = contents
             .map(\.lastPathComponent)
             .compactMap(Double.init)
             .map(Date.init(timeIntervalSinceReferenceDate:))
             .sorted()
         
-        return self.entryNames
+        return self.entries
     }
     
     func journalEntry(for date: Date) -> JournalEntry? {
@@ -59,9 +59,9 @@ final class JournalArchiver {
             
             try data.write(to: path)
 
-            if !entryNames.contains(entry.date) {
-                entryNames.append(entry.date)
-                entryNames.sort()
+            if !entries.contains(entry.date) {
+                entries.append(entry.date)
+                entries.sort()
             }
         }
         catch {
@@ -76,8 +76,8 @@ final class JournalArchiver {
             let fm = FileManager()
             try fm.removeItem(at: path)
 
-            if let index = entryNames.firstIndex(of: date) {
-                entryNames.remove(at: index)
+            if let index = entries.firstIndex(of: date) {
+                entries.remove(at: index)
             }
         }
         catch {
