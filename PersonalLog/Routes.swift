@@ -9,9 +9,11 @@ import Foundation
 
 final class Routes: ObservableObject {
     
-    var entryIDs: [UUID] {
-        (0...10).map { _ in UUID() }
+    init() {
+        entryIDs = (0...3).map { _ in UUID() }
     }
+    
+    var entryIDs: [UUID]
     
     func entryViewModelForCell(id: UUID) -> JournalEntryCell.ViewModel {
         JournalEntryCell.ViewModel(date: Date(), mood: "😍", title: "Hello", text: "Something really cool happened", tags: [])
@@ -30,6 +32,11 @@ final class Routes: ObservableObject {
         print(id, viewModel.text)
     }
 
+    func deleteEntry(id: UUID) {
+        print(#function, id)
+        let index = entryIDs.firstIndex(of: id)!
+        entryIDs.remove(at: index)
+    }
 }
 
 extension Routes: JournalRoutes {
