@@ -25,7 +25,6 @@ final class JournalArchiver {
         
     private var days: [Date]!
     private var entriesAtDates: [Date:[Date]]!
-    private var allEntries: Set<Date>!
     
     func allDays() -> [Date] {
         if let days = self.days { return days }
@@ -38,7 +37,6 @@ final class JournalArchiver {
     private func buildEntries() {
         let fm = FileManager()
         guard let contents = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else {
-            self.allEntries = []
             self.entriesAtDates = [:]
             self.days = []
             return
@@ -50,8 +48,6 @@ final class JournalArchiver {
             .map(Date.init(timeIntervalSinceReferenceDate:))
             .sorted()
         
-        self.allEntries = Set(foundEntries)
-
         self.days = Set(foundEntries.map { Calendar.current.startOfDay(for: $0) }).sorted()
         
         var sortedDates = [Date:[Date]]()
@@ -99,13 +95,10 @@ final class JournalArchiver {
             try save(entry: entry)
             
             let day = Calendar.current.startOfDay(for: entry.date)
-            if !allEntries.contains(entry.date) {
-                allEntries.insert(entry.date)
                 
-                var entriesForDay = entriesAtDates[day]
-                entriesForDay?.append(entry.date)
-                entriesAtDates[day] = entriesForDay
-            }
+            var entriesForDay = entriesAtDates[day]
+            entriesForDay?.append(entry.date)
+            entriesAtDates[day] = entriesForDay
             
             if nil == entriesAtDates[day] {
                 entriesAtDates[day] = [entry.date]
@@ -130,9 +123,6 @@ final class JournalArchiver {
         else { return }
         
         do {
-            // remove from entries first, so user will see the entry disappear
-            allEntries.remove(date)
-            
             entriesForDay.remove(at: innerIndex)
             entriesAtDates[startOfDay] = entriesForDay
             if entriesForDay.isEmpty {
