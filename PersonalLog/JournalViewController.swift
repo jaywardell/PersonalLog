@@ -91,12 +91,17 @@ class JournalViewController: UITableViewController {
         return routes.entryIDs(for: day).count
     }
     
+    private func id(for indexPath: IndexPath) -> any Equatable {
+        let day = routes.days[indexPath.section]
+        let ids = routes.entryIDs(for: day)
+        return ids[indexPath.row]
+    }
+    
     private let cellReuseIdentifier = "JournalViewControllerCell"
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style:.default, reuseIdentifier:cellReuseIdentifier)
         
-        let day = routes.days[indexPath.section]
-        let id = routes.entryIDs(for: day)[indexPath.row]
+        let id = id(for: indexPath)
         let viewModel = routes.entryViewModelForCell(id: id)
         
         cell.contentConfiguration = UIHostingConfiguration() {
@@ -110,9 +115,7 @@ class JournalViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let day = routes.days[indexPath.section]
-        let id = routes.entryIDs(for: day)[indexPath.row]
-
+        let id = id(for: indexPath)
         let viewModel = routes.entryViewModelForEditing(id: id)
         let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
             self?.routes.updateEntry(id: id, from: $0)
@@ -161,8 +164,7 @@ class JournalViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
-            let day = routes.days[indexPath.section]
-            let id = routes.entryIDs(for: day)[indexPath.row]
+            let id = id(for: indexPath)
 
             routes.deleteEntry(id: id)
             
