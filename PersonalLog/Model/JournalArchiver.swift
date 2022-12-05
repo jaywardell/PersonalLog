@@ -54,7 +54,7 @@ final class JournalArchiver {
     }
     
     func save(entry: JournalEntry) {
-        guard let path = path(for: entry.date) else { return }
+        guard let path = path(for: entry) else { return }
         
         let encoder = JSONEncoder()
         
@@ -79,6 +79,10 @@ final class JournalArchiver {
         catch {
             print("error deleting entry with id \(id) at \(path)")
         }
+    }
+    
+    private func path(for entry: JournalEntry) -> URL? {
+        path(for: entry.date)
     }
     
     private func path(for date: Date) -> URL? {
