@@ -58,14 +58,14 @@ final class JournalArchiver {
             let data = try encoder.encode(entry)
             
             try data.write(to: path)
+
+            if !entryNames.contains(entry.date) {
+                entryNames.append(entry.date)
+                entryNames.sort()
+            }
         }
         catch {
             print("error saving \(entry) to \(path): \(error)")
-        }
-        
-        if !entryNames.contains(entry.date) {
-            entryNames.append(entry.date)
-            entryNames.sort()
         }
     }
 
@@ -75,13 +75,13 @@ final class JournalArchiver {
         do {
             let fm = FileManager()
             try fm.removeItem(at: path)
+
+            if let index = entryNames.firstIndex(of: date) {
+                entryNames.remove(at: index)
+            }
         }
         catch {
             print("error deleting entry with id \(date) at \(path)")
-        }
-        
-        if let index = entryNames.firstIndex(of: date) {
-            entryNames.remove(at: index)
         }
     }
     
