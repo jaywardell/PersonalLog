@@ -30,13 +30,13 @@ final class JournalArchiver {
         let fm = FileManager()
         guard let contents = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else { return [] }
         
-        let dates = contents.map(\.lastPathComponent)
+        let dates = contents.map(\.lastPathComponent).compactMap(Double.init).sorted()
         
         var out = [UUID]()
         var lookup = [UUID:String]()
         for date in dates {
             let id = UUID()
-            lookup[id] = date
+            lookup[id] = String(date)
             out.append(id)
         }
         self.idToDate = lookup
