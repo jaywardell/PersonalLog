@@ -41,7 +41,7 @@ extension Routes: JournalRoutes {
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
         
         let entry = JournalEntry(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags)
-        archiver.save(entry: entry)
+        archiver.create(entry: entry)
         
         updateEntries()
     }
@@ -49,7 +49,7 @@ extension Routes: JournalRoutes {
     func updateEntry(id: any Equatable, from viewModel: JournalEntryEditor.ViewModel) {
 
         let entry = JournalEntry(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags)
-        archiver.save(entry: entry)
+        try? archiver.save(entry: entry)
         
         updateEntries()
     }

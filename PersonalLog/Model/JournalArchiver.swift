@@ -78,7 +78,7 @@ final class JournalArchiver {
         return out
     }
     
-    func save(entry: JournalEntry) {
+    func save(entry: JournalEntry) throws {
         guard let path = path(for: entry) else { return }
         
         do {
@@ -86,7 +86,18 @@ final class JournalArchiver {
             let data = try encoder.encode(entry)
             
             try data.write(to: path)
+        }
+        catch {
+            print("error saving \(entry) to \(path): \(error)")
+            throw error
+        }
+    }
 
+    func create(entry: JournalEntry) {
+        
+        do {
+            try save(entry: entry)
+            
             let day = Calendar.current.startOfDay(for: entry.date)
             if !allEntries.contains(entry.date) {
                 allEntries.insert(entry.date)
@@ -103,10 +114,10 @@ final class JournalArchiver {
             }
         }
         catch {
-            print("error saving \(entry) to \(path): \(error)")
+            // any error caught here was already logged in the save() method
         }
     }
-
+    
     func deleteEntry(for id: any Equatable) {
         guard let date = id as? Date else { return }
         
