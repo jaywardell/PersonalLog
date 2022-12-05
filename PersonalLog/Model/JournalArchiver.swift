@@ -11,7 +11,7 @@ final class JournalArchiver {
     
     let directory: URL
     
-    static var defaultDirectory: URL! {
+    private static var defaultDirectory: URL! {
         
         try! FileManager.default.url(for: .documentDirectory,
                                     in: .userDomainMask,
@@ -19,8 +19,8 @@ final class JournalArchiver {
                                     create: false)
     }
     
-    init(directory: URL) {
-        self.directory = directory
+    init(directory: URL? = nil) {
+        self.directory = directory ?? Self.defaultDirectory
     }
     
     private var idToDate: [UUID:String] = [:]

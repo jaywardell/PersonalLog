@@ -11,7 +11,7 @@ final class Routes: ObservableObject {
     
     @Published var entryIDs: [any Equatable] = []
 
-    let archiver = JournalArchiver(directory: JournalArchiver.defaultDirectory)
+    let archiver = JournalArchiver()
     
     init() {
         updateEntries()
