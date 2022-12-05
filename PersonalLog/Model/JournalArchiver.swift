@@ -98,7 +98,7 @@ final class JournalArchiver {
                 
             var entriesForDay = entriesAtDates[day]
             entriesForDay?.append(entry.date)
-            entriesAtDates[day] = entriesForDay
+            entriesAtDates[day] = entriesForDay?.sorted() // probably not necessary, but sort it to be safe
             
             if nil == entriesAtDates[day] {
                 entriesAtDates[day] = [entry.date]
