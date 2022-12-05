@@ -9,7 +9,7 @@ import Foundation
 
 final class Routes: ObservableObject {
     
-    @Published var entryIDs: [UUID] = []
+    @Published var entryIDs: [any Equatable] = []
 
     let archiver = JournalArchiver(directory: JournalArchiver.defaultDirectory)
     
@@ -24,14 +24,14 @@ final class Routes: ObservableObject {
 
 extension Routes: JournalRoutes {
 
-    func entryViewModelForCell(id: UUID) -> JournalEntryCell.ViewModel {
-        let entry = archiver.journalEntry(for: id)!
+    func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel {
+        let entry = archiver.journalEntry(for: id as! UUID)!
         return JournalEntryCell.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, text: entry.text, tags: entry.tags)
     }
     
     
-    func entryViewModelForEditing(id: UUID) -> JournalViewController.ViewModel {
-        let entry = archiver.journalEntry(for: id)!
+    func entryViewModelForEditing(id: any Equatable) -> JournalViewController.ViewModel {
+        let entry = archiver.journalEntry(for: id as! UUID)!
         return JournalViewController.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, prompt: entry.prompt, text: entry.text, tags: entry.tags)
     }
 
@@ -43,7 +43,7 @@ extension Routes: JournalRoutes {
         updateEntries()
     }
     
-    func updateEntry(id: UUID, from viewModel: JournalEntryEditor.ViewModel) {
+    func updateEntry(id: any Equatable, from viewModel: JournalEntryEditor.ViewModel) {
 
         let entry = JournalEntry(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags)
         archiver.save(entry: entry)
@@ -51,9 +51,9 @@ extension Routes: JournalRoutes {
         updateEntries()
     }
 
-    func deleteEntry(id: UUID) {
+    func deleteEntry(id: any Equatable) {
         
-        archiver.deleteEntry(for: id)
+        archiver.deleteEntry(for: id as! UUID)
         updateEntries()
     }
     

@@ -10,15 +10,15 @@ import SwiftUI
 
 protocol JournalRoutes: ObservableObject {
     
-    var entryIDs: [UUID] { get }
+    var entryIDs: [any Equatable] { get }
     
-    func entryViewModelForCell(id: UUID) -> JournalEntryCell.ViewModel
+    func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel
     
-    func entryViewModelForEditing(id: UUID) -> JournalViewController.ViewModel
+    func entryViewModelForEditing(id: any Equatable) -> JournalViewController.ViewModel
     
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel)
-    func updateEntry(id: UUID, from viewModel: JournalEntryEditor.ViewModel)
-    func deleteEntry(id: UUID)
+    func updateEntry(id: any Equatable, from viewModel: JournalEntryEditor.ViewModel)
+    func deleteEntry(id: any Equatable)
 }
 
 
