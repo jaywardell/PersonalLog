@@ -34,15 +34,7 @@ final class JournalArchiver {
 
         return self.days
     }
-    
-    func allEntries() -> [some Equatable] {
-        if let entryNames = self.entries { return entryNames }
         
-        buildEntries()
-        
-        return self.entries
-    }
-    
     private func buildEntries() {
         let fm = FileManager()
         guard let contents = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else {
