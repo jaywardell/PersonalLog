@@ -22,30 +22,21 @@ final class JournalArchiver {
     init(directory: URL? = nil) {
         self.directory = directory ?? Self.defaultDirectory
     }
-    
-    private var idToDate: [UUID:String] = [:]
-    
-    func allEntries() -> [UUID] {
+        
+    func allEntries() -> [Date] {
     
         let fm = FileManager()
         guard let contents = try? fm.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else { return [] }
         
-        let dates = contents.map(\.lastPathComponent).compactMap(Double.init).sorted()
-        
-        var out = [UUID]()
-        var lookup = [UUID:String]()
-        for date in dates {
-            let id = UUID()
-            lookup[id] = String(date)
-            out.append(id)
-        }
-        self.idToDate = lookup
-        
-        return out
+        return contents
+            .map(\.lastPathComponent)
+            .compactMap(Double.init)
+            .map(Date.init(timeIntervalSinceReferenceDate:))
+            .sorted()
     }
     
-    func journalEntry(for id: UUID) -> JournalEntry? {
-        guard let path = path(for: id) else { return nil }
+    func journalEntry(for date: Date) -> JournalEntry? {
+        guard let path = path(for: date) else { return nil }
         
         let decoder = JSONDecoder()
         guard let data = try? Data(contentsOf: path) else { return nil }
@@ -68,8 +59,8 @@ final class JournalArchiver {
         }
     }
 
-    func deleteEntry(for id: UUID) {
-        guard let path = path(for: id) else { return }
+    func deleteEntry(for date: Date) {
+        guard let path = path(for: date) else { return }
         
         let fm = FileManager()
         
@@ -77,7 +68,7 @@ final class JournalArchiver {
             try fm.removeItem(at: path)
         }
         catch {
-            print("error deleting entry with id \(id) at \(path)")
+            print("error deleting entry with id \(date) at \(path)")
         }
     }
     
@@ -89,12 +80,7 @@ final class JournalArchiver {
         let name = String(date.timeIntervalSinceReferenceDate)
         return path(for: name)
     }
-    
-    private func path(for id: UUID) -> URL? {
-        guard let name = idToDate[id] else { return nil }
-        return path(for: name)
-    }
-    
+          
     private func path(for name: String) -> URL {
         directory.appending(component: name)
     }
