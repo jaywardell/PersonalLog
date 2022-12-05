@@ -42,7 +42,7 @@ extension Routes: JournalRoutes {
 
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
         
-        let entry = JournalEntry(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags)
+        let entry = JournalEntry(date: viewModel.date + 24*3600, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags)
         archiver.save(entry: entry)
         
         updateEntries()

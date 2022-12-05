@@ -93,14 +93,20 @@ final class JournalArchiver {
             
             try data.write(to: path)
 
+            let day = Calendar.current.startOfDay(for: entry.date)
             if !entries.contains(entry.date) {
                 entries.append(entry.date)
                 entries.sort()
                 
-                let day = Calendar.current.startOfDay(for: entry.date)
                 var entriesForDay = entriesAtDates[day]
                 entriesForDay?.append(entry.date)
                 entriesAtDates[day] = entriesForDay
+            }
+            
+            if nil == entriesAtDates[day] {
+                entriesAtDates[day] = [entry.date]
+                days.append(day)
+                days.sort()
             }
         }
         catch {
