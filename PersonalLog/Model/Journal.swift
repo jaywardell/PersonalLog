@@ -43,7 +43,7 @@ extension Journal: JournalRoutes {
 
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
         
-        let entry = JournalEntry(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags)
+        let entry = entry(from: viewModel)
         archiver.create(entry: entry)
         
         updateEntries()
@@ -51,7 +51,7 @@ extension Journal: JournalRoutes {
     
     func updateEntry(id: any Equatable, from viewModel: JournalEntryEditor.ViewModel) {
 
-        let entry = JournalEntry(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags)
+        let entry = entry(from: viewModel)
         try? archiver.save(entry: entry)
         
         updateEntries()
@@ -61,6 +61,15 @@ extension Journal: JournalRoutes {
         
         archiver.deleteEntry(for: id)
         updateEntries()
+    }
+    
+    private func entry(from viewModel: JournalEntryEditor.ViewModel) -> JournalEntry {
+        JournalEntry(date: viewModel.date,
+                     mood: viewModel.mood,
+                     title: viewModel.title,
+                     prompt: viewModel.prompt,
+                     text: viewModel.text,
+                     tags: viewModel.tags)
     }
     
 }
