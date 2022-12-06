@@ -192,6 +192,9 @@ class JournalViewController: UITableViewController {
         }
         
         tableView.scrollToRow(at: IndexPath(row: 0, section: section!), at: .top, animated: true)
+        
+        // if the search bar is active, deactivate it
+        searchController.isActive = false
     }
     
     // Override to support conditional editing of the table view.
