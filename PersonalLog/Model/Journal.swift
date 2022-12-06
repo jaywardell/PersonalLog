@@ -9,6 +9,8 @@ import Foundation
 
 final class Journal: ObservableObject {
     
+    var searchString: String = ""
+    
     @Published var days: [Date] = []
 
     let archiver = JournalArchive()

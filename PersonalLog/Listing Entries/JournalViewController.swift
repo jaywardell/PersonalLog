@@ -10,6 +10,8 @@ import SwiftUI
 
 protocol JournalData: ObservableObject {
     
+    var searchString: String { get set }
+    
     var days: [Date] { get }
     func entryIDs(for date: Date) -> [any Equatable]
     
@@ -198,7 +200,7 @@ class JournalViewController: UITableViewController {
 extension JournalViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        print(searchController.searchBar.text)
+        data.searchString = searchController.searchBar.text ?? ""
     }
     
     
