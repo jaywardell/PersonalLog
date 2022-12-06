@@ -21,6 +21,10 @@ class TopViewController: UIViewController {
         let topBarVC = UIHostingController(rootView: topbar)
         
         let toolbar = topBarVC.view!
+        
+        // if the contents of the toolbar grow outside its frame
+        // they should overlay other content (e.g. the table view)
+        toolbar.layer.zPosition = 1000
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(toolbar)
         
