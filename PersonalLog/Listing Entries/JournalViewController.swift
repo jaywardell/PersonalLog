@@ -52,6 +52,16 @@ class JournalViewController: UITableViewController {
     let routes: any JournalRoutes
     let data: any JournalData
     
+    private let searchController: UISearchController = {
+        let out = UISearchController(searchResultsController: nil)
+        out.obscuresBackgroundDuringPresentation = false
+        out.searchBar.placeholder = "Search"
+        out.isActive = true
+        out.searchBar.searchTextField.autocapitalizationType = .none
+        
+        return out
+    }()
+    
     init(data: any JournalData, routes: any JournalRoutes) {
 
         self.routes = routes
@@ -74,21 +84,17 @@ class JournalViewController: UITableViewController {
         
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createNewEntry))
         
-        let searchButton = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(searchButtonPressed))
         let calendarButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(calendarButtonPressed))
 
         navigationItem.rightBarButtonItem = addButton
-        navigationItem.leftBarButtonItems = [searchButton, calendarButton]
-        
-        let search = UISearchController(searchResultsController: nil)
-        search.searchResultsUpdater = self
-        search.obscuresBackgroundDuringPresentation = false
-        search.searchBar.placeholder = "Search"
-        search.isActive = true
-        search.searchBar.searchTextField.autocapitalizationType = .none
-        navigationItem.searchController = search
+        navigationItem.leftBarButtonItem = calendarButton
+
+        searchController.searchResultsUpdater = self
+        navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
 
+        navigationController?.navigationBar.prefersLargeTitles = true
+        
         tableView.separatorStyle = .none
     }
 
