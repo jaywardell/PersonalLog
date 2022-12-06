@@ -84,7 +84,7 @@ class JournalViewController: UITableViewController {
         
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
-        navigationItem.hidesSearchBarWhenScrolling = false
+//        navigationItem.hidesSearchBarWhenScrolling = false
 
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -161,8 +161,12 @@ class JournalViewController: UITableViewController {
     }
 
     @objc
-    private func searchButtonPressed() {
+    func searchButtonPressed() {
         print(#function)
+        
+        self.searchController.isActive = true
+        self.searchController.searchBar.becomeFirstResponder()
+
     }
 
     @objc
