@@ -173,8 +173,9 @@ class JournalViewController: UITableViewController {
     func showEntries(for date: Date) {
         
         let days = data.days
-        var
-        section = days.firstIndex { d in
+        guard !days.isEmpty else { return }
+        
+        var section = days.firstIndex { d in
             Calendar.current.startOfDay(for: date) == Calendar.current.startOfDay(for: d)
         }
         if nil == section {
