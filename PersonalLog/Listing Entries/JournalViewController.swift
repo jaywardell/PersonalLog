@@ -85,6 +85,7 @@ class JournalViewController: UITableViewController {
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "Search"
         search.isActive = true
+        search.searchBar.searchTextField.autocapitalizationType = .none
         navigationItem.searchController = search
         navigationItem.hidesSearchBarWhenScrolling = false
 
