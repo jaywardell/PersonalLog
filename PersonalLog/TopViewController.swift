@@ -31,7 +31,6 @@ class TopViewController: UIViewController {
         toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        toolbar.heightAnchor.constraint(equalToConstant: 100).isActive = true
 
         
         historyVC.willMove(toParent: self)
