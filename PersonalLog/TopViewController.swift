@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import Combine
 
 class TopViewController: UIViewController {
 
@@ -15,6 +16,11 @@ class TopViewController: UIViewController {
     private lazy var historyVC = UINavigationController(rootViewController: journalVC)
     
     private var dayPickerHidden: NSLayoutConstraint!
+    private var toolbarHidden: NSLayoutConstraint!
+
+    private var subscriptions = Set<AnyCancellable>()
+    
+    private var toolbar: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +28,7 @@ class TopViewController: UIViewController {
         let topbar = Toolbar(searchButtonTapped: journalVC.searchButtonPressed, calendarButtonTapped: toggleDayPicker, addButtonTapped: journalVC.createNewEntry)
         let topBarVC = UIHostingController(rootView: topbar)
         let toolbar = topBarVC.view!
+        self.toolbar = toolbar
         
         // if the contents of the toolbar grow outside its frame
         // they should overlay other content (e.g. the table view)
@@ -32,7 +39,9 @@ class TopViewController: UIViewController {
         toolbar.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         toolbar.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         toolbar.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        
+        toolbarHidden = toolbar.heightAnchor.constraint(equalToConstant: toolbar.intrinsicContentSize.height)
+        toolbarHidden.isActive = false
+
         let dayPicker = DayPicker(dayWasChosen: dayWasChosen)
         let dayPickerVC = UIHostingController(rootView: dayPicker)
         let dayPickerView = dayPickerVC.view!
@@ -56,6 +65,16 @@ class TopViewController: UIViewController {
         historyVC.view.bottomAnchor.constraint(equalTo: dayPickerView.topAnchor).isActive = true
 
         historyVC.didMove(toParent: self)
+        
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification).sink {[weak self] _ in
+            self?.keyboardWillBecomeVisible(true)
+        }
+        .store(in: &subscriptions)
+
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification).sink { [weak self] _ in
+            self?.keyboardWillBecomeVisible(false)
+        }
+        .store(in: &subscriptions)
     }
     
     private var dayPickerVisible: Bool { !dayPickerHidden.isActive }
@@ -76,5 +95,9 @@ class TopViewController: UIViewController {
         setDayPickerVisible(false)
         
         journalVC.showEntries(for: day)
+    }
+    
+    private func keyboardWillBecomeVisible(_ keyboardIsVisible: Bool) {
+        toolbarHidden.isActive = true
     }
 }
