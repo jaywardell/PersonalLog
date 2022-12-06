@@ -9,6 +9,7 @@ import SwiftUI
 
 struct Toolbar: View {
     
+    let searchButtonTapped: ()->()
     let calendarButtonTapped: ()->()
     let tagsButtonTapped: ()->()
     let addButtonTapped: ()->()
@@ -16,7 +17,7 @@ struct Toolbar: View {
     var body: some View {
         HStack{
             
-            Button(action: tagsButtonTapped) {
+            Button(action: searchButtonTapped) {
                 Image(systemName: "magnifyingglass")
                     .font(.title)
             }

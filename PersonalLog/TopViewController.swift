@@ -17,7 +17,7 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let topbar = Toolbar(calendarButtonTapped: {}, tagsButtonTapped: {}, addButtonTapped: journalVC.createNewEntry)
+        let topbar = Toolbar(searchButtonTapped: {}, calendarButtonTapped: {}, tagsButtonTapped: {}, addButtonTapped: journalVC.createNewEntry)
         let topBarVC = UIHostingController(rootView: topbar)
         
         let toolbar = topBarVC.view!
