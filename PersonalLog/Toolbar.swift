@@ -41,8 +41,22 @@ struct Toolbar: View {
                 Image(systemName: "plus")
                     .font(.largeTitle)
                     .bold()
+                    .padding()
             }
+            .buttonStyle(AddButtonStyle())
         }
         .padding(.horizontal)
+    }
+}
+
+
+fileprivate struct AddButtonStyle: ButtonStyle {
+    func makeBody(configuration: Self.Configuration) -> some View {
+        configuration.label
+            .foregroundColor(!configuration.isPressed ? Color(uiColor: .systemBackground) : .accentColor)
+            .background(Circle().foregroundColor(configuration.isPressed ?
+                                            Color(uiColor: .systemBackground) :
+                                                Color.accentColor
+                                                ))
     }
 }
