@@ -65,11 +65,11 @@ extension Journal: JournalRoutes {
     
     private func entry(from viewModel: JournalEntryEditor.ViewModel) -> JournalEntry {
         JournalEntry(date: viewModel.date,
-                     mood: viewModel.mood,
-                     title: viewModel.title,
-                     prompt: viewModel.prompt,
-                     text: viewModel.text,
-                     tags: viewModel.tags)
+                     mood: viewModel.mood.trimmingCharacters(in: .whitespacesAndNewlines),
+                     title: viewModel.title.trimmingCharacters(in: .whitespacesAndNewlines),
+                     prompt: viewModel.prompt.trimmingCharacters(in: .whitespacesAndNewlines),
+                     text: viewModel.text.trimmingCharacters(in: .whitespacesAndNewlines),
+                     tags: viewModel.tags.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) })
     }
     
 }
