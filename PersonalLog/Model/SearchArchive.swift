@@ -46,10 +46,12 @@ final class SearchArchive {
         let words = words(in: entry)
     
         for word in words {
-            var datesForWord = index[word, default: []]
-            datesForWord.insert(entry.date)
-            datesForWord.insert(Calendar.current.startOfDay(for: entry.date))
-            index[word] = datesForWord
+            word.forAllPrefixes {
+                var datesForWord = index[$0, default: []]
+                datesForWord.insert(entry.date)
+                datesForWord.insert(Calendar.current.startOfDay(for: entry.date))
+                index[$0] = datesForWord
+            }
         }
         
         do {
@@ -105,5 +107,16 @@ final class SearchArchive {
             .map { $0.trimmingCharacters(in: .punctuationCharacters)}
             .filter { !$0.isEmpty }
             .map(\.localizedLowercase)
+    }
+}
+
+
+fileprivate extension String {
+    func forAllPrefixes(_ callback: (String)->()) {
+        var this = ""
+        for i in self {
+            this += "\(i)"
+            callback(this)
+        }
     }
 }
