@@ -17,10 +17,13 @@ final class JournalArchive {
                                     in: .userDomainMask,
                                     appropriateFor: nil,
                                     create: false)
+        .appending(component: "entries")
     }
     
     init(directory: URL? = nil) {
         self.directory = directory ?? Self.defaultDirectory
+        
+        try! FileManager.default.createDirectory(at: self.directory, withIntermediateDirectories: true)
     }
         
     private var days: [Date]!
