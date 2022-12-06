@@ -69,14 +69,12 @@ class TopViewController: UIViewController {
         }
     }
     private func toggleDayPicker() {
-//        setDayPickerVisible(!dayPickerVisible)
         setDayPickerVisible(!dayPickerVisible)
     }
     
     private func dayWasChosen(_ day: Date) {
         setDayPickerVisible(false)
         
-        print(day)
         journalVC.showEntries(for: day)
     }
 }
