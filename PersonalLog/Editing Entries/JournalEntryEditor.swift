@@ -122,9 +122,12 @@ struct JournalEntryEditor: View {
                             Button(action : {
                                 showTagsList = true
                             }) {
-                                Text(tagsButtonTitle)
-                                    .font(.caption)
-                                    .multilineTextAlignment(.leading)
+                                HStack(alignment: .top) {
+                                    Image(systemName: "tag")
+                                    Text(tagsButtonTitle)
+                                        .multilineTextAlignment(.leading)
+                                }
+                                .font(.caption)
                             }
                             .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .label))
                             Spacer()
