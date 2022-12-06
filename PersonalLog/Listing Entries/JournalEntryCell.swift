@@ -72,6 +72,7 @@ struct JournalEntryCell: View {
                             Text(viewModel.tags.joined(separator: ", "))
                         }
                         .font(.caption2)
+                        .foregroundColor(Color(uiColor: .secondaryLabel))
                         .multilineTextAlignment(.leading)
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(.top)
