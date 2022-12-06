@@ -13,6 +13,8 @@ final class SearchArchive {
     
     private var index: [String: Set<Date>]
     
+    private let q = DispatchQueue(label: "SearchArchive", qos: .background)
+    
     private static var defaultPath: URL! {
         
         try! FileManager.default.url(for: .documentDirectory,
@@ -43,6 +45,21 @@ final class SearchArchive {
     /// indexes the entry passed in so that it can be found in a search using dates(for:)
     func index(_ entry: JournalEntry) {
         
+        updateIndex(with: entry)
+        
+        q.async { [index, path] in
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(index)
+                try data.write(to: path)
+            }
+            catch {
+                print("Error writing search index to \(path): \(error)")
+            }
+        }
+    }
+
+    private func updateIndex(with entry: JournalEntry) {
         let words = words(in: entry)
     
         for word in words {
@@ -53,17 +70,8 @@ final class SearchArchive {
                 index[$0] = datesForWord
             }
         }
-        
-        do {
-            let encoder = JSONEncoder()
-            let data = try encoder.encode(index)
-            try data.write(to: path)
-        }
-        catch {
-            print("Error writing search index to \(path): \(error)")
-        }
     }
-
+    
     /// returns a list of dates that match the given search string
     /// a date matches if it represents a journal entry that contains that string
     /// or if it represents a day on which a journal entry containing that string
