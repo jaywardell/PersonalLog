@@ -77,7 +77,7 @@ final class SearchArchive {
             .components(separatedBy: .whitespacesAndNewlines)
             .map { $0.trimmingCharacters(in: .punctuationCharacters) }
             .filter { !$0.isEmpty }
-        
+                
         // get all indexed dates that match any of the given words
         let allMatches = words.compactMap { index[$0] }.reduce([], +)
         var out = Set(allMatches)
@@ -85,7 +85,8 @@ final class SearchArchive {
         // filter out any dates that aren't indexed for ALL words
         for date in allMatches {
             for word in words {
-                if false == index[word]?.contains(date) {
+                if nil == index[word] ||                    // word must have been indexed
+                    false == index[word]?.contains(date) {  // for the given date
                     out.remove(date)
                 }
             }
