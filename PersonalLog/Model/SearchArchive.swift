@@ -45,6 +45,14 @@ final class SearchArchive {
     }
 
     
+    private static func tokens(from searchString: String) -> [String] {
+        searchString
+            .localizedLowercase
+            .components(separatedBy: .whitespacesAndNewlines)
+            .map { $0.trimmingCharacters(in: .punctuationCharacters) }
+            .filter { !$0.isEmpty }
+    }
+    
     /// returns a list of dates that match the given search string
     /// a date matches if it represents a journal entry that contains that string
     /// or if it represents a day on which a journal entry containing that string
@@ -53,19 +61,15 @@ final class SearchArchive {
     /// NOTE: if a journal entry is altered,
     /// the index may list certain words as still matching even though they don't anymore
     func dates(for searchString: String) -> Set<Date> {
-        let words = searchString
-            .localizedLowercase
-            .components(separatedBy: .whitespacesAndNewlines)
-            .map { $0.trimmingCharacters(in: .punctuationCharacters) }
-            .filter { !$0.isEmpty }
-                
+        let tokens = Self.tokens(from: searchString)
+        
         // get all indexed dates that match any of the given words
-        let allMatches = words.compactMap { index[$0] }.reduce([], +)
+        let allMatches = tokens.compactMap { index[$0] }.reduce([], +)
         var out = Set(allMatches)
         
         // filter out any dates that aren't indexed for ALL words
         for date in allMatches {
-            for word in words {
+            for word in tokens {
                 if nil == index[word] ||                    // word must have been indexed
                     false == index[word]?.contains(date) {  // for the given date
                     out.remove(date)
@@ -88,6 +92,30 @@ final class SearchArchive {
             }
         }
     }
+
+    func entry(_ entry: JournalEntry, matches searchString: String) -> Bool {
+        
+        let tokens = SearchArchive.tokens(from: searchString)
+                
+        for token in tokens {
+            if !self.entry(entry, matchesWord: token) {
+                return false
+            }
+        }
+        return true
+
+    }
+    
+    private func entry(_ entry: JournalEntry, matchesWord word: String) -> Bool {
+        
+        for this in entry.allWords() {
+            if this.hasPrefix(word) {
+                return true
+            }
+        }
+        return false
+    }
+    
 
     func rebuildIndex(from directory: URL) {
         q.async { [weak self] in
