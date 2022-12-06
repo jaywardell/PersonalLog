@@ -171,7 +171,7 @@ struct JournalEntryEditor: View {
                 EmojiPicker(prompt: "How do you feel?", selected: viewModel.mood) { viewModel.mood = $0 }
             }
             .sheet(isPresented: $showTagsList) {
-                TagsListView(prompt: "Tags", tags: viewModel.tags) { viewModel.tags = $0 }
+                TagsListView(prompt: "Tag this entry", tags: viewModel.tags) { viewModel.tags = $0 }
             }
             .sheet(isPresented: $showPromptsList) {
                 PhrasesPicker(
