@@ -151,7 +151,7 @@ class JournalViewController: UITableViewController {
     }
     
     @objc
-    private func createNewEntry() {
+    func createNewEntry() {
         
         let viewModel = JournalEntryEditor.ViewModel() { [weak self] in
             self?.routes.creatNewEntry(from: $0)

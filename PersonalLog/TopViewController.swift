@@ -17,8 +17,10 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let toolbar = UIView()
-        toolbar.backgroundColor = .purple
+        let topbar = Toolbar(addButtonTapped: journalVC.createNewEntry)
+        let topBarVC = UIHostingController(rootView: topbar)
+        
+        let toolbar = topBarVC.view!
         toolbar.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(toolbar)
         
