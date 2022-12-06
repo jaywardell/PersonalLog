@@ -11,7 +11,6 @@ struct Toolbar: View {
     
     let searchButtonTapped: ()->()
     let calendarButtonTapped: ()->()
-    let tagsButtonTapped: ()->()
     let addButtonTapped: ()->()
     
     var body: some View {
@@ -25,12 +24,6 @@ struct Toolbar: View {
 
             Button(action: calendarButtonTapped) {
                 Image(systemName: "calendar")
-                    .font(.title)
-            }
-            .padding(.leading)
-
-            Button(action: tagsButtonTapped) {
-                Image(systemName: "tag")
                     .font(.title)
             }
             .padding(.leading)
