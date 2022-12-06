@@ -59,14 +59,12 @@ struct TagsListView: View {
             .navigationTitle(prompt)
             .navigationBarItems(leading: cancelButton)
             .alert("New Tag", isPresented: $presentNewTagPrompt, actions: {
-                // Any view other than Button would be ignored
-                TextField("new tag", text: $newTag)
-            }, message: {
-                // Any view other than Text would be ignored
-                Text("enter the name of the new tag")
-            })
-            .onChange(of: presentNewTagPrompt, perform: newTagPromptWasPresented)
 
+                TextField("", text: $newTag)
+                Button("OK", role: nil, action: newTagWasAccepted)
+                Button("Cancel", role: .cancel, action: {})
+
+            })
         }
     }
     
@@ -94,17 +92,16 @@ struct TagsListView: View {
     private func userTappedAddButton() {
         presentNewTagPrompt = true
     }
-    
-    private func newTagPromptWasPresented(_ presented: Bool) {
-        guard !presented else { return }
+        
+    private func newTagWasAccepted() {
         guard !newTag.isEmpty else { return }
         
         withAnimation {
             tags.append(newTag)
         }
         
-        
         newTag = ""
+
     }
 }
 
