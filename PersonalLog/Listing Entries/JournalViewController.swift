@@ -91,6 +91,11 @@ class JournalViewController: UITableViewController {
         tableView.separatorStyle = .none
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        showEntries(for: Date())
+    }
     
     // MARK: - Table view data source
 
