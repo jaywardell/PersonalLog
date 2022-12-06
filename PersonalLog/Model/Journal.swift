@@ -25,7 +25,14 @@ final class Journal: ObservableObject {
     }
     
     private func updateEntries() {
-        days = archiver.allDays()
+        var matches = archiver.allDays()
+        if !searchString.isEmpty {
+            let validDays = index.dates(for: searchString)
+            matches = matches.filter {
+                validDays.contains($0)
+            }
+        }
+        days = matches
     }
 }
 
