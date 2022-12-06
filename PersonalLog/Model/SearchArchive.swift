@@ -28,7 +28,6 @@ final class SearchArchive {
         self.path = path ?? Self.defaultPath
                
         self.index = [:]
-
         
         loadArchive()
     }
