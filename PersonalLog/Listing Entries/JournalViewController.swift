@@ -86,6 +86,7 @@ class JournalViewController: UITableViewController {
         search.searchBar.placeholder = "Search"
         search.isActive = true
         navigationItem.searchController = search
+        navigationItem.hidesSearchBarWhenScrolling = false
 
         tableView.separatorStyle = .none
     }
