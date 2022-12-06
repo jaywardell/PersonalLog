@@ -47,16 +47,7 @@ final class SearchArchive {
         
         updateIndex(with: entry)
         
-        q.async { [index, path] in
-            do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(index)
-                try data.write(to: path)
-            }
-            catch {
-                print("Error writing search index to \(path): \(error)")
-            }
-        }
+        archiveIndex()
     }
 
     private func updateIndex(with entry: JournalEntry) {
@@ -68,6 +59,19 @@ final class SearchArchive {
                 datesForWord.insert(entry.date)
                 datesForWord.insert(Calendar.current.startOfDay(for: entry.date))
                 index[$0] = datesForWord
+            }
+        }
+    }
+    
+    private func archiveIndex() {
+        q.async { [index, path] in
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(index)
+                try data.write(to: path)
+            }
+            catch {
+                print("Error writing search index to \(path): \(error)")
             }
         }
     }
