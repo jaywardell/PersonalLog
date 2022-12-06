@@ -168,12 +168,21 @@ class JournalViewController: UITableViewController {
     func showEntries(for date: Date) {
         
         let days = data.days
-        let index = days.firstIndex { d in
+        var
+        section = days.firstIndex { d in
             Calendar.current.startOfDay(for: date) == Calendar.current.startOfDay(for: d)
         }
-        let indexPath = IndexPath(row: 0, section: index ?? 0)
+        if nil == section {
+            if let lastDay = days.last,
+                    date > lastDay {
+                section = days.count-1
+            }
+            else {
+                section = 0
+            }
+        }
         
-        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+        tableView.scrollToRow(at: IndexPath(row: 0, section: section!), at: .top, animated: true)
     }
     
     // Override to support conditional editing of the table view.
