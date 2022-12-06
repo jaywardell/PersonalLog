@@ -28,6 +28,7 @@
 		7CBFAADD293F530B0036D457 /* SearchArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBFAADC293F530B0036D457 /* SearchArchive.swift */; };
 		7CBFAAE3293F9DC30036D457 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBFAAE2293F9DC30036D457 /* Toolbar.swift */; };
 		7CE7FF2D293FAE5900B177E2 /* DayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */; };
+		7CE7FF2F293FB76000B177E2 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF2E293FB76000B177E2 /* SearchBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +74,7 @@
 		7CBFAADC293F530B0036D457 /* SearchArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArchive.swift; sourceTree = "<group>"; };
 		7CBFAAE2293F9DC30036D457 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPicker.swift; sourceTree = "<group>"; };
+		7CE7FF2E293FB76000B177E2 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +131,7 @@
 				7C1B545B293CB4A4004B5EF0 /* TopViewController.swift */,
 				7CBFAAE2293F9DC30036D457 /* Toolbar.swift */,
 				7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */,
+				7CE7FF2E293FB76000B177E2 /* SearchBar.swift */,
 				7C4AC694293D707600E8EDFE /* Model */,
 				7C4AC696293E4FF500E8EDFE /* Listing Entries */,
 				7C4AC695293E4FDF00E8EDFE /* Editing Entries */,
@@ -323,6 +326,7 @@
 				7C4AC68B293D04CF00E8EDFE /* PhrasesPicker.swift in Sources */,
 				7C1B5462293CCB92004B5EF0 /* EmojiPicker.swift in Sources */,
 				7C1B545C293CB4A4004B5EF0 /* TopViewController.swift in Sources */,
+				7CE7FF2F293FB76000B177E2 /* SearchBar.swift in Sources */,
 				7C4AC691293D705700E8EDFE /* JournalArchive.swift in Sources */,
 				7C4AC693293D706100E8EDFE /* JournalEntry.swift in Sources */,
 				7CBFAAE3293F9DC30036D457 /* Toolbar.swift in Sources */,
