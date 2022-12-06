@@ -16,20 +16,21 @@ struct Toolbar: View {
     var body: some View {
         HStack{
             
-            Button(action: searchButtonTapped) {
-                Image(systemName: "magnifyingglass")
-                    .font(.title)
-            }
-            .padding(.leading)
-
             Button(action: calendarButtonTapped) {
                 Image(systemName: "calendar")
                     .font(.title)
             }
             .padding(.leading)
 
+
+            Button(action: searchButtonTapped) {
+                Image(systemName: "magnifyingglass")
+                    .font(.title)
+            }
+            .padding(.leading)
+
             Spacer()
-            
+
             Button(action: addButtonTapped) {
                 Image(systemName: "plus")
                     .font(.largeTitle)
@@ -37,6 +38,7 @@ struct Toolbar: View {
                     .padding()
             }
             .buttonStyle(AddButtonStyle())
+
         }
         .padding(.horizontal)
     }
