@@ -201,6 +201,7 @@ extension JournalViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         data.searchString = searchController.searchBar.text ?? ""
+        tableView.reloadData()
     }
     
     

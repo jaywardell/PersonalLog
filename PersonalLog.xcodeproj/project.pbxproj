@@ -25,6 +25,7 @@
 		7C4AC68F293D4A5A00E8EDFE /* Journal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC68E293D4A5A00E8EDFE /* Journal.swift */; };
 		7C4AC691293D705700E8EDFE /* JournalArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC690293D705700E8EDFE /* JournalArchive.swift */; };
 		7C4AC693293D706100E8EDFE /* JournalEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C4AC692293D706100E8EDFE /* JournalEntry.swift */; };
+		7CBFAADD293F530B0036D457 /* SearchArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBFAADC293F530B0036D457 /* SearchArchive.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +68,7 @@
 		7C4AC68E293D4A5A00E8EDFE /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
 		7C4AC690293D705700E8EDFE /* JournalArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalArchive.swift; sourceTree = "<group>"; };
 		7C4AC692293D706100E8EDFE /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
+		7CBFAADC293F530B0036D457 /* SearchArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArchive.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				7C4AC68E293D4A5A00E8EDFE /* Journal.swift */,
 				7C4AC692293D706100E8EDFE /* JournalEntry.swift */,
 				7C4AC690293D705700E8EDFE /* JournalArchive.swift */,
+				7CBFAADC293F530B0036D457 /* SearchArchive.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -317,6 +320,7 @@
 				7C4AC691293D705700E8EDFE /* JournalArchive.swift in Sources */,
 				7C4AC693293D706100E8EDFE /* JournalEntry.swift in Sources */,
 				7C1B542C293CB30D004B5EF0 /* AppDelegate.swift in Sources */,
+				7CBFAADD293F530B0036D457 /* SearchArchive.swift in Sources */,
 				7C4AC68D293D213B00E8EDFE /* JournalEntryCell.swift in Sources */,
 				7C4AC68F293D4A5A00E8EDFE /* Journal.swift in Sources */,
 				7C4AC689293CFACB00E8EDFE /* TagsListView.swift in Sources */,

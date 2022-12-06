@@ -9,11 +9,16 @@ import Foundation
 
 final class Journal: ObservableObject {
     
-    var searchString: String = ""
+    var searchString: String = "" {
+        didSet {
+            updateEntries()
+        }
+    }
     
     @Published var days: [Date] = []
 
     let archiver = JournalArchive()
+    let index = SearchArchive()
     
     init() {
         updateEntries()
@@ -27,8 +32,19 @@ final class Journal: ObservableObject {
 extension Journal: JournalData {
     
     func entryIDs(for date: Date) -> [any Equatable] {
-        archiver.journalEntries(on: date)
+        var ids = archiver.journalEntries(on: date)
+        if !searchString.isEmpty {
+            let matches = index.dates(for: searchString)
+            ids = ids.filter {
+                guard let entry = archiver.journalEntry(for: $0) else { return false }
+                return matches.contains(entry.date)
+            }
+        }
+        
+        return ids
     }
+    
+    
     
     func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel {
         let entry = archiver.journalEntry(for: id)!
@@ -49,6 +65,8 @@ extension Journal: JournalRoutes {
         archiver.create(entry: entry)
         
         updateEntries()
+        
+        index.index(entry)
     }
     
     func updateEntry(id: any Equatable, from viewModel: JournalEntryEditor.ViewModel) {
@@ -57,6 +75,8 @@ extension Journal: JournalRoutes {
         try? archiver.save(entry: entry)
         
         updateEntries()
+        
+        index.index(entry)
     }
 
     func deleteEntry(id: any Equatable) {
