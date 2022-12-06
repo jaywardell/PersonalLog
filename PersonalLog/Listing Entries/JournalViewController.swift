@@ -78,6 +78,13 @@ class JournalViewController: UITableViewController {
         navigationItem.rightBarButtonItem = addButton
         navigationItem.leftBarButtonItems = [searchButton, calendarButton]
         
+        let search = UISearchController(searchResultsController: nil)
+        search.searchResultsUpdater = self
+        search.obscuresBackgroundDuringPresentation = false
+        search.searchBar.placeholder = "Search"
+        search.isActive = true
+        navigationItem.searchController = search
+
         tableView.separatorStyle = .none
     }
 
@@ -186,4 +193,13 @@ class JournalViewController: UITableViewController {
         let day = data.days[section]
         return DateFormatter.localizedString(from: day, dateStyle: .full, timeStyle: .none)
     }
+}
+
+extension JournalViewController: UISearchResultsUpdating {
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        print(searchController.searchBar.text)
+    }
+    
+    
 }
