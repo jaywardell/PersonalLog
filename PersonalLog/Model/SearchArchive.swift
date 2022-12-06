@@ -29,18 +29,10 @@ final class SearchArchive {
                
         self.index = [:]
 
-        let saved = try? Data(contentsOf: self.path)
-        if let saved = saved {
-            do {
-                let decoder = JSONDecoder()
-                let retrieved = try decoder.decode([String: Set<Date>].self, from: saved)
-                self.index = retrieved
-            }
-            catch {
-                print("Error loading search index from \(self.path): \(error)")
-            }
-        }
+        
+        loadArchive()
     }
+    
     
     /// indexes the entry passed in so that it can be found in a search using dates(for:)
     func index(_ entry: JournalEntry) {
@@ -50,31 +42,6 @@ final class SearchArchive {
         archiveIndex()
     }
 
-    private func updateIndex(with entry: JournalEntry) {
-        let words = words(in: entry)
-    
-        for word in words {
-            word.forAllPrefixes {
-                var datesForWord = index[$0, default: []]
-                datesForWord.insert(entry.date)
-                datesForWord.insert(Calendar.current.startOfDay(for: entry.date))
-                index[$0] = datesForWord
-            }
-        }
-    }
-    
-    private func archiveIndex() {
-        q.async { [index, path] in
-            do {
-                let encoder = JSONEncoder()
-                let data = try encoder.encode(index)
-                try data.write(to: path)
-            }
-            catch {
-                print("Error writing search index to \(path): \(error)")
-            }
-        }
-    }
     
     /// returns a list of dates that match the given search string
     /// a date matches if it represents a journal entry that contains that string
@@ -107,6 +74,19 @@ final class SearchArchive {
         return out
     }
     
+    private func updateIndex(with entry: JournalEntry) {
+        let words = words(in: entry)
+    
+        for word in words {
+            word.forAllPrefixes {
+                var datesForWord = index[$0, default: []]
+                datesForWord.insert(entry.date)
+                datesForWord.insert(Calendar.current.startOfDay(for: entry.date))
+                index[$0] = datesForWord
+            }
+        }
+    }
+
     private func words(in entry: JournalEntry) -> [String] {
         
         [
@@ -121,6 +101,34 @@ final class SearchArchive {
             .filter { !$0.isEmpty }
             .map(\.localizedLowercase)
     }
+    
+    private func loadArchive() {
+        let saved = try? Data(contentsOf: self.path)
+        if let saved = saved {
+            do {
+                let decoder = JSONDecoder()
+                let retrieved = try decoder.decode([String: Set<Date>].self, from: saved)
+                self.index = retrieved
+            }
+            catch {
+                print("Error loading search index from \(self.path): \(error)")
+            }
+        }
+    }
+
+    private func archiveIndex() {
+        q.async { [index, path] in
+            do {
+                let encoder = JSONEncoder()
+                let data = try encoder.encode(index)
+                try data.write(to: path)
+            }
+            catch {
+                print("Error writing search index to \(path): \(error)")
+            }
+        }
+    }
+
 }
 
 
