@@ -22,6 +22,8 @@ final class Journal: ObservableObject {
     
     init() {
         updateEntries()
+        
+        verifyIndex()
     }
     
     private func updateEntries() {
@@ -33,6 +35,12 @@ final class Journal: ObservableObject {
             }
         }
         days = matches
+    }
+    
+    private func verifyIndex() {
+        if !archiver.allDays().isEmpty && index.isEmpty {
+            index.rebuildIndex(from: archiver.directory)
+        }
     }
 }
 

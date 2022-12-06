@@ -33,6 +33,9 @@ final class SearchArchive {
         loadArchive()
     }
     
+    var isEmpty: Bool {
+        index.isEmpty
+    }
     
     /// indexes the entry passed in so that it can be found in a search using dates(for:)
     func index(_ entry: JournalEntry) {
@@ -87,6 +90,22 @@ final class SearchArchive {
         }
     }
 
+    func rebuildIndex(from directory: URL) {
+        q.async { [weak self] in
+            guard let contents = try? FileManager.default.contentsOfDirectory(at: directory, includingPropertiesForKeys: nil) else { return }
+            let decoder = JSONDecoder()
+            
+            for path in contents {
+                if let data = try? Data(contentsOf: path),
+                   let entry = try? decoder.decode(JournalEntry.self, from: data) {
+                    self?.updateIndex(with: entry)
+                }
+            }
+            
+            self?.archiveIndex()
+        }
+    }
+    
     private func words(in entry: JournalEntry) -> [String] {
         
         [
