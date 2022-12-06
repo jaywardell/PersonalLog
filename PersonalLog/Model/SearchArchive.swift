@@ -28,7 +28,7 @@ final class SearchArchive {
         self.path = path ?? Self.defaultPath
                
         self.index = [:]
-        
+                
         loadArchive()
     }
     
@@ -77,7 +77,7 @@ final class SearchArchive {
     }
     
     private func updateIndex(with entry: JournalEntry) {
-        let words = words(in: entry)
+        let words = entry.allWords()
     
         for word in words {
             word.forAllPrefixes {
@@ -104,22 +104,7 @@ final class SearchArchive {
             self?.archiveIndex()
         }
     }
-    
-    private func words(in entry: JournalEntry) -> [String] {
         
-        [
-            entry.mood,
-            entry.title,
-            entry.prompt,
-            entry.text,
-            entry.tags.joined(separator: " ")
-        ]
-            .flatMap { $0.components(separatedBy: .whitespacesAndNewlines) }
-            .map { $0.trimmingCharacters(in: .punctuationCharacters)}
-            .filter { !$0.isEmpty }
-            .map(\.localizedLowercase)
-    }
-    
     private func loadArchive() {
         let saved = try? Data(contentsOf: self.path)
         if let saved = saved {

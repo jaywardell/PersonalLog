@@ -15,6 +15,22 @@ struct JournalEntry {
     let prompt: String
     let text: String
     let tags: [String]
+    
+    func allWords() -> [String] {
+        
+        [
+            mood,
+            title,
+            prompt,
+            text,
+            tags.joined(separator: " ")
+        ]
+            .flatMap { $0.components(separatedBy: .whitespacesAndNewlines) }
+            .map { $0.trimmingCharacters(in: .punctuationCharacters)}
+            .filter { !$0.isEmpty }
+            .map(\.localizedLowercase)
+    }
+
 }
 
 extension JournalEntry: Codable {}
