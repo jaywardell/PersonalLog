@@ -27,48 +27,59 @@ struct JournalEntryCell: View {
 
     let viewModel: ViewModel
     
-    private var moodEmoji: some View {
-        Text(viewModel.mood.isEmpty ? "😀" : viewModel.mood)
-            .font(.title)
+    @ViewBuilder private var moodEmoji: some View {
+        if !viewModel.mood.isEmpty {
+            Text(viewModel.mood.isEmpty ? "😀" : viewModel.mood)
+                .opacity(viewModel.mood.isEmpty ? 0 : 1)
+                .font(.largeTitle)
+        }
     }
     
     var body: some View {
-        VStack(alignment: .leading) {
+        
+        VStack {
+            
             HStack {
-                moodEmoji
-                    .opacity(viewModel.title.isEmpty && viewModel.text.isEmpty && !viewModel.mood.isEmpty ? 1 : 0)
                 Spacer()
                 Text(viewModel.date, style: .time)
-            }
-            .font(.caption)
-            .foregroundColor(Color(uiColor: .secondaryLabel))
-            
-            if !viewModel.title.isEmpty {
-                HStack {
-                    moodEmoji
-                        .opacity(viewModel.mood.isEmpty ? 0 : 1)
-                    Text(viewModel.title)
-                        .font(.headline)
-                }
-            }
-            
-            if !viewModel.text.isEmpty {
-                HStack(alignment: .top) {
-                    moodEmoji
-                        .opacity((viewModel.title.isEmpty && !viewModel.mood.isEmpty) ? 1 : 0)
-                    Text(viewModel.text)
-                }
+                    .font(.caption)
+                    .foregroundColor(Color(uiColor: .secondaryLabel))
             }
 
-            if !viewModel.tags.isEmpty {
-                HStack {
-                    moodEmoji
-                        .opacity(0)
-                    Text(viewModel.tags.joined(separator: ", "))
+            HStack(alignment: .top) {
+                
+                moodEmoji
+                    .grayscale(0.85)
+                    .padding(.trailing)
+                
+                VStack(alignment: .leading, spacing: 5) {
+                    if !viewModel.title.isEmpty {
+                        Text(viewModel.title)
+                            .font(.headline)
+                            .multilineTextAlignment(.leading)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+                    
+                    Text(viewModel.text)
+                        .font(.system(.body, design: .default))
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                    
+                    if !viewModel.tags.isEmpty {
+                        HStack {
+                            Image(systemName: "tag")
+                            Text(viewModel.tags.joined(separator: ", "))
+                        }
                         .font(.caption2)
+                        .multilineTextAlignment(.leading)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(.top)
+                    }
                 }
+                
             }
         }
+//        .background(Color.yellow)
     }
 }
 
