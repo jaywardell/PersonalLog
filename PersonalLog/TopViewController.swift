@@ -66,14 +66,10 @@ class TopViewController: UIViewController {
 
         historyVC.didMove(toParent: self)
         
-        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification).sink {[weak self] _ in
-            self?.keyboardWillBecomeVisible(true)
-        }
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification).sink(receiveValue: keyboardWillAppear)
         .store(in: &subscriptions)
 
-        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification).sink { [weak self] _ in
-            self?.keyboardWillBecomeVisible(false)
-        }
+        NotificationCenter.default.publisher(for: UIResponder.keyboardWillHideNotification).sink(receiveValue: keyboardWillDisappear)
         .store(in: &subscriptions)
     }
     
@@ -97,7 +93,11 @@ class TopViewController: UIViewController {
         journalVC.showEntries(for: day)
     }
     
-    private func keyboardWillBecomeVisible(_ keyboardIsVisible: Bool) {
+    private func keyboardWillAppear(_ unused: Any) {
         toolbarHidden.isActive = true
+    }
+    
+    private func keyboardWillDisappear(_ unused: Any) {
+        toolbarHidden.isActive = false
     }
 }
