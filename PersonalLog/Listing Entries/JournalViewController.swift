@@ -84,7 +84,6 @@ class JournalViewController: UITableViewController {
         
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
-//        navigationItem.hidesSearchBarWhenScrolling = false
 
         navigationController?.navigationBar.prefersLargeTitles = true
         
