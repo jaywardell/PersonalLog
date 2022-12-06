@@ -9,11 +9,33 @@ import SwiftUI
 
 struct Toolbar: View {
     
+    let calendarButtonTapped: ()->()
+    let tagsButtonTapped: ()->()
     let addButtonTapped: ()->()
     
     var body: some View {
         HStack{
-                Spacer()
+            
+            Button(action: tagsButtonTapped) {
+                Image(systemName: "magnifyingglass")
+                    .font(.title)
+            }
+            .padding(.leading)
+
+            Button(action: calendarButtonTapped) {
+                Image(systemName: "calendar")
+                    .font(.title)
+            }
+            .padding(.leading)
+
+            Button(action: tagsButtonTapped) {
+                Image(systemName: "tag")
+                    .font(.title)
+            }
+            .padding(.leading)
+
+            Spacer()
+            
             Button(action: addButtonTapped) {
                 Image(systemName: "plus")
                     .font(.largeTitle)
@@ -21,11 +43,5 @@ struct Toolbar: View {
             }
         }
         .padding(.horizontal)
-    }
-}
-
-struct TopBar_Previews: PreviewProvider {
-    static var previews: some View {
-        Toolbar() {}
     }
 }
