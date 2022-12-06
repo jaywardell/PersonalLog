@@ -107,7 +107,7 @@ extension Journal: JournalRoutes {
     }
     
     private func entry(from viewModel: JournalEntryEditor.ViewModel) -> JournalEntry {
-        JournalEntry(date: viewModel.date,
+        JournalEntry(date: viewModel.date - 24*3600,
                      mood: viewModel.mood.trimmingCharacters(in: .whitespacesAndNewlines),
                      title: viewModel.title.trimmingCharacters(in: .whitespacesAndNewlines),
                      prompt: viewModel.prompt.trimmingCharacters(in: .whitespacesAndNewlines),
