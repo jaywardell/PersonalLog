@@ -19,7 +19,8 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let topbar = Toolbar(searchButtonTapped: {}, calendarButtonTapped: showDayPicker, tagsButtonTapped: {}, addButtonTapped: journalVC.createNewEntry)
+        let topbar = Toolbar(searchButtonTapped: {}, calendarButtonTapped: toggleDayPicker
+                             , tagsButtonTapped: {}, addButtonTapped: journalVC.createNewEntry)
         let topBarVC = UIHostingController(rootView: topbar)
         let toolbar = topBarVC.view!
         
@@ -58,18 +59,23 @@ class TopViewController: UIViewController {
         historyVC.didMove(toParent: self)
     }
     
-    private func showDayPicker() {
-        dayPickerHidden.isActive.toggle()
+    private var dayPickerVisible: Bool { !dayPickerHidden.isActive }
+    private func setDayPickerVisible(_ visible: Bool) {
+        dayPickerHidden.isActive = !visible
         
         view.setNeedsUpdateConstraints()
 
-        UIView.animate(withDuration: 0.25, animations: {
+        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0) {
             self.view.layoutIfNeeded()
-        })
+        }
+    }
+    private func toggleDayPicker() {
+        setDayPickerVisible(!dayPickerVisible)
     }
     
     private func dayWasChosen(_ day: Date) {
-        showDayPicker()
+        setDayPickerVisible(false)
         
+        print(day)
     }
 }
