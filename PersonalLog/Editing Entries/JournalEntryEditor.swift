@@ -84,69 +84,80 @@ struct JournalEntryEditor: View {
     var body: some View {
         NavigationView {
             VStack {
-                if let date = viewModel.date {
-                    HStack {
-                        Spacer()
-                        Text(date, style: .date)
-                        Text(date, style: .time)
-                    }
-                    .font(.caption)
-                    .foregroundColor(Color(uiColor: .secondaryLabel))
-                    .padding(.horizontal)
-                }
-                
-                HStack {
-                    Button(moodButtonTitle) {
-                        showEmojiPicker = true
-                    }
-                    .opacity(viewModel.mood.isEmpty ? 0.25 : 1)
-                    .font(.largeTitle)
-                    
-                    TextField("Title (optional)", text: $viewModel.title)
-                        .font(.headline)
-                        .focused($focusedField, equals: .title)
-                    Spacer()
-                }
-                .padding(.horizontal)
-
-                HStack {
-                    Button(action : {
-                        showTagsList = true
-                    }) {
-                        Text(tagsButtonTitle)
+                HStack(alignment: .top) {
+                    VStack {
+                        Text(" ")
                             .font(.caption)
-                            .multilineTextAlignment(.leading)
-                    }
-                    .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .label))
-                    Spacer()
-                }
-                .padding(.horizontal)
-                .padding(.horizontal)
-
-                // only make the prompts picker available if the suer hasn't already started to write OR if she's chosen a prompt already
-                if !viewModel.prompt.isEmpty || viewModel.text.isEmpty {
-                    
-                    HStack {
-                        Button(action : {
-                            showPromptsList = true
-                        }) {
-                            Text(promptsButtonTitle)
-                                .font(.subheadline)
-                                .foregroundColor(viewModel.prompt.isEmpty ? Color(uiColor: .placeholderText) : Color(uiColor: .secondaryLabel))
-                                .multilineTextAlignment(.leading)
+                        Button(moodButtonTitle) {
+                            showEmojiPicker = true
                         }
-                        .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .label))
-                        Spacer()
+                        .opacity(viewModel.mood.isEmpty ? 0.25 : 1)
+                        .font(.largeTitle)
                     }
-                    .padding(.horizontal)
-                    .padding(.horizontal)
-                    .padding(.top)
+                    .padding(.trailing)
+
+                    VStack {
+                        if let date = viewModel.date {
+                            HStack {
+                                Spacer()
+                                Text(date, style: .date)
+                                Text(date, style: .time)
+    //                            Spacer()
+                            }
+                            .font(.caption)
+                            .foregroundColor(Color(uiColor: .secondaryLabel))
+    //                        .padding(.horizontal)
+                        }
+                        
+                        HStack {
+                            
+                            TextField("Title (optional)", text: $viewModel.title)
+                                .font(.headline)
+                                .focused($focusedField, equals: .title)
+                            Spacer()
+                        }
+    //                    .padding(.horizontal)
+
+                        HStack {
+                            Button(action : {
+                                showTagsList = true
+                            }) {
+                                Text(tagsButtonTitle)
+                                    .font(.caption)
+                                    .multilineTextAlignment(.leading)
+                            }
+                            .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .label))
+                            Spacer()
+                        }
+    //                    .padding(.horizontal)
+    //                    .padding(.horizontal)
+
+                        // only make the prompts picker available if the suer hasn't already started to write OR if she's chosen a prompt already
+                        if !viewModel.prompt.isEmpty || viewModel.text.isEmpty {
+                            
+                            HStack {
+                                Button(action : {
+                                    showPromptsList = true
+                                }) {
+                                    Text(promptsButtonTitle)
+                                        .font(.subheadline)
+                                        .foregroundColor(viewModel.prompt.isEmpty ? Color(uiColor: .placeholderText) : Color(uiColor: .secondaryLabel))
+                                        .multilineTextAlignment(.leading)
+                                }
+                                .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .label))
+                                Spacer()
+                            }
+    //                        .padding(.horizontal)
+    //                        .padding(.horizontal)
+                            .padding(.top)
+                        }
+                        
+                                        
+                    }
                 }
-                
-                                
                 TextEditor(text: $viewModel.text)
-                    .font(.system(.body, design: .serif))
-                    .padding(.horizontal)
+                    .font(.system(.body, design: .default))
+//                        .padding(.horizontal)
                     .focused($focusedField, equals: .text)
             }
             .padding()
