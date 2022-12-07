@@ -52,6 +52,8 @@ class JournalViewController: UITableViewController {
     let routes: any JournalRoutes
     let data: any JournalData
     
+    let userTappedContent: ()->()
+    
     private let searchController: UISearchController = {
         let out = UISearchController(searchResultsController: nil)
         out.obscuresBackgroundDuringPresentation = false
@@ -62,10 +64,12 @@ class JournalViewController: UITableViewController {
         return out
     }()
     
-    init(data: any JournalData, routes: any JournalRoutes) {
+    init(data: any JournalData, routes: any JournalRoutes, userTappedContent: @escaping ()->()) {
 
         self.routes = routes
         self.data = data
+        
+        self.userTappedContent = userTappedContent
         
         super.init(style: .plain)
     }
@@ -124,6 +128,7 @@ class JournalViewController: UITableViewController {
         
         cell.contentConfiguration = UIHostingConfiguration() {
             JournalEntryCell(viewModel: viewModel)
+                .onTapGesture(perform: userTappedContent)
                 .onLongPressGesture { [weak self] in
                     self?.showEditor(forEntryWithID: id)
                 }

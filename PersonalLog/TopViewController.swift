@@ -11,8 +11,9 @@ import Combine
 
 class TopViewController: UIViewController {
 
+    
     private let logic = Journal()
-    private lazy var journalVC: JournalViewController = { JournalViewController(data: logic, routes: logic) }()
+    private lazy var journalVC: JournalViewController = { JournalViewController(data: logic, routes: logic, userTappedContent: toggleToolbar) }()
     private lazy var historyVC = UINavigationController(rootViewController: journalVC)
     
     private var dayPickerHidden: NSLayoutConstraint!
@@ -21,6 +22,7 @@ class TopViewController: UIViewController {
     private var subscriptions = Set<AnyCancellable>()
     
     private var toolbar: UIView!
+    private var dayPickerView: UIView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,7 +48,7 @@ class TopViewController: UIViewController {
 
         let dayPicker = DayPicker(dayWasChosen: dayWasChosen)
         let dayPickerVC = UIHostingController(rootView: dayPicker)
-        let dayPickerView = dayPickerVC.view!
+        self.dayPickerView = dayPickerVC.view!
         dayPickerVC.view.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(dayPickerView)
         
@@ -97,9 +99,23 @@ class TopViewController: UIViewController {
     
     private func keyboardWillAppear(_ unused: Any) {
         toolbarHidden.isActive = true
+        toolbar.layer.opacity = 0
     }
     
     private func keyboardWillDisappear(_ unused: Any) {
         toolbarHidden.isActive = false
+        toolbar.layer.opacity = 1
     }
+    
+    private func toggleToolbar() {
+
+        self.toolbarHidden.isActive.toggle()
+
+        UIView.animate(withDuration: 0.4, delay: 0) {
+            self.view.layoutSubviews()
+            self.toolbar.layer.opacity = self.toolbarHidden.isActive ? 0 : 1
+            self.dayPickerView.layer.opacity = self.toolbar.layer.opacity
+        }
+    }
+
 }
