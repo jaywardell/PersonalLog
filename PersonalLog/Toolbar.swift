@@ -57,11 +57,11 @@ fileprivate struct AddButtonStyle: ButtonStyle {
             .foregroundColor(!configuration.isPressed ? Color(uiColor: .systemBackground) : .accentColor)
             .background(
                 Circle()
-                    .foregroundColor(configuration.isPressed ?
-                                     Color(uiColor: .systemBackground) :
-                                        Color.accentColor
+                    .foregroundStyle(configuration.isPressed ?
+                                     Color(uiColor: .systemBackground).gradient :
+                                        Color.accentColor.gradient
                                     )
-                    .shadow(radius: 2)
+                    .shadow(radius: 1)
             )
     }
 }
