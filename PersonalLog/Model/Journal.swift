@@ -65,8 +65,6 @@ extension Journal: JournalData {
         return ids
     }
     
-    
-    
     func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel {
         let entry = archiver.journalEntry(for: id)!
         return JournalEntryCell.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, text: entry.text, tags: entry.tags)
@@ -75,6 +73,19 @@ extension Journal: JournalData {
     func entryViewModelForEditing(id: any Equatable) -> JournalViewController.ViewModel {
         let entry = archiver.journalEntry(for: id)!
         return JournalViewController.ViewModel(date: entry.date, mood: entry.mood, title: entry.title, prompt: entry.prompt, text: entry.text, tags: entry.tags)
+    }
+    
+    func indexPathForEntry(dated date: Date) -> IndexPath? {
+        let start = Calendar.current.startOfDay(for: date)
+        guard let section = days.firstIndex(of: start) else { return nil }
+        
+        let entriesForDay = entryIDs(for: start)
+        let index = entriesForDay.firstIndex { id in
+            archiver.journalEntry(for: id)?.date == date
+        }
+        guard let row = index else { return nil }
+        
+        return IndexPath(row: row, section: section)
     }
 }
  

@@ -18,6 +18,8 @@ protocol JournalData: ObservableObject {
     func entryViewModelForCell(id: any Equatable) -> JournalEntryCell.ViewModel
     
     func entryViewModelForEditing(id: any Equatable) -> JournalViewController.ViewModel
+    
+    func indexPathForEntry(dated: Date) -> IndexPath?
 }
 
 protocol JournalRoutes {
@@ -115,6 +117,18 @@ class JournalViewController: UITableViewController {
     private func createNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
         routes.creatNewEntry(from: viewModel)
         tableView.reloadData()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+            self.userTappedContent()
+        }
+        
+        scrollToEntry(for: viewModel.date)
+    }
+    
+    private func scrollToEntry(for date: Date) {
+        guard let indexPath = data.indexPathForEntry(dated: date) else { return }
+        
+        tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
     
     // MARK: - Responding to User Actions
