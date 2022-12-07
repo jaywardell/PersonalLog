@@ -16,7 +16,6 @@ struct DayPicker: View {
     var body: some View {
         MultiDatePicker("Pick a Day", selection: $selectedDates)
             .padding(.horizontal)
-            .background(Color(uiColor: .secondarySystemBackground))
             .onChange(of: selectedDates) { newValue in
                 if let firstComponents = selectedDates.first,
                 let day = Calendar.current.date(from: firstComponents) {
@@ -25,6 +24,8 @@ struct DayPicker: View {
                 selectedDates = []
             }
             .padding(.bottom)
+            .padding(.bottom)
+            .background(Color(uiColor: .secondarySystemBackground))
     }
 }
 
