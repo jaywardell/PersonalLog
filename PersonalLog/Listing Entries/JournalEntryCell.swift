@@ -49,8 +49,6 @@ struct JournalEntryCell: View {
             HStack(alignment: .top) {
                 
                 moodEmoji
-                    .grayscale(0.85)
-                    .opacity(0.85)
                     .padding(.trailing)
                 
                 VStack(alignment: .leading, spacing: 5) {

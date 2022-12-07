@@ -14,33 +14,39 @@ struct Toolbar: View {
     let addButtonTapped: ()->()
     
     var body: some View {
-        HStack{
+        VStack {
+            Divider()
             
-            Button(action: calendarButtonTapped) {
-                Image(systemName: "calendar")
-                    .font(.title)
+            HStack{
+                
+                Button(action: calendarButtonTapped) {
+                    Image(systemName: "calendar")
+                        .font(.title)
+                }
+                .padding(.leading)
+
+
+                Button(action: searchButtonTapped) {
+                    Image(systemName: "magnifyingglass")
+                        .font(.title)
+                }
+                .padding(.leading)
+
+                Spacer()
+
+                Button(action: addButtonTapped) {
+                    Image(systemName: "plus")
+                        .font(.largeTitle)
+                        .bold()
+                        .padding()
+                }
+                .scaleEffect(x: 2.3, y: 2.3)
+                .buttonStyle(AddButtonStyle())
+                .padding(.trailing)
+
             }
-            .padding(.leading)
-
-
-            Button(action: searchButtonTapped) {
-                Image(systemName: "magnifyingglass")
-                    .font(.title)
-            }
-            .padding(.leading)
-
-            Spacer()
-
-            Button(action: addButtonTapped) {
-                Image(systemName: "plus")
-                    .font(.largeTitle)
-                    .bold()
-                    .padding()
-            }
-            .buttonStyle(AddButtonStyle())
-
+            .padding(.horizontal)
         }
-        .padding(.horizontal)
     }
 }
 
