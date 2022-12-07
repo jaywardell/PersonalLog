@@ -82,7 +82,7 @@ struct JournalEntryEditor: View {
     }
     
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 HStack(alignment: .top) {
                     VStack {
