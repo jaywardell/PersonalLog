@@ -12,15 +12,21 @@ import Combine
 class TopViewController: UIViewController {
 
     private let journal: Journal
+    
     private lazy var journalVC: JournalViewController = { JournalViewController(data: journal, routes: journal, userTappedContent: toggleToolbar) }()
     private lazy var historyVC = UINavigationController(rootViewController: journalVC)
-    
+    private lazy var toolbarVC: UIViewController = {
+        let toolbar = Toolbar(calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped)
+        let out = UIHostingController(rootView: toolbar)
+        return out
+    }()
+
     private var dayPickerHidden: NSLayoutConstraint!
     private var toolbarHidden: NSLayoutConstraint!
 
     private var subscriptions = Set<AnyCancellable>()
     
-    private var toolbar: UIView!
+//    private var toolbar: UIView!
     private var dayPickerView: UIView!
     
     init(journal: Journal) {
@@ -33,15 +39,13 @@ class TopViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    private var toolbar: UIView { toolbarVC.view! }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        
-        let topbar = Toolbar(calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped)
-        let toolbarVC = UIHostingController(rootView: topbar)
-        let toolbar = toolbarVC.view!
-        self.toolbar = toolbar
         
         // if the contents of the toolbar grow outside its frame
         // they should overlay other content (e.g. the table view)
