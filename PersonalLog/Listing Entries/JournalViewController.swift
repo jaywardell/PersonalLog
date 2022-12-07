@@ -170,8 +170,6 @@ class JournalViewController: UITableViewController {
        }
 
         let editor = JournalEntryEditor(viewModel: vm)
-            .accentColor(Color(uiColor: view.tintColor))
-        
         let journalEntryVC = UIHostingController(rootView: editor)
         present(journalEntryVC, animated: true)
     }
@@ -181,8 +179,6 @@ class JournalViewController: UITableViewController {
         let viewModel = JournalEntryEditor.ViewModel(createNewEntry(from:))
         
         let editor = JournalEntryEditor(viewModel: viewModel)
-            .accentColor(Color(uiColor: view.tintColor))
-
         let journalEntryVC = UIHostingController(rootView: editor)
         present(journalEntryVC, animated: true)
     }

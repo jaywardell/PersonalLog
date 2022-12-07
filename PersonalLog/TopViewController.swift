@@ -27,7 +27,6 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.tintColor = UIColor(named: "Tint")
         view.backgroundColor = .systemBackground
         
         let topbar = Toolbar(calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped)
