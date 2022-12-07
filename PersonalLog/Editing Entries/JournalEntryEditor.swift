@@ -210,6 +210,7 @@ extension JournalEntryEditor {
         Button(action: { viewModel.save(viewModel); dismiss() }) {
             Text("Save")
         }
+        .buttonStyle(.borderedProminent)
         .disabled(!viewModel.hasGoodData)
     }
 }
