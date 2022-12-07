@@ -9,7 +9,7 @@ import Foundation
 
 final class Journal: ObservableObject {
     
-    var searchString: String = "" {
+    var filterString: String = "" {
         didSet {
             updateEntries()
         }
@@ -28,8 +28,8 @@ final class Journal: ObservableObject {
     
     private func updateEntries() {
         var matches = archiver.allDays()
-        if !searchString.isEmpty {
-            let validDays = index.dates(for: searchString)
+        if !filterString.isEmpty {
+            let validDays = index.dates(for: filterString)
             matches = matches.filter {
                 validDays.contains($0)
             }
@@ -48,8 +48,8 @@ extension Journal: JournalData {
     
     func entryIDs(for date: Date) -> [any Equatable] {
         var ids = archiver.journalEntries(on: date)
-        if !searchString.isEmpty {
-            let matches = index.dates(for: searchString)
+        if !filterString.isEmpty {
+            let matches = index.dates(for: filterString)
             ids = ids.filter {
                 guard let entry = archiver.journalEntry(for: $0) else { return false }
                 
@@ -58,7 +58,7 @@ extension Journal: JournalData {
                 
                 // and that the entry still contains the search string
                 // i.e. it wasn't edited to remove the search string
-                return index.entry(entry, matches: searchString)
+                return index.entry(entry, matches: filterString)
             }
         }
         

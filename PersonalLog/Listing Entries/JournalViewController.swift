@@ -10,7 +10,7 @@ import SwiftUI
 
 protocol JournalData: ObservableObject {
     
-    var searchString: String { get set }
+    var filterString: String { get set }
     
     var days: [Date] { get }
     func entryIDs(for date: Date) -> [any Equatable]
@@ -195,7 +195,7 @@ class JournalViewController: UITableViewController {
     }
 
     func hideSearchChromeIfNoSearchString() {
-        guard data.searchString.isEmpty else { return }
+        guard data.filterString.isEmpty else { return }
         
         navigationItem.searchController = nil
     }
@@ -271,7 +271,7 @@ class JournalViewController: UITableViewController {
 extension JournalViewController: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
-        data.searchString = searchController.searchBar.text ?? ""
+        data.filterString = searchController.searchBar.text ?? ""
         tableView.reloadData()
     }
 }
