@@ -30,7 +30,7 @@ class TopViewController: UIViewController {
         view.tintColor = .systemOrange
         view.backgroundColor = .systemBackground
         
-        let topbar = Toolbar(searchButtonTapped: journalVC.searchButtonPressed, calendarButtonTapped: toggleDayPicker, addButtonTapped: journalVC.createNewEntry)
+        let topbar = Toolbar(searchButtonTapped: searchButtonTapped, calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped)
         let topBarVC = UIHostingController(rootView: topbar)
         let toolbar = topBarVC.view!
         self.toolbar = toolbar
@@ -132,4 +132,13 @@ class TopViewController: UIViewController {
         }
     }
 
+    private func addButtonTapped() {
+        setDayPickerVisible(false)
+        journalVC.createNewEntry()
+    }
+
+    private func searchButtonTapped() {
+        setDayPickerVisible(false)
+        journalVC.searchButtonPressed()
+    }
 }
