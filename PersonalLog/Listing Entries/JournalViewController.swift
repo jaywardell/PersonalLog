@@ -149,7 +149,7 @@ class JournalViewController: UITableViewController {
         present(journalEntryVC, animated: true)
     }
     
-    func createNewEntry() {
+    func showNewEntryChrome() {
         
         let viewModel = JournalEntryEditor.ViewModel() { [weak self] in
             self?.routes.creatNewEntry(from: $0)

@@ -135,7 +135,7 @@ class TopViewController: UIViewController {
 
     private func addButtonTapped() {
         setDayPickerVisible(false)
-        journalVC.createNewEntry()
+        journalVC.showNewEntryChrome()
     }
 
     private func searchButtonTapped() {
