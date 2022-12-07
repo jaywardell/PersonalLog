@@ -151,7 +151,12 @@ class JournalViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        showEditor(forEntryAt: indexPath)
+                                                 
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    private func showEditor(forEntryAt indexPath: IndexPath) {
         let id = id(for: indexPath)
         let viewModel = data.entryViewModelForEditing(id: id)
         let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
@@ -162,8 +167,6 @@ class JournalViewController: UITableViewController {
 
         let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: vm))
         present(journalEntryVC, animated: true)
-                                                 
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     @objc
