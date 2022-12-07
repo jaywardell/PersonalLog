@@ -79,6 +79,7 @@ struct JournalEntryCell: View {
                 
             }
         }
+        .contentShape(Rectangle())
 //        .background(Color.yellow)
     }
 }
