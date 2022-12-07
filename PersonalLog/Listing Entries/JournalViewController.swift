@@ -151,13 +151,14 @@ class JournalViewController: UITableViewController {
     }
 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        showEditor(forEntryAt: indexPath)
+
+        let id = id(for: indexPath)
+        showEditor(forEntryWithID: id)
                                                  
         tableView.deselectRow(at: indexPath, animated: true)
     }
     
-    private func showEditor(forEntryAt indexPath: IndexPath) {
-        let id = id(for: indexPath)
+    private func showEditor(forEntryWithID id: some Equatable) {
         let viewModel = data.entryViewModelForEditing(id: id)
         let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
             self?.routes.updateEntry(id: id, from: $0)
