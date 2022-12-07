@@ -101,6 +101,8 @@ class TopViewController: UIViewController {
         let inLandscape = view.frame.size.width > view.frame.size.height
         if inLandscape && toolbarVisible ||
             !inLandscape && !toolbarVisible {
+            
+            // need the delay to deal with keyboard-watching code
             DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
                 self.toggleToolbar()
             }
