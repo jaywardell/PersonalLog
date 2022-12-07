@@ -39,8 +39,8 @@ class TopViewController: UIViewController {
         view.backgroundColor = .systemBackground
         
         let topbar = Toolbar(calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped)
-        let topBarVC = UIHostingController(rootView: topbar)
-        let toolbar = topBarVC.view!
+        let toolbarVC = UIHostingController(rootView: topbar)
+        let toolbar = toolbarVC.view!
         self.toolbar = toolbar
         
         // if the contents of the toolbar grow outside its frame
