@@ -123,8 +123,9 @@ class TopViewController: UIViewController {
             return
         }
         
-        self.toolbarHidden.isActive.toggle()
+        self.journalVC.hideSearchChromeIfNoSearchString()
 
+        self.toolbarHidden.isActive.toggle()
         
         UIView.animate(withDuration: 0.4, delay: 0) {
             self.view.layoutSubviews()
@@ -139,6 +140,6 @@ class TopViewController: UIViewController {
 
     private func searchButtonTapped() {
         setDayPickerVisible(false)
-        journalVC.beginSearching()
+        journalVC.showSearchChrome()
     }
 }

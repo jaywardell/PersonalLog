@@ -87,7 +87,6 @@ class JournalViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         searchController.searchResultsUpdater = self
-        navigationItem.searchController = searchController
 
         navigationController?.navigationBar.prefersLargeTitles = true
         
@@ -161,10 +160,20 @@ class JournalViewController: UITableViewController {
         present(journalEntryVC, animated: true)
     }
 
-    func beginSearching() {
+    func showSearchChrome() {
         
-        self.searchController.isActive = true
-        self.searchController.searchBar.becomeFirstResponder()
+        navigationItem.searchController = searchController
+
+        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+            self.searchController.isActive = true
+            self.searchController.searchBar.becomeFirstResponder()
+        }
+    }
+
+    func hideSearchChromeIfNoSearchString() {
+        guard data.searchString.isEmpty else { return }
+        
+        navigationItem.searchController = nil
     }
 
     // MARK: - Table view data source
