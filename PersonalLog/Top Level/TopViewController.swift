@@ -186,6 +186,10 @@ class TopViewController: UIViewController {
     // MARK: - TopViewController: Listening for Keyboard
 
     private func listenForKeyboardEvents() {
+        // on iPad, the keyboard doesn't take up nearly as much space proportionally,
+        // so we don't have to worry about this
+        guard UIDevice.current.userInterfaceIdiom != .pad else { return }
+
         NotificationCenter.default.publisher(for: UIResponder.keyboardWillShowNotification).sink(receiveValue: keyboardWillAppear)
         .store(in: &subscriptions)
 
