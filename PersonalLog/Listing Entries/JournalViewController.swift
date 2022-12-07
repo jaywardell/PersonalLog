@@ -240,6 +240,7 @@ class JournalViewController: UITableViewController {
         view.backgroundColor = .secondarySystemBackground
         view.addSubview(label)
 
+        // don't let the text go outside the safe area when in landscape
         let margins = view.layoutMarginsGuide
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         label.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
