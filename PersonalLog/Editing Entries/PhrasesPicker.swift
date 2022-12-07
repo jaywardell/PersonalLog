@@ -60,15 +60,14 @@ struct PhrasesPicker: View {
                 List {
                     ForEach(phrases, id: \.self) { phrase in
                         HStack {
-                            Text(phrase)
-                                .font(.body)
-                            Spacer()
-                            if phrase == selectedPhrase {
                                 Image(systemName: "checkmark")
                                     .foregroundColor(.accentColor)
-                            }
+                                    .opacity(phrase == selectedPhrase ? 1 : 0)
+
+                            Text(phrase)
+                                .font(.body)
                         }
-                        .frame(maxWidth: .infinity)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                         .background(Color(uiColor: .systemBackground))
                             .onTapGesture(count: 2) { self.chooseAndDismiss(phrase)
                             }
