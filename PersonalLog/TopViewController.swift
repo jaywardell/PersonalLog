@@ -25,7 +25,7 @@ class TopViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.tintColor = UIColor(named: "Tint")
+        view.tintColor = .systemOrange
         
         let topbar = Toolbar(searchButtonTapped: journalVC.searchButtonPressed, calendarButtonTapped: toggleDayPicker, addButtonTapped: journalVC.createNewEntry)
         let topBarVC = UIHostingController(rootView: topbar)
