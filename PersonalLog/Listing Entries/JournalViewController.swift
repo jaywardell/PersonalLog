@@ -93,6 +93,8 @@ class JournalViewController: UITableViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.separatorStyle = .none
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchChrome))
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -179,6 +181,7 @@ class JournalViewController: UITableViewController {
         present(journalEntryVC, animated: true)
     }
 
+    @objc
     func showSearchChrome() {
         
         navigationItem.searchController = searchController

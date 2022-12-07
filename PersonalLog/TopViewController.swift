@@ -30,7 +30,7 @@ class TopViewController: UIViewController {
         view.tintColor = .systemOrange
         view.backgroundColor = .systemBackground
         
-        let topbar = Toolbar(searchButtonTapped: searchButtonTapped, calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped)
+        let topbar = Toolbar(calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped)
         let topBarVC = UIHostingController(rootView: topbar)
         let toolbar = topBarVC.view!
         self.toolbar = toolbar

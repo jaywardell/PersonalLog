@@ -9,7 +9,6 @@ import SwiftUI
 
 struct Toolbar: View {
     
-    let searchButtonTapped: ()->()
     let calendarButtonTapped: ()->()
     let addButtonTapped: ()->()
     
@@ -21,13 +20,6 @@ struct Toolbar: View {
                 
                 Button(action: calendarButtonTapped) {
                     Image(systemName: "calendar")
-                        .font(.title)
-                }
-                .padding(.leading)
-
-
-                Button(action: searchButtonTapped) {
-                    Image(systemName: "magnifyingglass")
                         .font(.title)
                 }
                 .padding(.leading)
