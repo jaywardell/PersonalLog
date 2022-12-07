@@ -98,7 +98,7 @@ class JournalViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        showEntries(for: Date())
+        scrollToEntriesforDay(of: Date())
     }
     
     // MARK: - JournalData Integration
@@ -125,15 +125,18 @@ class JournalViewController: UITableViewController {
         scrollToEntry(for: viewModel.date)
     }
     
+    
+    // MARK: - Responding to User Actions
+    
+    /// Scroll to the row of the entry with the given date
     private func scrollToEntry(for date: Date) {
         guard let indexPath = data.indexPathForEntry(dated: date) else { return }
         
         tableView.scrollToRow(at: indexPath, at: .top, animated: true)
     }
-    
-    // MARK: - Responding to User Actions
-    
-    func showEntries(for date: Date) {
+
+    /// Scroll to the section for the day of the date passed in
+    func scrollToEntriesforDay(of date: Date) {
         
         let days = data.days
         guard !days.isEmpty else { return }
