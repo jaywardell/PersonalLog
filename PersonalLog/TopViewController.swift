@@ -13,7 +13,7 @@ class TopViewController: UIViewController {
 
     private let journal: Journal
     
-    private lazy var journalVC: JournalViewController = { JournalViewController(data: journal, routes: journal, userTappedContent: toggleToolbar) }()
+    private lazy var journalVC: JournalViewController = { JournalViewController(data: journal, routes: journal, userTappedContent: userRequestedChromeChange) }()
     private lazy var historyVC = UINavigationController(rootViewController: journalVC)
     private lazy var toolbarVC: UIViewController = {
         let view = Toolbar(calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped)
@@ -120,7 +120,10 @@ class TopViewController: UIViewController {
     }
     
     // MARK: - Toolbar
-    private func toggleToolbar() {
+    
+    ///  The UI can either be chrome heavy (with any of toolbar, day picker, searchbar, etc.) or light (with all of that hidden)
+    ///  This method is called when the user has done something to indicate that she wants to switch between these modes
+    private func userRequestedChromeChange() {
         guard !dayPickerVisible else {
             toggleDayPicker()
             return
@@ -128,6 +131,10 @@ class TopViewController: UIViewController {
         
         self.journalVC.hideSearchChromeIfNoSearchString()
 
+        toggleToolbar()
+    }
+    
+    private func toggleToolbar() {
         self.toolbarHidden.isActive.toggle()
         
         UIView.animate(withDuration: 0.4, delay: 0) {
