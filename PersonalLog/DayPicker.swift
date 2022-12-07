@@ -24,6 +24,7 @@ struct DayPicker: View {
                 }
                 selectedDates = []
             }
+            .padding(.bottom)
     }
 }
 
