@@ -28,6 +28,7 @@ class TopViewController: UIViewController {
         super.viewDidLoad()
 
         view.tintColor = .systemOrange
+        view.backgroundColor = .systemBackground
         
         let topbar = Toolbar(searchButtonTapped: journalVC.searchButtonPressed, calendarButtonTapped: toggleDayPicker, addButtonTapped: journalVC.createNewEntry)
         let topBarVC = UIHostingController(rootView: topbar)
@@ -57,6 +58,7 @@ class TopViewController: UIViewController {
         dayPickerView.bottomAnchor.constraint(equalTo: toolbar.topAnchor).isActive = true
         dayPickerHidden = dayPickerView.heightAnchor.constraint(equalToConstant: 0)
         dayPickerHidden.isActive = true
+        dayPickerView.layer.opacity = 0
 
         historyVC.willMove(toParent: self)
         self.addChild(historyVC)
@@ -81,10 +83,18 @@ class TopViewController: UIViewController {
     private func setDayPickerVisible(_ visible: Bool) {
         dayPickerHidden.isActive = !visible
         
+        if visible {
+            dayPickerView.layer.opacity = 1
+        }
+        
         view.setNeedsUpdateConstraints()
 
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0) {
             self.view.layoutIfNeeded()
+        } completion: { _ in
+            if !visible {
+                self.dayPickerView.layer.opacity = 0
+            }
         }
     }
     private func toggleDayPicker() {
@@ -108,13 +118,17 @@ class TopViewController: UIViewController {
     }
     
     private func toggleToolbar() {
-
+        guard !dayPickerVisible else {
+            toggleDayPicker()
+            return
+        }
+        
         self.toolbarHidden.isActive.toggle()
 
+        
         UIView.animate(withDuration: 0.4, delay: 0) {
             self.view.layoutSubviews()
             self.toolbar.layer.opacity = self.toolbarHidden.isActive ? 0 : 1
-            self.dayPickerView.layer.opacity = self.toolbar.layer.opacity
         }
     }
 
