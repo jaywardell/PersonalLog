@@ -100,7 +100,7 @@ class JournalViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        scrollToEntriesforDay(of: Date())
+        scrollToEntriesforDay(of: Date(), animated: false)
     }
     
     // MARK: - JournalData Integration
@@ -138,7 +138,7 @@ class JournalViewController: UITableViewController {
     }
 
     /// Scroll to the section for the day of the date passed in
-    func scrollToEntriesforDay(of date: Date) {
+    func scrollToEntriesforDay(of date: Date, animated: Bool) {
         
         let days = data.days
         guard !days.isEmpty else { return }
@@ -156,7 +156,7 @@ class JournalViewController: UITableViewController {
             }
         }
         
-        tableView.scrollToRow(at: IndexPath(row: 0, section: section!), at: .top, animated: true)
+        tableView.scrollToRow(at: IndexPath(row: 0, section: section!), at: .top, animated: animated)
         
         // if the search bar is active, deactivate it
         searchController.isActive = false

@@ -103,7 +103,7 @@ class TopViewController: UIViewController {
     private func dayWasChosen(_ day: Date) {
         setDayPickerVisible(false)
         
-        journalVC.scrollToEntriesforDay(of: day)
+        journalVC.scrollToEntriesforDay(of: day, animated: true)
     }
     
     private func keyboardWillAppear(_ unused: Any) {
