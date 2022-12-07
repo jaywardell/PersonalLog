@@ -90,6 +90,28 @@ class TopViewController: UIViewController {
         historyVC.view.bottomAnchor.constraint(equalTo: dayPickerView.topAnchor).isActive = true
     }
     
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        
+        // Landscape orientation is for reading only
+        // portrait is for reading OR editing
+        
+        // we don't want to show extra chrome when in landscape even on larger phones
+        // that don't report a compact size class for landscape orientation,
+        // so we don't look at size classes, just frame size
+        let inLandscape = view.frame.size.width > view.frame.size.height
+        if inLandscape && toolbarVisible ||
+            !inLandscape && !toolbarVisible {
+            toggleToolbar()
+        }
+        
+        if inLandscape && dayPickerVisible {
+            toggleDayPicker()
+        }
+        
+        historyVC.setNavigationBarHidden(inLandscape, animated: false)
+    }
+
+    
     // MARK: - Day Picker
     private var dayPickerVisible: Bool { !dayPickerHidden.isActive }
     private func setDayPickerVisible(_ visible: Bool) {
@@ -134,6 +156,7 @@ class TopViewController: UIViewController {
         toggleToolbar()
     }
     
+    private var toolbarVisible: Bool { !toolbarHidden.isActive }
     private func toggleToolbar() {
         self.toolbarHidden.isActive.toggle()
         
