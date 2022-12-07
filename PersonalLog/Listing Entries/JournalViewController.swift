@@ -56,6 +56,8 @@ class JournalViewController: UITableViewController {
     
     let userTappedContent: ()->()
     
+    private var emptySpaceTap: UITapGestureRecognizer!
+    
     private lazy var searchController: UISearchController = {
         let out = UISearchController(searchResultsController: nil)
         out.obscuresBackgroundDuringPresentation = false
@@ -91,8 +93,11 @@ class JournalViewController: UITableViewController {
         tableView.separatorStyle = .none
         
         navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(showSearchChrome))
+        
+        self.emptySpaceTap = UITapGestureRecognizer(target: self, action: #selector(userTappedEmptySpace))
+        tableView.addGestureRecognizer(emptySpaceTap)
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
@@ -194,6 +199,11 @@ class JournalViewController: UITableViewController {
         guard data.filterString.isEmpty else { return }
         
         navigationItem.searchController = nil
+    }
+
+    @objc
+    func userTappedEmptySpace() {
+        userTappedContent()
     }
 
     // MARK: - Table view data source
