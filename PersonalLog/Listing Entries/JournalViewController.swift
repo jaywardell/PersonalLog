@@ -170,7 +170,7 @@ class JournalViewController: UITableViewController {
             self?.tableView.reloadData()
        }
 
-        let editor = JournalEntryEditor(viewModel: vm)
+        let editor = JournalEntryEditor(prompt: "Edit Journal Entry", viewModel: vm)
         let journalEntryVC = UIHostingController(rootView: editor)
         present(journalEntryVC, animated: true)
     }
@@ -179,7 +179,7 @@ class JournalViewController: UITableViewController {
         
         let viewModel = JournalEntryEditor.ViewModel(createNewEntry(from:))
         
-        let editor = JournalEntryEditor(viewModel: viewModel)
+        let editor = JournalEntryEditor(prompt: "New Journal Entry", viewModel: viewModel)
         let journalEntryVC = UIHostingController(rootView: editor)
         present(journalEntryVC, animated: true)
     }

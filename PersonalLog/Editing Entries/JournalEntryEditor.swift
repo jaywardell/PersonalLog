@@ -57,6 +57,7 @@ struct JournalEntryEditor: View {
         }
     }
     
+    let prompt: String
     @ObservedObject var viewModel: ViewModel
     
     enum FocusField: Hashable { case title, text }
@@ -164,7 +165,8 @@ struct JournalEntryEditor: View {
                     .focused($focusedField, equals: .text)
             }
             .padding()
-            .navigationTitle("")
+            .navigationTitle(prompt)
+            .navigationBarTitleDisplayMode(.inline)
             .navigationBarItems(leading: cancelButton, trailing: saveButton)
             .onAppear { self.focusedField = .text }
             .sheet(isPresented: $showEmojiPicker) {
@@ -228,11 +230,11 @@ fileprivate extension JournalEntryEditor.ViewModel {
 
 struct JournalEntryView_Previews: PreviewProvider {
     static var previews: some View {
-        JournalEntryEditor(viewModel: .empty)
+        JournalEntryEditor(prompt: "New Entry", viewModel: .empty)
             .previewLayout(.sizeThatFits)
             .previewDisplayName("Empty")
 
-        JournalEntryEditor(viewModel: .thorough)
+        JournalEntryEditor(prompt: "Edit Entry", viewModel: .thorough)
             .previewLayout(.sizeThatFits)
             .previewDisplayName("Everything Filled Out")
     }
