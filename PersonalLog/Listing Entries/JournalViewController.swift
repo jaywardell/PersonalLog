@@ -233,8 +233,6 @@ class JournalViewController: UITableViewController {
         label.text = "   " + title(for: section)
         label.textColor = .tintColor
         label.sizeToFit()
-
-        label.translatesAutoresizingMaskIntoConstraints = false
         
         let view = UIView(frame: CGRect(origin: .zero, size: label.intrinsicContentSize))
         view.backgroundColor = .secondarySystemBackground
@@ -242,6 +240,7 @@ class JournalViewController: UITableViewController {
 
         // don't let the text go outside the safe area when in landscape
         let margins = view.layoutMarginsGuide
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         label.leadingAnchor.constraint(equalTo: margins.leadingAnchor).isActive = true
         label.trailingAnchor.constraint(equalTo: margins.trailingAnchor).isActive = true
