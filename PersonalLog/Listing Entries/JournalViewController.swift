@@ -22,7 +22,7 @@ protocol JournalData: ObservableObject {
     func indexPathForEntry(dated: Date) -> IndexPath?
 }
 
-protocol JournalRoutes {
+protocol JournalManipulation {
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel)
     func updateEntry(id: any Equatable, from viewModel: JournalEntryEditor.ViewModel)
     func deleteEntry(id: any Equatable)
@@ -51,7 +51,7 @@ class JournalViewController: UITableViewController {
         let tags: [String]
     }
 
-    let routes: any JournalRoutes
+    let routes: any JournalManipulation
     let data: any JournalData
     
     let userTappedContent: ()->()
@@ -66,7 +66,7 @@ class JournalViewController: UITableViewController {
         return out
     }()
     
-    init(data: any JournalData, routes: any JournalRoutes, userTappedContent: @escaping ()->()) {
+    init(data: any JournalData, routes: any JournalManipulation, userTappedContent: @escaping ()->()) {
 
         self.routes = routes
         self.data = data

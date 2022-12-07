@@ -89,7 +89,7 @@ extension Journal: JournalData {
     }
 }
  
-extension Journal: JournalRoutes {
+extension Journal: JournalManipulation {
 
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
         
