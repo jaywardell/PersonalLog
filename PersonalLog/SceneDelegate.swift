@@ -11,11 +11,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
+    let journal = Journal()
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
-        let viewController = TopViewController()
+        let viewController = TopViewController(journal: journal)
         
         let window = UIWindow(windowScene: windowScene)
         window.rootViewController = viewController

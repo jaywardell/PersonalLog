@@ -11,9 +11,8 @@ import Combine
 
 class TopViewController: UIViewController {
 
-    
-    private let logic = Journal()
-    private lazy var journalVC: JournalViewController = { JournalViewController(data: logic, routes: logic, userTappedContent: toggleToolbar) }()
+    private let journal: Journal
+    private lazy var journalVC: JournalViewController = { JournalViewController(data: journal, routes: journal, userTappedContent: toggleToolbar) }()
     private lazy var historyVC = UINavigationController(rootViewController: journalVC)
     
     private var dayPickerHidden: NSLayoutConstraint!
@@ -23,6 +22,16 @@ class TopViewController: UIViewController {
     
     private var toolbar: UIView!
     private var dayPickerView: UIView!
+    
+    init(journal: Journal) {
+        self.journal = journal
+        
+        super.init(nibName: nil, bundle: nil)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
