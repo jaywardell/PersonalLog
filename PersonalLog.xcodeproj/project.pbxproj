@@ -125,9 +125,8 @@
 			children = (
 				7C1B542B293CB30D004B5EF0 /* AppDelegate.swift */,
 				7C1B542D293CB30D004B5EF0 /* SceneDelegate.swift */,
-				7C1B545B293CB4A4004B5EF0 /* TopViewController.swift */,
-				7CE7FF3029411C4D00B177E2 /* Views */,
 				7C4AC694293D707600E8EDFE /* Model */,
+				7CE7FF3029411C4D00B177E2 /* Top Level */,
 				7C4AC696293E4FF500E8EDFE /* Listing Entries */,
 				7C4AC695293E4FDF00E8EDFE /* Editing Entries */,
 				7C1B5434293CB30E004B5EF0 /* Assets.xcassets */,
@@ -185,14 +184,15 @@
 			path = "Listing Entries";
 			sourceTree = "<group>";
 		};
-		7CE7FF3029411C4D00B177E2 /* Views */ = {
+		7CE7FF3029411C4D00B177E2 /* Top Level */ = {
 			isa = PBXGroup;
 			children = (
+				7C1B545B293CB4A4004B5EF0 /* TopViewController.swift */,
 				7CBFAAE2293F9DC30036D457 /* Toolbar.swift */,
 				7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */,
 				7CE7FF2E293FB76000B177E2 /* SearchBar.swift */,
 			);
-			path = Views;
+			path = "Top Level";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
