@@ -169,7 +169,10 @@ class JournalViewController: UITableViewController {
             self?.tableView.reloadData()
        }
 
-        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: vm))
+        let editor = JournalEntryEditor(viewModel: vm)
+            .accentColor(Color(uiColor: view.tintColor))
+        
+        let journalEntryVC = UIHostingController(rootView: editor)
         present(journalEntryVC, animated: true)
     }
     
@@ -177,7 +180,10 @@ class JournalViewController: UITableViewController {
         
         let viewModel = JournalEntryEditor.ViewModel(createNewEntry(from:))
         
-        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: viewModel))
+        let editor = JournalEntryEditor(viewModel: viewModel)
+            .accentColor(Color(uiColor: view.tintColor))
+
+        let journalEntryVC = UIHostingController(rootView: editor)
         present(journalEntryVC, animated: true)
     }
 
