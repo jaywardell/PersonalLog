@@ -129,8 +129,27 @@ class JournalViewController: UITableViewController {
         return cell
     }
         
+
     // MARK: - Table view delegate
     
+    private func title(for section: Int) -> String {
+        let day = data.days[section]
+        return DateFormatter.localizedString(from: day, dateStyle: .full, timeStyle: .none)
+    }
+        
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel(frame: .zero)
+        label.font = UIFont.preferredFont(forTextStyle: .title3)
+        label.text = "   " + title(for: section)
+        label.textColor = .tintColor
+        label.sizeToFit()
+        let view = UIView(frame: CGRect(origin: .zero, size: label.intrinsicContentSize))
+        view.backgroundColor = .secondarySystemBackground
+        view.addSubview(label)
+
+        return view
+    }
+
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         let id = id(for: indexPath)
@@ -223,10 +242,7 @@ class JournalViewController: UITableViewController {
         }
     }
     
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let day = data.days[section]
-        return DateFormatter.localizedString(from: day, dateStyle: .full, timeStyle: .none)
-    }
+    
 }
 
 extension JournalViewController: UISearchResultsUpdating {
