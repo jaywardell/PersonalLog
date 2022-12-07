@@ -112,6 +112,11 @@ class JournalViewController: UITableViewController {
         return DateFormatter.localizedString(from: day, dateStyle: .full, timeStyle: .none)
     }
     
+    private func createNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
+        routes.creatNewEntry(from: viewModel)
+        tableView.reloadData()
+    }
+    
     // MARK: - Responding to User Actions
     
     func showEntries(for date: Date) {
@@ -151,10 +156,7 @@ class JournalViewController: UITableViewController {
     
     func showNewEntryChrome() {
         
-        let viewModel = JournalEntryEditor.ViewModel() { [weak self] in
-            self?.routes.creatNewEntry(from: $0)
-            self?.tableView.reloadData()
-      }
+        let viewModel = JournalEntryEditor.ViewModel(createNewEntry(from:))
         
         let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: viewModel))
         present(journalEntryVC, animated: true)
