@@ -101,7 +101,9 @@ class TopViewController: UIViewController {
         let inLandscape = view.frame.size.width > view.frame.size.height
         if inLandscape && toolbarVisible ||
             !inLandscape && !toolbarVisible {
-            toggleToolbar()
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+                self.toggleToolbar()
+            }
         }
         
         if inLandscape && dayPickerVisible {
