@@ -56,12 +56,14 @@ class JournalViewController: UITableViewController {
     
     let userTappedContent: ()->()
     
-    private let searchController: UISearchController = {
+    private lazy var searchController: UISearchController = {
         let out = UISearchController(searchResultsController: nil)
         out.obscuresBackgroundDuringPresentation = false
         out.searchBar.placeholder = "Search"
         out.isActive = true
         out.searchBar.searchTextField.autocapitalizationType = .none
+        
+        out.searchResultsUpdater = self
         
         return out
     }()
@@ -84,12 +86,6 @@ class JournalViewController: UITableViewController {
         super.viewDidLoad()
 
         self.title = "Personal Log"
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
-        
-        searchController.searchResultsUpdater = self
-
         navigationController?.navigationBar.prefersLargeTitles = true
         
         tableView.separatorStyle = .none
