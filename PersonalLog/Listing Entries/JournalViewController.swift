@@ -124,7 +124,11 @@ class JournalViewController: UITableViewController {
         
         cell.contentConfiguration = UIHostingConfiguration() {
             JournalEntryCell(viewModel: viewModel)
+                .onLongPressGesture { [weak self] in
+                    self?.showEditor(forEntryWithID: id)
+                }
         }
+        
 
         return cell
     }
@@ -150,13 +154,17 @@ class JournalViewController: UITableViewController {
         return view
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
-        let id = id(for: indexPath)
-        showEditor(forEntryWithID: id)
-                                                 
-        tableView.deselectRow(at: indexPath, animated: true)
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        false
     }
+    
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//
+//        let id = id(for: indexPath)
+//        showEditor(forEntryWithID: id)
+//
+//        tableView.deselectRow(at: indexPath, animated: true)
+//    }
     
     private func showEditor(forEntryWithID id: some Equatable) {
         let viewModel = data.entryViewModelForEditing(id: id)
