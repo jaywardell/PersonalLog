@@ -103,11 +103,9 @@ struct JournalEntryEditor: View {
                                 Spacer()
                                 Text(date, style: .date)
                                 Text(date, style: .time)
-    //                            Spacer()
                             }
                             .font(.caption)
                             .foregroundColor(Color(uiColor: .secondaryLabel))
-    //                        .padding(.horizontal)
                         }
                         
                         HStack {
@@ -117,7 +115,6 @@ struct JournalEntryEditor: View {
                                 .focused($focusedField, equals: .title)
                             Spacer()
                         }
-    //                    .padding(.horizontal)
 
                         HStack {
                             Button(action : {
@@ -133,8 +130,6 @@ struct JournalEntryEditor: View {
                             .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .label))
                             Spacer()
                         }
-    //                    .padding(.horizontal)
-    //                    .padding(.horizontal)
 
                         // only make the prompts picker available if the suer hasn't already started to write OR if she's chosen a prompt already
                         if !viewModel.prompt.isEmpty || viewModel.text.isEmpty {
@@ -151,8 +146,6 @@ struct JournalEntryEditor: View {
                                 .accentColor(Color(uiColor: viewModel.tags.isEmpty ? .placeholderText : .label))
                                 Spacer()
                             }
-    //                        .padding(.horizontal)
-    //                        .padding(.horizontal)
                             .padding(.top)
                         }
                         
@@ -161,7 +154,6 @@ struct JournalEntryEditor: View {
                 }
                 TextEditor(text: $viewModel.text)
                     .font(.system(.body, design: .default))
-//                        .padding(.horizontal)
                     .focused($focusedField, equals: .text)
             }
             .padding()
@@ -173,7 +165,7 @@ struct JournalEntryEditor: View {
                 EmojiPicker(prompt: "How do you feel?", selected: viewModel.mood) { viewModel.mood = $0 }
             }
             .sheet(isPresented: $showTagsList) {
-                TagsListView(prompt: "Tag this entry", tags: viewModel.tags) { viewModel.tags = $0 }
+                TagsListView(prompt: "Edit Tags", tags: viewModel.tags) { viewModel.tags = $0 }
             }
             .sheet(isPresented: $showPromptsList) {
                 PhrasesPicker(
