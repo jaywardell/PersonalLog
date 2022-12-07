@@ -139,6 +139,6 @@ class TopViewController: UIViewController {
 
     private func searchButtonTapped() {
         setDayPickerVisible(false)
-        journalVC.searchButtonPressed()
+        journalVC.beginSearching()
     }
 }

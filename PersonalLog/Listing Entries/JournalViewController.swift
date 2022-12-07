@@ -26,7 +26,7 @@ protocol JournalRoutes {
     func deleteEntry(id: any Equatable)
 }
 
-
+// MARK: -
 
 class JournalViewController: UITableViewController {
     
@@ -100,115 +100,21 @@ class JournalViewController: UITableViewController {
         showEntries(for: Date())
     }
     
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return data.days.count
-    }
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-
-        let day = data.days[section]
-        return data.entryIDs(for: day).count
-    }
-    
+    // MARK: - JournalData Integration
+   
     private func id(for indexPath: IndexPath) -> any Equatable {
         let day = data.days[indexPath.section]
         let ids = data.entryIDs(for: day)
         return ids[indexPath.row]
     }
-    
-    private let cellReuseIdentifier = "JournalViewControllerCell"
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) ?? UITableViewCell(style:.default, reuseIdentifier:cellReuseIdentifier)
-        
-        let id = id(for: indexPath)
-        let viewModel = data.entryViewModelForCell(id: id)
-        
-        cell.contentConfiguration = UIHostingConfiguration() {
-            JournalEntryCell(viewModel: viewModel)
-                .onTapGesture(perform: userTappedContent)
-                .onLongPressGesture { [weak self] in
-                    self?.showEditor(forEntryWithID: id)
-                }
-        }
-        
 
-        return cell
-    }
-        
-
-    // MARK: - Table view delegate
-    
     private func title(for section: Int) -> String {
         let day = data.days[section]
         return DateFormatter.localizedString(from: day, dateStyle: .full, timeStyle: .none)
     }
-        
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let label = UILabel(frame: .zero)
-        label.font = UIFont.preferredFont(forTextStyle: .title3)
-        label.text = "   " + title(for: section)
-        label.textColor = .tintColor
-        label.sizeToFit()
-        let view = UIView(frame: CGRect(origin: .zero, size: label.intrinsicContentSize))
-        view.backgroundColor = .secondarySystemBackground
-        view.addSubview(label)
-
-        return view
-    }
-
-    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        false
-    }
     
-//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//
-//        let id = id(for: indexPath)
-//        showEditor(forEntryWithID: id)
-//
-//        tableView.deselectRow(at: indexPath, animated: true)
-//    }
+    // MARK: - Responding to User Actions
     
-    private func showEditor(forEntryWithID id: some Equatable) {
-        let viewModel = data.entryViewModelForEditing(id: id)
-        let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
-            self?.routes.updateEntry(id: id, from: $0)
-            self?.tableView.reloadData()
-       }
-
-
-        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: vm))
-        present(journalEntryVC, animated: true)
-    }
-    
-    @objc
-    func createNewEntry() {
-        
-        let viewModel = JournalEntryEditor.ViewModel() { [weak self] in
-            self?.routes.creatNewEntry(from: $0)
-            self?.tableView.reloadData()
-      }
-        
-        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: viewModel))
-        present(journalEntryVC, animated: true)
-    }
-
-    @objc
-    func searchButtonPressed() {
-        print(#function)
-        
-        self.searchController.isActive = true
-        self.searchController.searchBar.becomeFirstResponder()
-
-    }
-
-    @objc
-    private func calendarButtonPressed() {
-        print(#function)
-    }
-
     func showEntries(for date: Date) {
         
         let days = data.days
@@ -232,16 +138,83 @@ class JournalViewController: UITableViewController {
         // if the search bar is active, deactivate it
         searchController.isActive = false
     }
-    
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+
+    private func showEditor(forEntryWithID id: some Equatable) {
+        let viewModel = data.entryViewModelForEditing(id: id)
+        let vm = JournalEntryEditor.ViewModel(date: viewModel.date, mood: viewModel.mood, title: viewModel.title, prompt: viewModel.prompt, text: viewModel.text, tags: viewModel.tags) { [weak self] in
+            self?.routes.updateEntry(id: id, from: $0)
+            self?.tableView.reloadData()
+       }
+
+        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: vm))
+        present(journalEntryVC, animated: true)
     }
     
+    func createNewEntry() {
+        
+        let viewModel = JournalEntryEditor.ViewModel() { [weak self] in
+            self?.routes.creatNewEntry(from: $0)
+            self?.tableView.reloadData()
+      }
+        
+        let journalEntryVC = UIHostingController(rootView: JournalEntryEditor(viewModel: viewModel))
+        present(journalEntryVC, animated: true)
+    }
 
+    func beginSearching() {
+        
+        self.searchController.isActive = true
+        self.searchController.searchBar.becomeFirstResponder()
+    }
+
+    // MARK: - Table view data source
+
+    override func numberOfSections(in tableView: UITableView) -> Int { data.days.count }
+
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+
+        let day = data.days[section]
+        return data.entryIDs(for: day).count
+    }
+        
+    private static var EntryCellResuseIdentifier: String { #function }
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: Self.EntryCellResuseIdentifier)
+        ?? UITableViewCell(style:.default, reuseIdentifier:Self.EntryCellResuseIdentifier)
+        
+        let id = id(for: indexPath)
+        let viewModel = data.entryViewModelForCell(id: id)
+        
+        cell.contentConfiguration = UIHostingConfiguration() {
+            JournalEntryCell(viewModel: viewModel)
+                .onTapGesture(perform: userTappedContent)
+                .onLongPressGesture { [weak self] in
+                    self?.showEditor(forEntryWithID: id)
+                }
+        }
+
+        return cell
+    }
+        
+    // MARK: - Table view delegate
     
-    // Override to support editing the table view.
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let label = UILabel(frame: .zero)
+        label.font = UIFont.preferredFont(forTextStyle: .title3)
+        label.text = "   " + title(for: section)
+        label.textColor = .tintColor
+        label.sizeToFit()
+        let view = UIView(frame: CGRect(origin: .zero, size: label.intrinsicContentSize))
+        view.backgroundColor = .secondarySystemBackground
+        view.addSubview(label)
+
+        return view
+    }
+
+    override func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool { false }
+    
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool { true }
+
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
 
@@ -258,9 +231,9 @@ class JournalViewController: UITableViewController {
             }
         }
     }
-    
-    
 }
+
+// MARK: - JournalViewController: UISearchResultsUpdating
 
 extension JournalViewController: UISearchResultsUpdating {
     
@@ -268,6 +241,4 @@ extension JournalViewController: UISearchResultsUpdating {
         data.searchString = searchController.searchBar.text ?? ""
         tableView.reloadData()
     }
-    
-    
 }
