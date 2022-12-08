@@ -16,9 +16,9 @@ All other views are implemented in SwiftUI, using view models when necessary. I'
 ### Model Layer
 The model layer stores each entry as an individual json file named with its creation date as a Double. Only the names are loaded at startup and the created date is used as an opaque identifier for the entry until its content is needed. The layer is made up of:
 
-    * JournalArchive: maintains the files for the entries
-    * SearchArchive: maintains a search index matching words to the entries where they can be found
-    * Journal: acts as an interface for the model layer, loading entries from the archiver, converting them to view models, filtering results based on the search string, passing on CRUD operations to the archiver and indexer
+* JournalArchive: maintains the files for the entries
+* SearchArchive: maintains a search index matching words to the entries where they can be found
+* Journal: acts as an interface for the model layer, loading entries from the archiver, converting them to view models, filtering results based on the search string, passing on CRUD operations to the archiver and indexer
     
 ### Controller Layer
 The TopViewController is loaded at startup by the SceneDelegate. It maintains a layout composed of 3 smaller view controllers. Only the list of entries is implemented as a classic UIKit view controller.  The others are UIHostingControllers.
@@ -34,3 +34,7 @@ The toolbar offers the ability to add new entries and to navigate to a given dat
 When it's not needed, the user can hide almost all chrome by just tapping on the table, in order to let the user focus on reading. All chrome is automatically hidden in landscape orientation as well.
 
 The color scheme is meant to be unobtrusive to let the user focus on content. It uses a very muted cool tint color, and only system-prescribed grays for content.
+
+## License
+
+PersonalLog is offered under a MIT Picense.
