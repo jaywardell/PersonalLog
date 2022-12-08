@@ -76,7 +76,7 @@
 		7CE7FF432942697300B177E2 /* emoji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoji.png; sourceTree = "<group>"; };
 		7CE7FF47294269D300B177E2 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty.png; sourceTree = "<group>"; };
 		7CE7FF4929426C7400B177E2 /* app store blurb */ = {isa = PBXFileReference; lastKnownFileType = text; path = "app store blurb"; sourceTree = "<group>"; };
-		7CE7FF4D2942935500B177E2 /* writing_prompts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = writing_prompts.png; sourceTree = "<group>"; };
+		7CE7FF4E2942941800B177E2 /* writing_prompts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = writing_prompts.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -201,7 +201,7 @@
 				7CE7FF47294269D300B177E2 /* empty.png */,
 				7CE7FF3D2942689B00B177E2 /* full_with_chrome.png */,
 				7CE7FF3F294268BB00B177E2 /* full_no_chrome.png */,
-				7CE7FF4D2942935500B177E2 /* writing_prompts.png */,
+				7CE7FF4E2942941800B177E2 /* writing_prompts.png */,
 				7CE7FF412942695F00B177E2 /* entry.png */,
 				7CE7FF432942697300B177E2 /* emoji.png */,
 			);
