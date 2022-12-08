@@ -27,9 +27,12 @@ The TopViewController is loaded at startup by the SceneDelegate. It maintains a 
 
 #####################################
 ## Design
-The design is meant to be immediately intuitible and focused on the user's need at the time. Most quickly-accessed functions are accessible from the bottom of the screen, while less   
+The design is meant to be immediately intuitible and focused on the user's need at the time. 
 
-On first launch, the most prominent UI element is the button to create a new entry:
+Most quickly-accessed functions are accessible from the bottom of the screen, while less commonly accessed functions, or functions that require extra attention, are near the top.  
 
-  
-######################################
+The toolbar offers the ability to add new entries and to navigate to a given date.  
+
+When it's not needed, the user can hide almost all chrome by just tapping on the table.
+
+All chrome is hidden in landscape orientation in order to give the user the ability to focus on reading.
