@@ -12,8 +12,6 @@
 		7C1B5435293CB30E004B5EF0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7C1B5434293CB30E004B5EF0 /* Assets.xcassets */; };
 		7C1B5438293CB30E004B5EF0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7C1B5436293CB30E004B5EF0 /* LaunchScreen.storyboard */; };
 		7C1B5443293CB30E004B5EF0 /* PersonalLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B5442293CB30E004B5EF0 /* PersonalLogTests.swift */; };
-		7C1B544D293CB30E004B5EF0 /* PersonalLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B544C293CB30E004B5EF0 /* PersonalLogUITests.swift */; };
-		7C1B544F293CB30E004B5EF0 /* PersonalLogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B544E293CB30E004B5EF0 /* PersonalLogUITestsLaunchTests.swift */; };
 		7C1B545C293CB4A4004B5EF0 /* TopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B545B293CB4A4004B5EF0 /* TopViewController.swift */; };
 		7C1B545E293CB6F8004B5EF0 /* JournalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B545D293CB6F8004B5EF0 /* JournalViewController.swift */; };
 		7C1B5460293CB9B4004B5EF0 /* JournalEntryEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C1B545F293CB9B4004B5EF0 /* JournalEntryEditor.swift */; };
@@ -42,13 +40,6 @@
 			remoteGlobalIDString = 7C1B5427293CB30D004B5EF0;
 			remoteInfo = PersonalLog;
 		};
-		7C1B5449293CB30E004B5EF0 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7C1B5420293CB30D004B5EF0 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7C1B5427293CB30D004B5EF0;
-			remoteInfo = PersonalLog;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -60,9 +51,6 @@
 		7C1B5439293CB30E004B5EF0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7C1B543E293CB30E004B5EF0 /* PersonalLogTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonalLogTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7C1B5442293CB30E004B5EF0 /* PersonalLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalLogTests.swift; sourceTree = "<group>"; };
-		7C1B5448293CB30E004B5EF0 /* PersonalLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PersonalLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C1B544C293CB30E004B5EF0 /* PersonalLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalLogUITests.swift; sourceTree = "<group>"; };
-		7C1B544E293CB30E004B5EF0 /* PersonalLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		7C1B545B293CB4A4004B5EF0 /* TopViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TopViewController.swift; sourceTree = "<group>"; };
 		7C1B545D293CB6F8004B5EF0 /* JournalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalViewController.swift; sourceTree = "<group>"; };
 		7C1B545F293CB9B4004B5EF0 /* JournalEntryEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntryEditor.swift; sourceTree = "<group>"; };
@@ -98,13 +86,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7C1B5445293CB30E004B5EF0 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -115,7 +96,6 @@
 				7CE7FF392942460E00B177E2 /* license.txt */,
 				7C1B542A293CB30D004B5EF0 /* PersonalLog */,
 				7C1B5441293CB30E004B5EF0 /* PersonalLogTests */,
-				7C1B544B293CB30E004B5EF0 /* PersonalLogUITests */,
 				7C1B5429293CB30D004B5EF0 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -125,7 +105,6 @@
 			children = (
 				7C1B5428293CB30D004B5EF0 /* PersonalLog.app */,
 				7C1B543E293CB30E004B5EF0 /* PersonalLogTests.xctest */,
-				7C1B5448293CB30E004B5EF0 /* PersonalLogUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -153,15 +132,6 @@
 				7C1B5442293CB30E004B5EF0 /* PersonalLogTests.swift */,
 			);
 			path = PersonalLogTests;
-			sourceTree = "<group>";
-		};
-		7C1B544B293CB30E004B5EF0 /* PersonalLogUITests */ = {
-			isa = PBXGroup;
-			children = (
-				7C1B544C293CB30E004B5EF0 /* PersonalLogUITests.swift */,
-				7C1B544E293CB30E004B5EF0 /* PersonalLogUITestsLaunchTests.swift */,
-			);
-			path = PersonalLogUITests;
 			sourceTree = "<group>";
 		};
 		7C4AC694293D707600E8EDFE /* Model */ = {
@@ -245,24 +215,6 @@
 			productReference = 7C1B543E293CB30E004B5EF0 /* PersonalLogTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7C1B5447293CB30E004B5EF0 /* PersonalLogUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7C1B5458293CB30E004B5EF0 /* Build configuration list for PBXNativeTarget "PersonalLogUITests" */;
-			buildPhases = (
-				7C1B5444293CB30E004B5EF0 /* Sources */,
-				7C1B5445293CB30E004B5EF0 /* Frameworks */,
-				7C1B5446293CB30E004B5EF0 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7C1B544A293CB30E004B5EF0 /* PBXTargetDependency */,
-			);
-			name = PersonalLogUITests;
-			productName = PersonalLogUITests;
-			productReference = 7C1B5448293CB30E004B5EF0 /* PersonalLogUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -277,10 +229,6 @@
 						CreatedOnToolsVersion = 14.0.1;
 					};
 					7C1B543D293CB30E004B5EF0 = {
-						CreatedOnToolsVersion = 14.0.1;
-						TestTargetID = 7C1B5427293CB30D004B5EF0;
-					};
-					7C1B5447293CB30E004B5EF0 = {
 						CreatedOnToolsVersion = 14.0.1;
 						TestTargetID = 7C1B5427293CB30D004B5EF0;
 					};
@@ -301,7 +249,6 @@
 			targets = (
 				7C1B5427293CB30D004B5EF0 /* PersonalLog */,
 				7C1B543D293CB30E004B5EF0 /* PersonalLogTests */,
-				7C1B5447293CB30E004B5EF0 /* PersonalLogUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -320,13 +267,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7C1B543C293CB30E004B5EF0 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7C1B5446293CB30E004B5EF0 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -368,15 +308,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7C1B5444293CB30E004B5EF0 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7C1B544D293CB30E004B5EF0 /* PersonalLogUITests.swift in Sources */,
-				7C1B544F293CB30E004B5EF0 /* PersonalLogUITestsLaunchTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -384,11 +315,6 @@
 			isa = PBXTargetDependency;
 			target = 7C1B5427293CB30D004B5EF0 /* PersonalLog */;
 			targetProxy = 7C1B543F293CB30E004B5EF0 /* PBXContainerItemProxy */;
-		};
-		7C1B544A293CB30E004B5EF0 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7C1B5427293CB30D004B5EF0 /* PersonalLog */;
-			targetProxy = 7C1B5449293CB30E004B5EF0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -620,42 +546,6 @@
 			};
 			name = Release;
 		};
-		7C1B5459293CB30E004B5EF0 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BU47XE2F27;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = josephwardell.PersonalLogUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PersonalLog;
-			};
-			name = Debug;
-		};
-		7C1B545A293CB30E004B5EF0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = BU47XE2F27;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = josephwardell.PersonalLogUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = PersonalLog;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -682,15 +572,6 @@
 			buildConfigurations = (
 				7C1B5456293CB30E004B5EF0 /* Debug */,
 				7C1B5457293CB30E004B5EF0 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7C1B5458293CB30E004B5EF0 /* Build configuration list for PBXNativeTarget "PersonalLogUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7C1B5459293CB30E004B5EF0 /* Debug */,
-				7C1B545A293CB30E004B5EF0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
