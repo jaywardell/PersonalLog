@@ -31,7 +31,6 @@
 		7CE7FF382942029D00B177E2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF372942029D00B177E2 /* README.md */; };
 		7CE7FF3A2942460E00B177E2 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF392942460E00B177E2 /* license.txt */; };
 		7CE7FF48294269D300B177E2 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF47294269D300B177E2 /* empty.png */; };
-		7CE7FF4A29426C7400B177E2 /* app store blurb in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF4929426C7400B177E2 /* app store blurb */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -291,7 +290,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CE7FF322941EA0800B177E2 /* prompts.txt in Resources */,
-				7CE7FF4A29426C7400B177E2 /* app store blurb in Resources */,
 				7CE7FF3A2942460E00B177E2 /* license.txt in Resources */,
 				7CE7FF48294269D300B177E2 /* empty.png in Resources */,
 				7C1B5438293CB30E004B5EF0 /* LaunchScreen.storyboard in Resources */,
