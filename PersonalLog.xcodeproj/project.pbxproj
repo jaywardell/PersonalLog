@@ -31,6 +31,7 @@
 		7CE7FF342941F6C200B177E2 /* WritingPrompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF332941F6C200B177E2 /* WritingPrompts.swift */; };
 		7CE7FF362941F97B00B177E2 /* PromptPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF352941F97B00B177E2 /* PromptPicker.swift */; };
 		7CE7FF382942029D00B177E2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF372942029D00B177E2 /* README.md */; };
+		7CE7FF3A2942460E00B177E2 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF392942460E00B177E2 /* license.txt */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		7CE7FF332941F6C200B177E2 /* WritingPrompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingPrompts.swift; sourceTree = "<group>"; };
 		7CE7FF352941F97B00B177E2 /* PromptPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptPicker.swift; sourceTree = "<group>"; };
 		7CE7FF372942029D00B177E2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		7CE7FF392942460E00B177E2 /* license.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -110,6 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				7CE7FF372942029D00B177E2 /* README.md */,
+				7CE7FF392942460E00B177E2 /* license.txt */,
 				7C1B542A293CB30D004B5EF0 /* PersonalLog */,
 				7C1B5441293CB30E004B5EF0 /* PersonalLogTests */,
 				7C1B544B293CB30E004B5EF0 /* PersonalLogUITests */,
@@ -309,6 +312,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CE7FF322941EA0800B177E2 /* prompts.txt in Resources */,
+				7CE7FF3A2942460E00B177E2 /* license.txt in Resources */,
 				7C1B5438293CB30E004B5EF0 /* LaunchScreen.storyboard in Resources */,
 				7CE7FF382942029D00B177E2 /* README.md in Resources */,
 				7C1B5435293CB30E004B5EF0 /* Assets.xcassets in Resources */,
