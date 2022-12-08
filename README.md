@@ -1,3 +1,5 @@
+![Personal Log App Icon](https://github.com/jaywardell/PersonalLog/blob/main/PersonalLog/Assets.xcassets/AppIcon.appiconset/icon.png?raw=true "icon")
+
 # Personal Log
 
 This is an app I made for myself. I had a minor health issue and started journaling to keep track of my thoughts through the process of healing.  I was using the Notes app on my iPhone, but I quickly found that it got unwieldy to keep one very long text note.
