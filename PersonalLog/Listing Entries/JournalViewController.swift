@@ -227,9 +227,11 @@ class JournalViewController: UITableViewController {
         cell.contentConfiguration = UIHostingConfiguration() {
             JournalEntryCell(viewModel: viewModel)
                 .onTapGesture(perform: userTappedContent)
-                .onLongPressGesture { [weak self] in
-                    if false == self?.inLandscapeIPhone {
-                        self?.showEditor(forEntryWithID: id)
+                .contextMenu {
+                    Button("Edit") { [weak self] in
+                        if false == self?.inLandscapeIPhone {
+                            self?.showEditor(forEntryWithID: id)
+                        }
                     }
                 }
         }
