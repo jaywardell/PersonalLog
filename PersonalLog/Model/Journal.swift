@@ -47,14 +47,9 @@ final class Journal: ObservableObject {
 extension Journal: JournalData {
     
     func entryIDs(for date: Date) -> [any Equatable] {
-        var ids = archiver.journalEntries(on: date)
+        let ids = archiver.journalEntries(on: date)
         if !filterString.isEmpty {
-            let matches = index.dates(for: filterString)
-            ids = ids.filter {
-                // make sure that the indexer has indexed this entry for this date
-                guard let entryDate = archiver.date(forEntryWithID: $0) else { return false }
-                return matches.contains(entryDate)
-            }
+            return index.filter(entriesWithIDs: ids, using: filterString, converter: archiver.date(forEntryWithID:))
         }
         
         return ids

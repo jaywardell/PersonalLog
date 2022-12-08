@@ -84,6 +84,16 @@ final class SearchArchive {
         return out
     }
     
+    func filter(entriesWithIDs ids: [some Equatable], using filterString: String, converter: (any Equatable)->Date?) -> [any Equatable] {
+        let matches = dates(for: filterString)
+        return ids.filter {
+            // make sure that the indexer has indexed this entry for this date
+            guard let entryDate = converter($0) else { return false }
+            return matches.contains(entryDate)
+        }
+
+    }
+    
     /// remove any previous entries in the index for this entry
     private func removeIndex(for entry: JournalEntry) {
         for (word, dates) in index {
