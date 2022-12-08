@@ -69,6 +69,11 @@
 		7CE7FF352941F97B00B177E2 /* PromptPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptPicker.swift; sourceTree = "<group>"; };
 		7CE7FF372942029D00B177E2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7CE7FF392942460E00B177E2 /* license.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
+		7CE7FF3D2942689B00B177E2 /* full_with_chrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full_with_chrome.png; sourceTree = "<group>"; };
+		7CE7FF3F294268BB00B177E2 /* full_no_chrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full_no_chrome.png; sourceTree = "<group>"; };
+		7CE7FF412942695F00B177E2 /* entry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entry.png; sourceTree = "<group>"; };
+		7CE7FF432942697300B177E2 /* emoji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoji.png; sourceTree = "<group>"; };
+		7CE7FF452942698D00B177E2 /* writing_prompts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = writing_prompts.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +99,7 @@
 			children = (
 				7CE7FF372942029D00B177E2 /* README.md */,
 				7CE7FF392942460E00B177E2 /* license.txt */,
+				7CE7FF3B2942688000B177E2 /* promotional */,
 				7C1B542A293CB30D004B5EF0 /* PersonalLog */,
 				7C1B5441293CB30E004B5EF0 /* PersonalLogTests */,
 				7C1B5429293CB30D004B5EF0 /* Products */,
@@ -175,6 +181,26 @@
 				7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */,
 			);
 			path = "Top Level";
+			sourceTree = "<group>";
+		};
+		7CE7FF3B2942688000B177E2 /* promotional */ = {
+			isa = PBXGroup;
+			children = (
+				7CE7FF3C2942688C00B177E2 /* screenshots */,
+			);
+			path = promotional;
+			sourceTree = "<group>";
+		};
+		7CE7FF3C2942688C00B177E2 /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				7CE7FF3D2942689B00B177E2 /* full_with_chrome.png */,
+				7CE7FF3F294268BB00B177E2 /* full_no_chrome.png */,
+				7CE7FF412942695F00B177E2 /* entry.png */,
+				7CE7FF432942697300B177E2 /* emoji.png */,
+				7CE7FF452942698D00B177E2 /* writing_prompts.png */,
+			);
+			path = screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
