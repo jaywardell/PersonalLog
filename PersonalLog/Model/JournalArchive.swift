@@ -67,6 +67,11 @@ final class JournalArchive {
         entriesAtDates[day] ?? []
     }
     
+    func date(forEntryWithID id: any Equatable) -> Date? {
+        // internally, an entry's id is just its creation date
+        id as? Date
+    }
+    
     func journalEntry(for id: some Equatable) -> JournalEntry? {
         guard let date = id as? Date,
               let path = path(for: date) else { return nil }

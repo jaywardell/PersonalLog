@@ -51,10 +51,9 @@ extension Journal: JournalData {
         if !filterString.isEmpty {
             let matches = index.dates(for: filterString)
             ids = ids.filter {
-                guard let entry = archiver.journalEntry(for: $0) else { return false }
-                
                 // make sure that the indexer has indexed this entry for this date
-                return matches.contains(entry.date)
+                guard let entryDate = archiver.date(forEntryWithID: $0) else { return false }
+                return matches.contains(entryDate)
             }
         }
         
