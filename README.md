@@ -6,6 +6,8 @@ This is an app I made for myself. I had a minor health issue and started journal
 
 This app lets you journal by adding distinct chunks of text that are automatically timestamped. It lets you record your mood via an emoji, offers writing prompts if you're not sure what to write about, presents the entries in chronological order, and lets you easily search all entries or jump to a specific day.
 
+I set out to make this app 100% open source, to allow others to learn and compare, or maybe laugh.
+
 ## Architecture
 
 ### User Interface
@@ -21,6 +23,8 @@ The model layer stores each entry as an individual json file named with its crea
 * JournalArchive: maintains the files for the entries
 * SearchArchive: maintains a search index matching words to the entries where they can be found
 * Journal: acts as an interface for the model layer, loading entries from the archiver, converting them to view models, filtering results based on the search string, passing on CRUD operations to the archiver and indexer
+    
+I chose to only use local storage, mainly because I wanted to make this app 100% open source and I didn't want to end up sharing credentials on github.  If you wanted to make a cloud-based version of this, it would be easy enough by just writing a different archiver.
     
 ### Controller Layer
 The TopViewController is loaded at startup by the SceneDelegate. It maintains a layout composed of 3 smaller view controllers. Only the list of entries is implemented as a classic UIKit view controller.  The others are UIHostingControllers.
@@ -47,3 +51,4 @@ The color scheme is meant to be unobtrusive to let the user focus on content. It
 
 PersonalLog is offered under a MIT License.
 
+Questions, concerns, can be directed to my (website)[https://www.jaywardell.me/contact-me/]
