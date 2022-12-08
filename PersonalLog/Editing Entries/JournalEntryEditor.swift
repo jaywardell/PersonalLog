@@ -168,15 +168,17 @@ struct JournalEntryEditor: View {
                 TagsListView(prompt: "Edit Tags", tags: viewModel.tags) { viewModel.tags = $0 }
             }
             .sheet(isPresented: $showPromptsList) {
-                PhrasesPicker(
-                    prompt: "Pick a Topic",
-                    message: "You can write about anything you want, but if you want some ideas, here's a list of journaling prompts:",
-                    phrases: WritingPrompts().prompts,
-                    initialPhrase: viewModel.prompt,
-                    doneButtonTitle: "Write about This",
-                    clearButtonTitle: "Write about Anything") { prompt in
-                    viewModel.prompt = prompt
+                PromptPicker(initialPhrase: viewModel.prompt) { viewModel.prompt = $0
                 }
+//                PhrasesPicker(
+//                    prompt: "Pick a Topic",
+//                    message: "You can write about anything you want, but if you want some ideas, here's a list of journaling prompts:",
+//                    phrases: WritingPrompts().prompts,
+//                    initialPhrase: viewModel.prompt,
+//                    doneButtonTitle: "Write about This",
+//                    clearButtonTitle: "Write about Anything") { prompt in
+//                    viewModel.prompt = prompt
+//                }
             }
         }
     }

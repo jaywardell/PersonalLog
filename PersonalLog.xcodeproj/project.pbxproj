@@ -29,6 +29,7 @@
 		7CE7FF2D293FAE5900B177E2 /* DayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */; };
 		7CE7FF322941EA0800B177E2 /* prompts.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF312941EA0800B177E2 /* prompts.txt */; };
 		7CE7FF342941F6C200B177E2 /* WritingPrompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF332941F6C200B177E2 /* WritingPrompts.swift */; };
+		7CE7FF362941F97B00B177E2 /* PromptPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF352941F97B00B177E2 /* PromptPicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPicker.swift; sourceTree = "<group>"; };
 		7CE7FF312941EA0800B177E2 /* prompts.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = prompts.txt; sourceTree = "<group>"; };
 		7CE7FF332941F6C200B177E2 /* WritingPrompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingPrompts.swift; sourceTree = "<group>"; };
+		7CE7FF352941F97B00B177E2 /* PromptPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptPicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +175,7 @@
 			children = (
 				7C1B545F293CB9B4004B5EF0 /* JournalEntryEditor.swift */,
 				7C4AC68A293D04CE00E8EDFE /* PhrasesPicker.swift */,
+				7CE7FF352941F97B00B177E2 /* PromptPicker.swift */,
 				7C4AC688293CFACB00E8EDFE /* TagsListView.swift */,
 				7C1B5461293CCB92004B5EF0 /* EmojiPicker.swift */,
 			);
@@ -337,6 +340,7 @@
 				7C4AC691293D705700E8EDFE /* JournalArchive.swift in Sources */,
 				7C4AC693293D706100E8EDFE /* JournalEntry.swift in Sources */,
 				7CBFAAE3293F9DC30036D457 /* Toolbar.swift in Sources */,
+				7CE7FF362941F97B00B177E2 /* PromptPicker.swift in Sources */,
 				7CE7FF342941F6C200B177E2 /* WritingPrompts.swift in Sources */,
 				7C1B542C293CB30D004B5EF0 /* AppDelegate.swift in Sources */,
 				7CBFAADD293F530B0036D457 /* SearchArchive.swift in Sources */,
