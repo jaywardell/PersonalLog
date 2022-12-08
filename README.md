@@ -26,7 +26,7 @@ The model layer stores each entry as an individual json file named with its crea
 The TopViewController is loaded at startup by the SceneDelegate. It maintains a layout composed of 3 smaller view controllers. Only the list of entries is implemented as a classic UIKit view controller.  The others are UIHostingControllers.
 
 
-## Design
+## UI Design
 The design is meant to be immediately intuitible and focused on the user's need at the time. 
 
 Most quickly-accessed functions are accessible from the bottom of the screen where the user's fingers are. Less commonly accessed functions, or functions that require extra attention, are near the top.  
