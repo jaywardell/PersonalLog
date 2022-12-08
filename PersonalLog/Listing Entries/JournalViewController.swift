@@ -228,7 +228,9 @@ class JournalViewController: UITableViewController {
             JournalEntryCell(viewModel: viewModel)
                 .onTapGesture(perform: userTappedContent)
                 .onLongPressGesture { [weak self] in
-                    self?.showEditor(forEntryWithID: id)
+                    if false == self?.inLandscapeIPhone {
+                        self?.showEditor(forEntryWithID: id)
+                    }
                 }
         }
 
@@ -287,5 +289,18 @@ extension JournalViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         data.filterString = searchController.searchBar.text ?? ""
         tableView.reloadData()
+    }
+}
+
+
+// MARK: -
+
+fileprivate extension UIViewController {
+    
+    var inLandscapeIPhone: Bool {
+        // ignore trait collection for our purposes
+        // we want to know if we're in landscape even on larger screens
+        guard UIDevice.current.userInterfaceIdiom != .pad else { return false }
+        return view.frame.size.width > view.frame.size.height
     }
 }
