@@ -45,5 +45,5 @@ The color scheme is meant to be unobtrusive to let the user focus on content. It
 
 ## License
 
-PersonalLog is offered under a MIT Picense.
+PersonalLog is offered under a MIT License.
 
