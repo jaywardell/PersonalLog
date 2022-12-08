@@ -27,11 +27,11 @@ The TopViewController is loaded at startup by the SceneDelegate. It maintains a 
 ## Design
 The design is meant to be immediately intuitible and focused on the user's need at the time. 
 
-Most quickly-accessed functions are accessible from the bottom of the screen, while less commonly accessed functions, or functions that require extra attention, are near the top.  
+Most quickly-accessed functions are accessible from the bottom of the screen where the user's fingers are. Less commonly accessed functions, or functions that require extra attention, are near the top.  
 
 The toolbar offers the ability to add new entries and to navigate to a given date.  
 
-When it's not needed, the user can hide almost all chrome by just tapping on the table, in order to let the user focus on reading. All chrome is automatically hidden in landscape orientation as well.
+When it's not needed, the user can hide almost all chrome by just tapping on the table, in order to focus on reading. All chrome is automatically hidden in landscape orientation as well.
 
 The color scheme is meant to be unobtrusive to let the user focus on content. It uses a very muted cool tint color, and only system-prescribed grays for content.
 
