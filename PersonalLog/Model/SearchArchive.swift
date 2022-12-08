@@ -26,10 +26,13 @@ final class SearchArchive {
     
     init(path: URL? = nil) {
         self.path = path ?? Self.defaultPath
-               
+
+        try? FileManager.default.removeItem(at: self.path)
+
         self.index = [:]
                 
         loadArchive()
+        
     }
     
     var isEmpty: Bool {
@@ -39,6 +42,7 @@ final class SearchArchive {
     /// indexes the entry passed in so that it can be found in a search using dates(for:)
     func index(_ entry: JournalEntry) {
         
+        removeIndex(for: entry)
         updateIndex(with: entry)
         
         archiveIndex()
@@ -78,6 +82,33 @@ final class SearchArchive {
         }
         
         return out
+    }
+    
+    /// remove any previous entries in the index for this entry
+    private func removeIndex(for entry: JournalEntry) {
+        for (word, dates) in index {
+            if dates.contains(entry.date) {
+                
+                var newList = dates
+                newList.remove(entry.date)
+                
+                // there's at least one entry for this day that's been indexed with this word
+                // but there may be more.
+                let day = Calendar.current.startOfDay(for: entry.date)
+                let otherEntryForDay = newList.first {
+                    Calendar.current.startOfDay(for: $0) == day &&
+                    $0 != day
+                }
+                
+                if nil == otherEntryForDay {
+                    // no, there are no other entries that match this day for this word
+                    // so remove the day from the list as well
+                    newList.remove(day)
+                }
+                
+                index[word] = newList
+            }
+        }
     }
     
     private func updateIndex(with entry: JournalEntry) {
