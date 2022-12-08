@@ -58,6 +58,13 @@ class TopViewController: UIViewController {
         listenForKeyboardEvents()
     }
         
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // if we start up in landscape mode, we want to have the chrome look as expected
+        orientationChanged(animated: false)
+    }
+    
     // MARK: - Layout
     
     private func layoutChildren() {
@@ -91,6 +98,11 @@ class TopViewController: UIViewController {
     }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        orientationChanged(animated: true)
+    }
+
+    private func orientationChanged(animated: Bool) {
+        guard UIDevice.current.userInterfaceIdiom != .pad else { return }
         
         // Landscape orientation is for reading only
         // portrait is for reading OR editing
@@ -104,7 +116,7 @@ class TopViewController: UIViewController {
             
             // need the delay to deal with keyboard-watching code
             DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
-                self.toggleToolbar()
+                self.toggleToolbar(animated: animated)
             }
         }
         
@@ -114,7 +126,6 @@ class TopViewController: UIViewController {
         
         historyVC.setNavigationBarHidden(inLandscape, animated: false)
     }
-
     
     // MARK: - Day Picker
     private var dayPickerVisible: Bool { !dayPickerHidden.isActive }
@@ -157,14 +168,15 @@ class TopViewController: UIViewController {
         
         self.journalVC.hideSearchChromeIfNoSearchString()
 
-        toggleToolbar()
+        toggleToolbar(animated: true)
     }
     
     private var toolbarVisible: Bool { !toolbarHidden.isActive }
-    private func toggleToolbar() {
+    private func toggleToolbar(animated: Bool) {
+        
         self.toolbarHidden.isActive.toggle()
         
-        UIView.animate(withDuration: 0.4, delay: 0) {
+        UIView.animate(withDuration: animated ? 0.4 : 0, delay: 0) {
             self.view.layoutSubviews()
             self.toolbar.layer.opacity = self.toolbarHidden.isActive ? 0 : 1
         }
