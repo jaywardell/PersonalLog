@@ -27,6 +27,8 @@
 		7CBFAADD293F530B0036D457 /* SearchArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBFAADC293F530B0036D457 /* SearchArchive.swift */; };
 		7CBFAAE3293F9DC30036D457 /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CBFAAE2293F9DC30036D457 /* Toolbar.swift */; };
 		7CE7FF2D293FAE5900B177E2 /* DayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */; };
+		7CE7FF322941EA0800B177E2 /* prompts.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF312941EA0800B177E2 /* prompts.txt */; };
+		7CE7FF342941F6C200B177E2 /* WritingPrompts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF332941F6C200B177E2 /* WritingPrompts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,8 @@
 		7CBFAADC293F530B0036D457 /* SearchArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArchive.swift; sourceTree = "<group>"; };
 		7CBFAAE2293F9DC30036D457 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPicker.swift; sourceTree = "<group>"; };
+		7CE7FF312941EA0800B177E2 /* prompts.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = prompts.txt; sourceTree = "<group>"; };
+		7CE7FF332941F6C200B177E2 /* WritingPrompts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WritingPrompts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,7 @@
 				7C4AC695293E4FDF00E8EDFE /* Editing Entries */,
 				7C1B5434293CB30E004B5EF0 /* Assets.xcassets */,
 				7C1B5436293CB30E004B5EF0 /* LaunchScreen.storyboard */,
+				7CE7FF312941EA0800B177E2 /* prompts.txt */,
 				7C1B5439293CB30E004B5EF0 /* Info.plist */,
 			);
 			path = PersonalLog;
@@ -158,6 +163,7 @@
 				7C4AC692293D706100E8EDFE /* JournalEntry.swift */,
 				7C4AC690293D705700E8EDFE /* JournalArchive.swift */,
 				7CBFAADC293F530B0036D457 /* SearchArchive.swift */,
+				7CE7FF332941F6C200B177E2 /* WritingPrompts.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -296,6 +302,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CE7FF322941EA0800B177E2 /* prompts.txt in Resources */,
 				7C1B5438293CB30E004B5EF0 /* LaunchScreen.storyboard in Resources */,
 				7C1B5435293CB30E004B5EF0 /* Assets.xcassets in Resources */,
 			);
@@ -330,6 +337,7 @@
 				7C4AC691293D705700E8EDFE /* JournalArchive.swift in Sources */,
 				7C4AC693293D706100E8EDFE /* JournalEntry.swift in Sources */,
 				7CBFAAE3293F9DC30036D457 /* Toolbar.swift in Sources */,
+				7CE7FF342941F6C200B177E2 /* WritingPrompts.swift in Sources */,
 				7C1B542C293CB30D004B5EF0 /* AppDelegate.swift in Sources */,
 				7CBFAADD293F530B0036D457 /* SearchArchive.swift in Sources */,
 				7C4AC68D293D213B00E8EDFE /* JournalEntryCell.swift in Sources */,

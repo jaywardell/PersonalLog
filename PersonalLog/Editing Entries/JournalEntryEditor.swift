@@ -171,7 +171,7 @@ struct JournalEntryEditor: View {
                 PhrasesPicker(
                     prompt: "Pick a Topic",
                     message: "You can write about anything you want, but if you want some ideas, here's a list of journaling prompts:",
-                    phrases: Self.Prompts,
+                    phrases: WritingPrompts().prompts,
                     initialPhrase: viewModel.prompt,
                     doneButtonTitle: "Write about This",
                     clearButtonTitle: "Write about Anything") { prompt in
