@@ -78,7 +78,6 @@ struct PromptPicker: View {
             phraseWasChanged("")
             dismiss()
         }
-        .disabled(selectedPhrase == "")
     }
 
 
@@ -88,7 +87,7 @@ struct PromptPicker: View {
             dismiss()
         }
         .buttonStyle(.borderedProminent)
-//        .disabled(selectedPhrase == initialPhrase)
+        .disabled(selectedPhrase.isEmpty)
     }
 
 private func chooseAndDismiss(_ phrase: String) {
