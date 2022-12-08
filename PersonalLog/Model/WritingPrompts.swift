@@ -11,12 +11,14 @@ struct WritingPrompts {
     
     let prompts: [String]
     
-    init() {
+    init(firstPrompt: String) {
         if let path = Bundle.main.url(forResource: "prompts", withExtension: "txt"),
            let text = try? String(contentsOf: path) {
-            
-            self.prompts = text.components(separatedBy: "\n")
+                        
+            self.prompts = (firstPrompt.isEmpty ? [] : [firstPrompt]) +
+            text.components(separatedBy: "\n")
                 .filter { !$0.isEmpty }
+                .filter { $0 != firstPrompt }
                 .shuffled()
         }
         else {

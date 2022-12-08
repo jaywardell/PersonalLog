@@ -12,7 +12,7 @@ struct PromptPicker: View {
     let initialPhrase: String
     let prompt: String = "Pick a Topic"
     let message: String = "You can write about anything you want, but if you want some ideas, here's a list of journaling prompts:"
-    let phrases: [String] = WritingPrompts().prompts
+    let phrases: [String]
     let clearButtonTitle: String = "Write about Anything"
     let doneButtonTitle: String = "Write About This"
     
@@ -26,6 +26,7 @@ struct PromptPicker: View {
         self.initialPhrase = initialPhrase
         self.phraseWasChanged = phraseWasChanged
 
+        self.phrases = WritingPrompts(firstPrompt: initialPhrase).prompts
         _selectedPhrase = .init(initialValue: initialPhrase)
     }
 
