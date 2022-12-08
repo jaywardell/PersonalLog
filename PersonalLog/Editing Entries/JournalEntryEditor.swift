@@ -173,12 +173,6 @@ struct JournalEntryEditor: View {
             }
         }
     }
-    
-    static let Prompts = [
-    "How has the day gone so far?",
-    "What do you plan to do with your day?",
-    "What are you grateful for today?"
-    ]
 }
 
 // MARK: - JournalEntryView: Component Views
