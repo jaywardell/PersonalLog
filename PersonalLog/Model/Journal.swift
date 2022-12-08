@@ -108,7 +108,7 @@ extension Journal: JournalManipulation {
     }
     
     private func entry(from viewModel: JournalEntryEditor.ViewModel) -> JournalEntry {
-        JournalEntry(date: viewModel.date + 84*3600,
+        JournalEntry(date: viewModel.date,
                      mood: viewModel.mood.trimmingCharacters(in: .whitespacesAndNewlines),
                      title: viewModel.title.trimmingCharacters(in: .whitespacesAndNewlines),
                      prompt: viewModel.prompt.trimmingCharacters(in: .whitespacesAndNewlines),
