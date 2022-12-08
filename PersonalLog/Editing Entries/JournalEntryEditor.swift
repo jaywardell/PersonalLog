@@ -82,13 +82,16 @@ struct JournalEntryEditor: View {
         viewModel.prompt.isEmpty ? "what can I write about?" : viewModel.prompt
     }
     
+    private var moodButtonSpacer: some View {
+        Text(" ").font(.caption)
+    }
+    
     var body: some View {
         NavigationStack {
             VStack {
                 HStack(alignment: .top) {
                     VStack {
-                        Text(" ")
-                            .font(.caption)
+                        moodButtonSpacer
                         Button(moodButtonTitle) {
                             showEmojiPicker = true
                         }
@@ -131,7 +134,7 @@ struct JournalEntryEditor: View {
                             Spacer()
                         }
 
-                        // only make the prompts picker available if the suer hasn't already started to write OR if she's chosen a prompt already
+                        // only make the prompts picker available if the user hasn't already started to write OR if she's chosen a prompt already
                         if !viewModel.prompt.isEmpty || viewModel.text.isEmpty {
                             
                             HStack {
@@ -148,8 +151,6 @@ struct JournalEntryEditor: View {
                             }
                             .padding(.top)
                         }
-                        
-                                        
                     }
                 }
                 TextEditor(text: $viewModel.text)
