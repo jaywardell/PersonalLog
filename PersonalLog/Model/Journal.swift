@@ -80,7 +80,7 @@ extension Journal: JournalData {
 }
  
 extension Journal: JournalManipulation {
-
+    
     func creatNewEntry(from viewModel: JournalEntryEditor.ViewModel) {
         
         let entry = entry(from: viewModel)
@@ -92,7 +92,7 @@ extension Journal: JournalManipulation {
     }
     
     func updateEntry(id: any Equatable, from viewModel: JournalEntryEditor.ViewModel) {
-
+        
         let entry = entry(from: viewModel)
         try? archiver.save(entry: entry)
         
@@ -100,7 +100,7 @@ extension Journal: JournalManipulation {
         
         index.index(entry)
     }
-
+    
     func deleteEntry(id: any Equatable) {
         
         archiver.deleteEntry(for: id)
@@ -108,12 +108,15 @@ extension Journal: JournalManipulation {
     }
     
     private func entry(from viewModel: JournalEntryEditor.ViewModel) -> JournalEntry {
-        JournalEntry(date: viewModel.date,
-                     mood: viewModel.mood.trimmingCharacters(in: .whitespacesAndNewlines),
-                     title: viewModel.title.trimmingCharacters(in: .whitespacesAndNewlines),
-                     prompt: viewModel.prompt.trimmingCharacters(in: .whitespacesAndNewlines),
-                     text: viewModel.text.trimmingCharacters(in: .whitespacesAndNewlines),
-                     tags: viewModel.tags.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) })
-    }
+        
+        var date: Date = viewModel.date
+        if TestingFlags.default.offsetDateForNewEntries { date = date.addingTimeInterval(24*3600) }
     
+        return JournalEntry(date: date,
+                            mood: viewModel.mood.trimmingCharacters(in: .whitespacesAndNewlines),
+                            title: viewModel.title.trimmingCharacters(in: .whitespacesAndNewlines),
+                            prompt: viewModel.prompt.trimmingCharacters(in: .whitespacesAndNewlines),
+                            text: viewModel.text.trimmingCharacters(in: .whitespacesAndNewlines),
+                            tags: viewModel.tags.map { $0.trimmingCharacters(in: .whitespacesAndNewlines) })
+    }
 }
