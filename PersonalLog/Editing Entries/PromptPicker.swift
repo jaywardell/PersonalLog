@@ -73,7 +73,7 @@ struct PromptPicker: View {
         }
     }
     
-    @ViewBuilder private var clearButton: some View {
+    private var clearButton: some View {
         Button(clearButtonTitle) {
             phraseWasChanged("")
             dismiss()
