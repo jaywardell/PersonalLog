@@ -30,7 +30,6 @@
 		7CE7FF362941F97B00B177E2 /* PromptPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF352941F97B00B177E2 /* PromptPicker.swift */; };
 		7CE7FF382942029D00B177E2 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF372942029D00B177E2 /* README.md */; };
 		7CE7FF3A2942460E00B177E2 /* license.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF392942460E00B177E2 /* license.txt */; };
-		7CE7FF48294269D300B177E2 /* empty.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CE7FF47294269D300B177E2 /* empty.png */; };
 		7CE7FF5029436DBF00B177E2 /* TestingFlags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CE7FF4F29436DBF00B177E2 /* TestingFlags.swift */; };
 /* End PBXBuildFile section */
 
@@ -71,13 +70,7 @@
 		7CE7FF352941F97B00B177E2 /* PromptPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptPicker.swift; sourceTree = "<group>"; };
 		7CE7FF372942029D00B177E2 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		7CE7FF392942460E00B177E2 /* license.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = license.txt; sourceTree = "<group>"; };
-		7CE7FF3D2942689B00B177E2 /* full_with_chrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full_with_chrome.png; sourceTree = "<group>"; };
-		7CE7FF3F294268BB00B177E2 /* full_no_chrome.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = full_no_chrome.png; sourceTree = "<group>"; };
-		7CE7FF412942695F00B177E2 /* entry.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = entry.png; sourceTree = "<group>"; };
-		7CE7FF432942697300B177E2 /* emoji.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = emoji.png; sourceTree = "<group>"; };
-		7CE7FF47294269D300B177E2 /* empty.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = empty.png; sourceTree = "<group>"; };
 		7CE7FF4929426C7400B177E2 /* app store blurb */ = {isa = PBXFileReference; lastKnownFileType = text; path = "app store blurb"; sourceTree = "<group>"; };
-		7CE7FF4E2942941800B177E2 /* writing_prompts.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = writing_prompts.png; sourceTree = "<group>"; };
 		7CE7FF4F29436DBF00B177E2 /* TestingFlags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingFlags.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -192,23 +185,9 @@
 		7CE7FF3B2942688000B177E2 /* promotional */ = {
 			isa = PBXGroup;
 			children = (
-				7CE7FF3C2942688C00B177E2 /* screenshots */,
 				7CE7FF4929426C7400B177E2 /* app store blurb */,
 			);
 			path = promotional;
-			sourceTree = "<group>";
-		};
-		7CE7FF3C2942688C00B177E2 /* screenshots */ = {
-			isa = PBXGroup;
-			children = (
-				7CE7FF47294269D300B177E2 /* empty.png */,
-				7CE7FF3D2942689B00B177E2 /* full_with_chrome.png */,
-				7CE7FF3F294268BB00B177E2 /* full_no_chrome.png */,
-				7CE7FF4E2942941800B177E2 /* writing_prompts.png */,
-				7CE7FF412942695F00B177E2 /* entry.png */,
-				7CE7FF432942697300B177E2 /* emoji.png */,
-			);
-			path = screenshots;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -294,7 +273,6 @@
 			files = (
 				7CE7FF322941EA0800B177E2 /* prompts.txt in Resources */,
 				7CE7FF3A2942460E00B177E2 /* license.txt in Resources */,
-				7CE7FF48294269D300B177E2 /* empty.png in Resources */,
 				7C1B5438293CB30E004B5EF0 /* LaunchScreen.storyboard in Resources */,
 				7CE7FF382942029D00B177E2 /* README.md in Resources */,
 				7C1B5435293CB30E004B5EF0 /* Assets.xcassets in Resources */,
