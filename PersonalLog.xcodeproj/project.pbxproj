@@ -62,6 +62,7 @@
 		7C4AC68E293D4A5A00E8EDFE /* Journal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Journal.swift; sourceTree = "<group>"; };
 		7C4AC690293D705700E8EDFE /* JournalArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalArchive.swift; sourceTree = "<group>"; };
 		7C4AC692293D706100E8EDFE /* JournalEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JournalEntry.swift; sourceTree = "<group>"; };
+		7CA6834A2947C63900BD6D12 /* app_store.svg */ = {isa = PBXFileReference; lastKnownFileType = text; path = app_store.svg; sourceTree = "<group>"; };
 		7CBFAADC293F530B0036D457 /* SearchArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArchive.swift; sourceTree = "<group>"; };
 		7CBFAAE2293F9DC30036D457 /* Toolbar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Toolbar.swift; sourceTree = "<group>"; };
 		7CE7FF2C293FAE5900B177E2 /* DayPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayPicker.swift; sourceTree = "<group>"; };
@@ -172,6 +173,14 @@
 			path = "Listing Entries";
 			sourceTree = "<group>";
 		};
+		7CA683492947C5F900BD6D12 /* badges */ = {
+			isa = PBXGroup;
+			children = (
+				7CA6834A2947C63900BD6D12 /* app_store.svg */,
+			);
+			path = badges;
+			sourceTree = "<group>";
+		};
 		7CE7FF3029411C4D00B177E2 /* Top Level */ = {
 			isa = PBXGroup;
 			children = (
@@ -185,6 +194,7 @@
 		7CE7FF3B2942688000B177E2 /* promotional */ = {
 			isa = PBXGroup;
 			children = (
+				7CA683492947C5F900BD6D12 /* badges */,
 				7CE7FF4929426C7400B177E2 /* app store blurb */,
 			);
 			path = promotional;

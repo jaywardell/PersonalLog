@@ -2,6 +2,9 @@
 
 # Personal Log
 
+![Alt text](./promotional/badges/app_store.svg "a title")
+
+
 This is an app I made for myself. I had a minor health issue and started journaling to keep track of my thoughts through the process of healing.  I was using the Notes app on my iPhone, but I quickly found that it got unwieldy to keep one very long text note.
 
 This app lets you journal by adding distinct chunks of text that are automatically timestamped. It lets you record your mood via an emoji, offers writing prompts if you're not sure what to write about, presents the entries in chronological order, and lets you easily search all entries or jump to a specific day.
