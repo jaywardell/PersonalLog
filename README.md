@@ -2,8 +2,9 @@
 
 # Personal Log
 
-![Alt text](./promotional/badges/app_store.svg "a title")
+<a href="https://apps.apple.com/us/app/personal-log-journal/id1658849143" ><img src="https://raw.githubusercontent.com/jaywardell/PersonalLog/939a2e96a296bcf40f5ef346303e1b854ab5fa02/promotional/badges/app_store.svg" /></a>
 
+available on the [App Store](https://apps.apple.com/us/app/personal-log-journal/id1658849143)
 
 This is an app I made for myself. I had a minor health issue and started journaling to keep track of my thoughts through the process of healing.  I was using the Notes app on my iPhone, but I quickly found that it got unwieldy to keep one very long text note.
 
