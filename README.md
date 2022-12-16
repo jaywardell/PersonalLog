@@ -45,6 +45,11 @@ When it's not needed, the user can hide almost all chrome by just tapping on the
 
 The color scheme is meant to be unobtrusive to let the user focus on content. It uses a very muted cool tint color, and only system-prescribed grays for content.
 
+## Version History
+
+**1.0** initial release
+**1.1** added share button to the toolbar 
+
 <img src="https://github.com/jaywardell/PersonalLog/blob/main/promotional/screenshots/empty.png?raw=true" width=200>
 <img src="https://github.com/jaywardell/PersonalLog/blob/main/promotional/screenshots/full_no_chrome.png?raw=true"  width=200 />
 <img src="https://github.com/jaywardell/PersonalLog/blob/main/promotional/screenshots/entry.png?raw=true"  width=200 />
