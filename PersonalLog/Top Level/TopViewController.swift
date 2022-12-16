@@ -16,7 +16,7 @@ class TopViewController: UIViewController {
     private lazy var journalVC: JournalViewController = { JournalViewController(data: journal, routes: journal, userTappedContent: userRequestedChromeChange) }()
     private lazy var historyVC = UINavigationController(rootViewController: journalVC)
     private lazy var toolbarVC: UIViewController = {
-        let view = Toolbar(calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped)
+        let view = Toolbar(calendarButtonTapped: toggleDayPicker, addButtonTapped: addButtonTapped, shareButtonTapped: shareButtonTapped)
         return UIHostingController(rootView: view)
     }()
     private lazy var dayPickerVC: UIViewController = {
@@ -194,7 +194,20 @@ class TopViewController: UIViewController {
         journalVC.showSearchChrome()
     }
 
+    private func shareButtonTapped() {
+        Task {
+            let summary = await journal.loadSummary()
+            DispatchQueue.main.async { [weak self] in
+                self?.share(summary)
+            }
+        }
+    }
 
+    private func share(_ string: String) {
+        let vc = UIActivityViewController(activityItems: [string], applicationActivities: [])
+        present(vc, animated: true)
+    }
+    
     // MARK: - TopViewController: Listening for Keyboard
 
     private func listenForKeyboardEvents() {

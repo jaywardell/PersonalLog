@@ -42,6 +42,20 @@ final class Journal: ObservableObject {
             index.rebuildIndex(from: archiver.directory)
         }
     }
+    
+    func loadSummary() async -> String {
+        var out = ""
+        
+        for day in days {
+            let ids = entryIDs(for: day)
+            for id in ids {
+                let entry = archiver.journalEntry(for: id)!
+                out += entry.summary + "\n\n\n"
+            }
+        }
+        
+        return out
+    }
 }
 
 extension Journal: JournalData {
