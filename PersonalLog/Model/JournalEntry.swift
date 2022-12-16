@@ -31,6 +31,22 @@ struct JournalEntry {
             .map(\.localizedLowercase)
     }
 
+    var summary: String {
+        var out = ""
+        out += DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .short)
+
+        if !mood.isEmpty { out += mood + "\n" }
+        if !title.isEmpty { out += title + "\n" }
+        if !mood.isEmpty || !title.isEmpty { out += "\n" }
+        
+        if !prompt.isEmpty { out += prompt + "\n\n" }
+        
+        if !text.isEmpty { out += text + "\n\n" }
+        if !tags.isEmpty { out += "\n" + tags.joined(separator: ", ") + "\n\n" }
+        
+        return out
+    }
+    
 }
 
 extension JournalEntry: Codable {}
