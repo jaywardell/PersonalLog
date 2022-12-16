@@ -203,6 +203,8 @@ class TopViewController: UIViewController {
         }
     }
 
+    // MARK: - Sharing
+    
     private func share(_ string: String) {
         let vc = UIActivityViewController(activityItems: [string], applicationActivities: [])
         present(vc, animated: true)
