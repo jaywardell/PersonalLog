@@ -33,7 +33,7 @@ struct JournalEntry {
 
     var summary: String {
         var out = ""
-        out += DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .short)
+        out += DateFormatter.localizedString(from: date, dateStyle: .long, timeStyle: .short) + "\n\n"
 
         if !mood.isEmpty { out += mood + "\n" }
         if !title.isEmpty { out += title + "\n" }
@@ -42,7 +42,7 @@ struct JournalEntry {
         if !prompt.isEmpty { out += prompt + "\n\n" }
         
         if !text.isEmpty { out += text + "\n\n" }
-        if !tags.isEmpty { out += "\n" + tags.joined(separator: ", ") + "\n\n" }
+        if !tags.isEmpty { out += "tags: " + tags.joined(separator: ", ") + "\n\n" }
         
         return out
     }
