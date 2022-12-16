@@ -47,8 +47,8 @@ The color scheme is meant to be unobtrusive to let the user focus on content. It
 
 ## Version History
 
-**1.0** initial release
-**1.1** added share button to the toolbar 
+* **1.1** added a share button to the toolbar 
+* **1.0** initial release
 
 <img src="https://github.com/jaywardell/PersonalLog/blob/main/promotional/screenshots/empty.png?raw=true" width=200>
 <img src="https://github.com/jaywardell/PersonalLog/blob/main/promotional/screenshots/full_no_chrome.png?raw=true"  width=200 />
